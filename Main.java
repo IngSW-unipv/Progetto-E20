@@ -8,7 +8,7 @@ public class Main {
 		
 		Payment p1=new Payment(price);
 		p1.setVisible(true);
-		
+		Payment p1=new Payment(price);
 
 	}
 
