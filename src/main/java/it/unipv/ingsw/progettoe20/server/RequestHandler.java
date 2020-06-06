@@ -68,7 +68,8 @@ public class RequestHandler {
             case (Protocol.REQUEST_PAY_AMOUNT):
                 try {
                     if (dbFacade.checkTicketById(parts[1])) {
-                        out.println(getPaymentAmount(parts[1]));
+                        double amount = PaymentCalculator.getPaymentAmount(dbFacade.getTicketById(parts[1]), dbFacade.getPriceList());
+                        out.println(amount);
                     } else out.println(Protocol.RESPONSE_ERROR);
 
                 } catch (IllegalArgumentException i) {
@@ -157,28 +158,5 @@ public class RequestHandler {
             }
         }
         return parts;
-    }
-
-    /**
-     * Metodo che fa il calcolo del prezzo
-     *
-     * @param id
-     * @return
-     */
-    private double getPaymentAmount(String id) {
-        Ticket ticke = dbFacade.getTicketById(id);
-        List<Price> pricelist = dbFacade.getPriceList();
-        Collections.sort(pricelist);
-        double payamount = 0.0;
-        for (Price p : pricelist) {
-            if (ticke.TimeDiff() > p.getMinutes()) {
-                System.out.println(p);
-                payamount = p.getPrice();
-            } else {
-                break;
-            }
-        }
-        if (payamount == 0.0) payamount = pricelist.get(0).getPrice();
-        return payamount;
     }
 }

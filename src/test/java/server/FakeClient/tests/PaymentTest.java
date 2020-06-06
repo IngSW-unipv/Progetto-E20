@@ -28,7 +28,7 @@ public class PaymentTest {
     }
 
     /**
-     * Effettua il test richiedendo la generazione di un ID. Controlla se l'ID generato è presente nel DB.
+     * Effettua il test richiedendo il controllo del pagamento di un ticket.
      *
      * @throws FailedTestException se il test fallisce.
      */
