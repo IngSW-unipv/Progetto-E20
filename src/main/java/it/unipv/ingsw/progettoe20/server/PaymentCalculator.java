@@ -18,16 +18,22 @@ public class PaymentCalculator {
     public static double getPaymentAmount(Ticket ticket, List<Price> pricelist) {
         Collections.sort(pricelist);
         double amount = 0.0;
-        for (Price p : pricelist) {
-            if (ticket.TimeDiff() > p.getMinutes()) {
-                amount = p.getPrice();
-            } else {
-                break;
+        System.out.println(ticket.TimeDiff());
+            if (ticket.TimeDiff() <= pricelist.get(0).getMinutes()) {
+                amount = pricelist.get(0).getPrice();
+
+            } else if(ticket.TimeDiff() >= pricelist.get(2).getMinutes()){
+                amount = pricelist.get(2).getPrice();
             }
-        }
-        if (amount == 0.0) {
-            amount = pricelist.get(0).getPrice();
-        }
-        return amount;
+            else{
+<<<<<<< HEAD
+                Double temp = ticket.TimeDiff()/60;
+                amount = pricelist.get(1).getPrice() *Math.round(temp);
+=======
+                double temp = ticket.timeDiff()/60;
+                amount = pricelist.get(1).getPrice() *Math.ceil(temp);
+>>>>>>> 2b68255... Further updated payment algorithm
+            }
+            return amount;
     }
 }
