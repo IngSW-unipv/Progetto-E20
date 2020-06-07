@@ -26,13 +26,8 @@ public class PaymentCalculator {
                 amount = pricelist.get(2).getPrice();
             }
             else{
-<<<<<<< HEAD
                 Double temp = ticket.TimeDiff()/60;
                 amount = pricelist.get(1).getPrice() *Math.round(temp);
-=======
-                double temp = ticket.timeDiff()/60;
-                amount = pricelist.get(1).getPrice() *Math.ceil(temp);
->>>>>>> 2b68255... Further updated payment algorithm
             }
             return amount;
     }
