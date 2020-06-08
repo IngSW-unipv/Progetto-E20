@@ -18,7 +18,6 @@ public class PaymentCalculator {
     public static double getPaymentAmount(Ticket ticket, List<Price> pricelist) {
         Collections.sort(pricelist);
         double amount = 0.0;
-        System.out.println(ticket.TimeDiff());
             if (ticket.TimeDiff() <= pricelist.get(0).getMinutes()) {
                 amount = pricelist.get(0).getPrice();
 
@@ -26,8 +25,7 @@ public class PaymentCalculator {
                 amount = pricelist.get(2).getPrice();
             }
             else{
-                Double temp = ticket.TimeDiff()/60;
-                amount = pricelist.get(1).getPrice() *Math.round(temp);
+                amount = pricelist.get(1).getPrice() * Math.ceil(ticket.TimeDiff()/60);
             }
             return amount;
     }

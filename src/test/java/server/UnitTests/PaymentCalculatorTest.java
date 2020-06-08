@@ -38,18 +38,18 @@ public class PaymentCalculatorTest {
 
         // Init 5 min ticket
         int fiveMinutes = 5 * 60 * 1000;
-        Timestamp fiveMinLater = new Timestamp(System.currentTimeMillis() + fiveMinutes);
-        fiveMinTicket = new Ticket(ID, timestamp, fiveMinLater, FLAG);
+        Timestamp fiveMinBefore = new Timestamp(System.currentTimeMillis() - fiveMinutes);
+        fiveMinTicket = new Ticket(ID, fiveMinBefore, null, FLAG);
 
         // Init 9 hours ticket
         int nineHours = 9 * 60 * 60 * 1000;
-        Timestamp nineHoursLater = new Timestamp(System.currentTimeMillis() + nineHours);
-        nineHoursTicket = new Ticket(ID, timestamp, nineHoursLater, FLAG);
+        Timestamp nineHoursBefore = new Timestamp(System.currentTimeMillis() - nineHours);
+        nineHoursTicket = new Ticket(ID, nineHoursBefore, null, FLAG);
 
         // Init (less than) 4 hours ticket
         int fourHours = (int) 3.9 * 60 * 60 * 1000;
-        Timestamp fourHoursLater = new Timestamp(System.currentTimeMillis() + fourHours);
-        fourHoursTicket = new Ticket(ID, timestamp, fourHoursLater, FLAG);
+        Timestamp fourHoursBefore = new Timestamp(System.currentTimeMillis() - fourHours);
+        fourHoursTicket = new Ticket(ID, fourHoursBefore, null, FLAG);
     }
 
     @DisplayName("Minimum price")
