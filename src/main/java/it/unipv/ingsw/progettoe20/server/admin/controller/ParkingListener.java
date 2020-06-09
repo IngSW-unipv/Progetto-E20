@@ -1,19 +1,15 @@
 package it.unipv.ingsw.progettoe20.server.admin.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane;
 
 import it.unipv.ingsw.progettoe20.server.admin.model.ParkingAdministrator;
-import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.ParkingManagementGUI;
 
 /*
  *Listener che controlla le operazioni effettuate nella schermata del ParkingManagementGUI
  *Aggiunge o rimuove dei parcheggi.
  */
-public class ParkingListener implements ActionListener {
+public class ParkingListener extends AbstractListener {
 
 	private ParkingManagementGUI gui;
 	private ParkingAdministrator admin;
@@ -23,25 +19,14 @@ public class ParkingListener implements ActionListener {
 		admin = ParkingAdministrator.getInstance();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		if (event.getActionCommand().equals("Home")) {
-			// Se preme il bottone di home
-			changeGUI();
-		} else {
-			// Se preme il bottone di confirm
-			changeParkings();
-		}
-	}
-
 	/*
 	 * Torna alla GUI dell'Administrator
 	 *
 	 */
+	@Override
 	public void changeGUI() {
-		AdministratorGUI adminGUI = new AdministratorGUI();
+		super.changeGUI();
 		gui.setVisible(false);
-		adminGUI.setVisible(true);
 	}
 
 	/*
@@ -86,7 +71,8 @@ public class ParkingListener implements ActionListener {
 	 * Modifica il numero di parcheggi in base a quanto scelto nella combo box
 	 *
 	 */
-	public void changeParkings() {
+	@Override
+	public void change() {
 		String action = (String) gui.getCombo().getSelectedItem();
 		String name = enteredLevel();
 		int number = enteredParkingLots();

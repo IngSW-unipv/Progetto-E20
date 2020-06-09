@@ -1,12 +1,8 @@
 package it.unipv.ingsw.progettoe20.server.admin.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane;
 
 import it.unipv.ingsw.progettoe20.server.admin.model.PriceAdministrator;
-import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.PriceManagementGUI;
 import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 
@@ -14,7 +10,7 @@ import it.unipv.ingsw.progettoe20.server.database.DBConstants;
  * Listener che che controlla le operazioni effettuate nella schermata del PriceManagementGUI
  * Modifica le tariffe disponibili
  */
-public class PriceListener implements ActionListener {
+public class PriceListener extends AbstractListener {
 
 	private final PriceManagementGUI gui;
 	private final PriceAdministrator admin;
@@ -25,26 +21,9 @@ public class PriceListener implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent event) {
-
-		if (event.getActionCommand().equals("Home")) {
-			// Se si preme il bottone di home
-			changeGUI();
-		} else {
-			// Se preme il bottone di confirm
-			changePrices();
-		}
-
-	}
-
-	/*
-	 * Torna alla GUI dell'Administrator
-	 *
-	 */
 	public void changeGUI() {
-		AdministratorGUI adminGUI = new AdministratorGUI();
+		super.changeGUI();
 		gui.setVisible(false);
-		adminGUI.setVisible(true);
 	}
 
 	/*
@@ -70,7 +49,8 @@ public class PriceListener implements ActionListener {
 	/*
 	 * Modifica i valori delle tariffe in base a quanto scelto nella combo box
 	 */
-	public void changePrices() {
+	@Override
+	public void change() {
 		double newprice = enteredNumber();
 		String action = (String) gui.getCombo().getSelectedItem();
 		int minutes;

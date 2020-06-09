@@ -3,6 +3,9 @@ package it.unipv.ingsw.progettoe20.server.admin.model;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 
+/*
+ * Classe per la gestione dei parcheggi
+ */
 public class ParkingAdministrator {
 
 	private static ParkingAdministrator instance;

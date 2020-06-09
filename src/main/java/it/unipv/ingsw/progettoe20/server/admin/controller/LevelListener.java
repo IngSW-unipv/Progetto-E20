@@ -1,15 +1,11 @@
 package it.unipv.ingsw.progettoe20.server.admin.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane;
 
 import it.unipv.ingsw.progettoe20.server.admin.model.LevelAdministrator;
-import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.LevelManagementGUI;
 
-public class LevelListener implements ActionListener {
+public class LevelListener extends AbstractListener {
 
 	private LevelManagementGUI gui;
 	private LevelAdministrator admin;
@@ -17,38 +13,6 @@ public class LevelListener implements ActionListener {
 	public LevelListener(LevelManagementGUI gui) {
 		this.gui = gui;
 		admin = LevelAdministrator.getInstance();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		if (event.getActionCommand().equals("Home")) {
-			// Se preme il bottone di home
-			changeGUI();
-		} else {
-			// Se preme il bottone di confirm
-			changeLevel();
-		}
-	}
-
-	/*
-	 * Modifica i livelli in base a quanto scelto nella combo box
-	 *
-	 */
-	private void changeLevel() {
-		String action = (String) gui.getCombo().getSelectedItem();
-		String name = enteredLevel();
-
-		if (action.equals("Add level")) {
-			// Aggiunge un livello
-			int number = enteredParkingLots();
-			admin.addLevel(name, number);
-			JOptionPane.showMessageDialog(null, "Level " + name + " added", "Info", 1, null);
-		} else {
-			// Rimuove un livello
-			admin.removeLevel(name);
-			JOptionPane.showMessageDialog(null, "Level " + name + " removed", "Info", 1, null);
-
-		}
 	}
 
 	/*
@@ -71,6 +35,13 @@ public class LevelListener implements ActionListener {
 		return number;
 	}
 
+	@Override
+	public void changeGUI() {
+		super.changeGUI();
+		gui.setVisible(false);
+
+	}
+
 	/*
 	 * Legge il nome del livello inserito nel JTextField
 	 *
@@ -90,13 +61,26 @@ public class LevelListener implements ActionListener {
 	}
 
 	/*
-	 * Torna alla GUI dell'Administrator
+	 * Modifica i livelli in base a quanto scelto nella combo box
 	 *
 	 */
-	public void changeGUI() {
-		AdministratorGUI adminGUI = new AdministratorGUI();
-		gui.setVisible(false);
-		adminGUI.setVisible(true);
+	@Override
+	protected void change() {
+		String action = (String) gui.getCombo().getSelectedItem();
+		String name = enteredLevel();
+
+		if (action.equals("Add level")) {
+			// Aggiunge un livello
+			int number = enteredParkingLots();
+			admin.addLevel(name, number);
+			JOptionPane.showMessageDialog(null, "Level " + name + " added", "Info", 1, null);
+		} else {
+			// Rimuove un livello
+			admin.removeLevel(name);
+			JOptionPane.showMessageDialog(null, "Level " + name + " removed", "Info", 1, null);
+
+		}
+
 	}
 
 }

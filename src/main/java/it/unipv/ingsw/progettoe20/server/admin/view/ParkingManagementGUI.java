@@ -17,17 +17,40 @@ import it.unipv.ingsw.progettoe20.server.admin.controller.ParkingListener;
  * Classe per la gestione del parcheggi.
  * Si può modificare il numero di parcheggi disponibili nella struttura.
  */
-public class ParkingManagementGUI extends JFrame {
+public class ParkingManagementGUI extends AbstractGUI {
 
 	private JComboBox<String> combo;
 	private JTextField levelname, parkinglots;
 	private JLabel title, inserthereLevel, insertherePLots;
 	private JPanel panel, panel2, panel3;
 	private JButton confirm, home;
-	private ParkingListener listener;
 
 	public ParkingManagementGUI() {
+		super();
+	}
 
+	public JComboBox<String> getCombo() {
+		return combo;
+	}
+
+	public JButton getHome() {
+		return home;
+	}
+
+	public JTextField getField() {
+		return levelname;
+	}
+
+	public JTextField getField2() {
+		return parkinglots;
+	}
+
+	public JButton getConfirm() {
+		return confirm;
+	}
+
+	@Override
+	public void initComponents() {
 		panel = new JPanel();
 		panel2 = new JPanel();
 		panel3 = new JPanel();
@@ -117,30 +140,14 @@ public class ParkingManagementGUI extends JFrame {
 		panel3.add(insertherePLots);
 		panel3.add(parkinglots);
 
-		// listener settings
+	}
+
+	@Override
+	public void initListener() {
 		listener = new ParkingListener(this);
 		confirm.addActionListener(listener);
 		home.addActionListener(listener);
-	}
 
-	public JComboBox<String> getCombo() {
-		return combo;
-	}
-
-	public JButton getHome() {
-		return home;
-	}
-
-	public JTextField getField() {
-		return levelname;
-	}
-
-	public JTextField getField2() {
-		return parkinglots;
-	}
-
-	public JButton getConfirm() {
-		return confirm;
 	}
 
 }

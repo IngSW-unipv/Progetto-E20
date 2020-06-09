@@ -19,17 +19,40 @@ import it.unipv.ingsw.progettoe20.server.admin.controller.LevelListener;
  * [Quando si aggiunge un livello, è inizialmente vuoto]
  */
 
-public class LevelManagementGUI extends JFrame {
+public class LevelManagementGUI extends AbstractGUI {
 
 	private JLabel title, inserthereLevel, insertherePLots;
 	private JPanel panel, panel1, panel2;
 	private JTextField levelname, parkinglots;
 	private JComboBox<String> combo;
 	private JButton confirm, home;
-	private LevelListener listener;
 
 	public LevelManagementGUI() {
+		super();
+	}
 
+	public JTextField getLevelname() {
+		return levelname;
+	}
+
+	public JComboBox<String> getCombo() {
+		return combo;
+	}
+
+	public JButton getConfirm() {
+		return confirm;
+	}
+
+	public JButton getHome() {
+		return home;
+	}
+
+	public JTextField getParkingLots() {
+		return parkinglots;
+	}
+
+	@Override
+	public void initComponents() {
 		panel = new JPanel();
 		panel1 = new JPanel();
 		panel2 = new JPanel();
@@ -119,29 +142,13 @@ public class LevelManagementGUI extends JFrame {
 		panel2.add(insertherePLots);
 		panel2.add(parkinglots);
 
-		// listener settings
+	}
+
+	@Override
+	public void initListener() {
 		listener = new LevelListener(this);
 		confirm.addActionListener(listener);
 		home.addActionListener(listener);
-	}
 
-	public JTextField getLevelname() {
-		return levelname;
-	}
-
-	public JComboBox<String> getCombo() {
-		return combo;
-	}
-
-	public JButton getConfirm() {
-		return confirm;
-	}
-
-	public JButton getHome() {
-		return home;
-	}
-
-	public JTextField getParkingLots() {
-		return parkinglots;
 	}
 }

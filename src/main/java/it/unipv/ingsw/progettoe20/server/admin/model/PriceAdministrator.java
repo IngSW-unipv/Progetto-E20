@@ -3,6 +3,9 @@ package it.unipv.ingsw.progettoe20.server.admin.model;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Price;
 
+/*
+ * Classe per la gestione delle tariffe
+ */
 public class PriceAdministrator {
 
 	private static PriceAdministrator instance;

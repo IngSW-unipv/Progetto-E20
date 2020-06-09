@@ -3,19 +3,18 @@ package it.unipv.ingsw.progettoe20.server.admin.model;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 /*
- * Classe principale per la gestione dell'interfaccia dell'amministratore.
- * Può aggiungere o rimuovere parcheggi e modificare le tariffe.
+ * Classe Factory per la creazione delle tre classi che gestiscono parcheggi, livelli e tariffeu
  */
 
-public class Administrator {
+public class AdministratorFactory {
 
-	private static Administrator instance;
+	private static AdministratorFactory instance;
 	private DatabaseFacade databaseFacade;
 
 	/*
 	 * Costruttore privato --> Singleton
 	 */
-	private Administrator(final DatabaseFacade pDatabaseFacade) {
+	private AdministratorFactory(final DatabaseFacade pDatabaseFacade) {
 		databaseFacade = pDatabaseFacade;
 		ParkingAdministrator.create(databaseFacade);
 		LevelAdministrator.create(databaseFacade);
@@ -26,7 +25,7 @@ public class Administrator {
 	/*
 	 * Restituisce l'istanza dell'amministratore
 	 */
-	public static Administrator getInstance() {
+	public static AdministratorFactory getInstance() {
 		return instance;
 	}
 
@@ -34,7 +33,7 @@ public class Administrator {
 	 * Crea l'unica instanza dell'amministratore
 	 */
 	public static void create(final DatabaseFacade pDatabaseManager) {
-		instance = new Administrator(pDatabaseManager);
+		instance = new AdministratorFactory(pDatabaseManager);
 	}
 
 }
