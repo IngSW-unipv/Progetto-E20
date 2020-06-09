@@ -1,25 +1,24 @@
-package it.unipv.ingsw.progettoe20.server.switchCommands;
+package it.unipv.ingsw.progettoe20.server.requestsHandling.commands;
 
 import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.Logger;
-import it.unipv.ingsw.progettoe20.server.PaymentCalculator;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
 
-public class CommandPay extends Command {
-    public CommandPay(DatabaseFacade dbFacade, PrintWriter out) {
+public class CommandPayCheck extends Command{
+    public CommandPayCheck(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);
     }
 
     @Override
     public boolean handleRequest(String s) {
         try {
-            if (dbFacade.checkTicketById(s)) {
-                double amount = PaymentCalculator.getPaymentAmount(dbFacade.getTicketById(s), dbFacade.getPriceList());
-                out.println(amount);
-            } else out.println(Protocol.RESPONSE_ERROR);
-
+            if (dbFacade.getTicketById(s).obliterationCheck()) {
+                out.println(Protocol.RESPONSE_PAID_TRUE);
+            } else {
+                out.println(Protocol.RESPONSE_PAID_FALSE);
+            }
         } catch (IllegalArgumentException i) {
             Logger.log(i.getMessage());
             out.println(Protocol.RESPONSE_ERROR + Protocol.SEPARATOR + i.getMessage());

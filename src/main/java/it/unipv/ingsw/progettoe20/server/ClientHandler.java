@@ -1,9 +1,10 @@
 package it.unipv.ingsw.progettoe20.server;
 
+import it.unipv.ingsw.progettoe20.server.requestsHandling.RequestHandler;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
-import java.sql.SQLException;
 
 // TODO: add comments, find better solution for switch statement, write something in error catches
 

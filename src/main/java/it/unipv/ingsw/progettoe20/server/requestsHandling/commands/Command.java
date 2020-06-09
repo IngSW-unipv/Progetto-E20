@@ -1,4 +1,4 @@
-package it.unipv.ingsw.progettoe20.server.switchCommands;
+package it.unipv.ingsw.progettoe20.server.requestsHandling.commands;
 
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
@@ -16,5 +16,5 @@ public abstract class Command {
 
     public boolean handleRequest(String s){
         return false;
-    };
+    }
 }

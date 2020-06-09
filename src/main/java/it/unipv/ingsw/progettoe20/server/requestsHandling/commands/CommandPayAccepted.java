@@ -1,4 +1,4 @@
-package it.unipv.ingsw.progettoe20.server.switchCommands;
+package it.unipv.ingsw.progettoe20.server.requestsHandling.commands;
 
 import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.Logger;

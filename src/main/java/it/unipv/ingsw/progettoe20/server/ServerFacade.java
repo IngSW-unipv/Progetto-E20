@@ -6,10 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import it.unipv.ingsw.progettoe20.ErrorStrings;
-import it.unipv.ingsw.progettoe20.server.admin.model.Administrator;
-import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.cli.CommandLineInterface;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
+import it.unipv.ingsw.progettoe20.server.requestsHandling.RequestHandler;
 
 public class ServerFacade {
 	private DatabaseFacade dbManager;

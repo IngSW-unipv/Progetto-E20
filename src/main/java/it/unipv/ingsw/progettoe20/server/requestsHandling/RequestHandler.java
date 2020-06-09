@@ -1,17 +1,11 @@
-package it.unipv.ingsw.progettoe20.server;
+package it.unipv.ingsw.progettoe20.server.requestsHandling;
 
 import it.unipv.ingsw.progettoe20.Protocol;
+import it.unipv.ingsw.progettoe20.server.GenerationIdTicket;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
-import it.unipv.ingsw.progettoe20.server.model.Level;
-import it.unipv.ingsw.progettoe20.server.model.Price;
-import it.unipv.ingsw.progettoe20.server.model.Ticket;
-import it.unipv.ingsw.progettoe20.server.switchCommands.Command;
+import it.unipv.ingsw.progettoe20.server.requestsHandling.commands.Command;
 
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Verifica la presenza di comandi validi nella richiesta ed esegue l'azione corrispondente.
@@ -20,8 +14,7 @@ public class RequestHandler {
     private DatabaseFacade dbFacade;
     private PrintWriter out;
     private GenerationIdTicket generator;
-    private List<Level> levelList;
-
+    private RequestMap requestMap;
     /**
      * Costruisce un RequestHandler.
      *
@@ -32,7 +25,7 @@ public class RequestHandler {
         this.dbFacade = dbFacade;
         this.out = out;
         this.generator = new GenerationIdTicket(dbFacade);
-
+        requestMap = new RequestMap(dbFacade, out);
     }
 
     /**
@@ -43,8 +36,7 @@ public class RequestHandler {
      */
     public boolean handle(String request) throws IllegalArgumentException {
         String[] parts = splitRequest(request);
-        DoRequests doRequests = new DoRequests(dbFacade, out);
-        Command command = doRequests.REQUESTS.get(parts[0]);
+        Command command = requestMap.getREQUESTS().get(parts[0]);
         return command.handleRequest(parts[1]);
     }
 
