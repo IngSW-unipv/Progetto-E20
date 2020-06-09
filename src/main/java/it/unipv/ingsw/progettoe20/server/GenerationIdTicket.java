@@ -23,7 +23,7 @@ public class GenerationIdTicket {
 
     private Random rand = new Random();
 
-    GenerationIdTicket(DatabaseFacade dbFacade) {
+    public GenerationIdTicket(DatabaseFacade dbFacade) {
         this.dbFacade = dbFacade;
     }
 
