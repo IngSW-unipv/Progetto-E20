@@ -35,9 +35,13 @@ public class RequestHandler {
      * @return true se il client ha richiesto la chiusura della connessione, false altrimenti.
      */
     public boolean handle(String request) throws IllegalArgumentException {
+        try{
         String[] parts = splitRequest(request);
         Command command = requestMap.getREQUESTS().get(parts[0]);
-        return command.handleRequest(parts[1]);
+        return command.handleRequest(parts[1]);}
+        catch (NullPointerException n){
+            return false;
+        }
     }
 
     private String[] splitRequest(String request) {
