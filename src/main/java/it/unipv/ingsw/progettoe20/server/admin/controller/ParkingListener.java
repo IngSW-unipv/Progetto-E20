@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import it.unipv.ingsw.progettoe20.server.admin.model.Administrator;
+import it.unipv.ingsw.progettoe20.server.admin.model.ParkingAdministrator;
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.ParkingManagementGUI;
 
@@ -16,11 +16,11 @@ import it.unipv.ingsw.progettoe20.server.admin.view.ParkingManagementGUI;
 public class ParkingListener implements ActionListener {
 
 	private ParkingManagementGUI gui;
-	private Administrator admin;
+	private ParkingAdministrator admin;
 
 	public ParkingListener(ParkingManagementGUI gui) {
 		this.gui = gui;
-		admin = Administrator.getInstance();
+		admin = ParkingAdministrator.getInstance();
 	}
 
 	@Override

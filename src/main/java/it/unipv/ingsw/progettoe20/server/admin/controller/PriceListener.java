@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import it.unipv.ingsw.progettoe20.server.admin.model.Administrator;
+import it.unipv.ingsw.progettoe20.server.admin.model.PriceAdministrator;
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.PriceManagementGUI;
 import it.unipv.ingsw.progettoe20.server.database.DBConstants;
@@ -17,11 +17,11 @@ import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 public class PriceListener implements ActionListener {
 
 	private final PriceManagementGUI gui;
-	private final Administrator admin;
+	private final PriceAdministrator admin;
 
 	public PriceListener(PriceManagementGUI gui) {
 		this.gui = gui;
-		admin = Administrator.getInstance();
+		admin = PriceAdministrator.getInstance();
 	}
 
 	@Override

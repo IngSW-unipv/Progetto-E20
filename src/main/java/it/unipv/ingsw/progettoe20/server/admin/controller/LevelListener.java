@@ -5,18 +5,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import it.unipv.ingsw.progettoe20.server.admin.model.Administrator;
+import it.unipv.ingsw.progettoe20.server.admin.model.LevelAdministrator;
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.LevelManagementGUI;
 
 public class LevelListener implements ActionListener {
 
 	private LevelManagementGUI gui;
-	private Administrator admin;
+	private LevelAdministrator admin;
 
 	public LevelListener(LevelManagementGUI gui) {
 		this.gui = gui;
-		admin = Administrator.getInstance();
+		admin = LevelAdministrator.getInstance();
 	}
 
 	@Override
