@@ -1,5 +1,7 @@
 package it.unipv.ingsw.progettoe20.client.enterColumn.model;
 
+import it.unipv.ingsw.progettoe20.Protocol;
+
 import java.io.BufferedReader;
 import java.util.Observable;
 import java.io.IOException;
@@ -65,11 +67,11 @@ public class EnterColumn extends Observable{
 	 
 	 public Boolean genTicket() throws IOException {
 		   try {
-	            out.println("genid");
+	            out.println(Protocol.REQUEST_GENERATE_ID);
 	            answer = in.readLine();
 	            System.out.println(answer);
 	            String id=answer.substring(5,answer.length());
-	            if(answer.equals("done:"+id)) 
+	            if(answer.equals(Protocol.RESPONSE_OK + ":" +id))
 	            {return true;}
 	            else {return false;}
 	            
@@ -101,12 +103,12 @@ public class EnterColumn extends Observable{
 	
 	public Boolean setAvailability() {
 		 try {
-	            out.println("parkinglot");
+	            out.println(Protocol.REQUEST_TOTAL_AVAILABILITY);
 	            answer = in.readLine();
 	            
 	            String stringLot=answer.substring(5,answer.length());
 	            totalLot=Integer.parseInt(stringLot);
-	            if(answer.equals("done:"+ totalLot)) 
+	            if(answer.equals(Protocol.RESPONSE_OK + ":"+ totalLot))
 	            {return true;}
 	            else {return false;}
 	            

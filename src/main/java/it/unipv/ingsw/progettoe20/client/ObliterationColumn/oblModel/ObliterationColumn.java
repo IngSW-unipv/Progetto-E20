@@ -1,5 +1,6 @@
 package it.unipv.ingsw.progettoe20.client.ObliterationColumn.oblModel;
 
+import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.client.ClientConstants;
 
 import java.io.BufferedReader;
@@ -49,7 +50,7 @@ public class ObliterationColumn {
      */
     public boolean checkId(String id) {
         try {
-            out.println("id:" + id);
+            out.println(Protocol.REQUEST_CHECK_ID + ":" + id);
             String answer = in.readLine();
             System.out.println(answer);
             if (answer.equals("done")) {
@@ -73,7 +74,7 @@ public class ObliterationColumn {
      */
     public boolean Pay(String id) {
         try {
-            out.println("acceptpay:" + id);
+            out.println(Protocol.REQUEST_PAYMENT_ACCEPTED + ":" + id);
             String answer = in.readLine();
             System.out.println(answer);
             if (answer.equals("done")) {
@@ -96,7 +97,7 @@ public class ObliterationColumn {
      */
     public String PaymentAmount(String id) {
         try {
-            out.println("payamount:" + id);
+            out.println(Protocol.REQUEST_PAY_AMOUNT + ":" + id);
             String answer = in.readLine();
             System.out.println(answer);
             return answer;
