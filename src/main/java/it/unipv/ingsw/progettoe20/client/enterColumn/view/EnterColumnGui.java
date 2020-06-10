@@ -31,7 +31,6 @@ public class EnterColumnGui extends JFrame implements Observer{
 	private JLabel ShowTicketId;
 	private JLabel wIcon1;
 	private JLabel wIcon2;
-	private JLabel lotLabel;
 	private JLabel levelLabel;
 	private BufferedImage wPic1;
 	private BufferedImage wPic2;
@@ -43,18 +42,20 @@ public class EnterColumnGui extends JFrame implements Observer{
 	public EnterColumnGui(EnterColumn column) throws IOException {
 		this.column=column;
 		
-		initComponents();
+		initGuiComponents();
 		setAvailability();
 	}
-	public void initComponents() throws IOException {
-		
-		  //setTitleGui
+	public void initGuiComponents() throws IOException {
+		initComponets();
+		iconSetting();
+		fontSetting();
+		layoutSetting(); 		
+	}
+	public void initComponets() {
+		 //setTitleGui
 		  setTitle("Enter Column Gui");
-		  
 		  //components declaration
-		  
 		  levelLabel=new JLabel();
-		  lotLabel=new JLabel();
 	      LotAvailability = new JLabel();
 	      ShowTicketId = new JLabel();
 	      wIcon1 = new JLabel();
@@ -62,25 +63,12 @@ public class EnterColumnGui extends JFrame implements Observer{
 	      panelTop = new JPanel();
 	      panelSud =new JPanel();
 	      panelTop = new JPanel();
-	      
 		  //label setting
-	      
 	      LotAvailability.setHorizontalAlignment(SwingConstants.CENTER); 
 	      levelLabel.setHorizontalAlignment(SwingConstants.CENTER); 
 	      ShowTicketId.setHorizontalAlignment(SwingConstants.LEFT); 
 	      //setting Button
 	      getTicket = new JButton("Dispense your Ticket");
-	      
-	      //icon setting
-		  wPic1=  ImageIO.read(this.getClass().getResource("/ParkingPic.png"));
-	      wPic2 = ImageIO.read(this.getClass().getResource("/TicketPic.png"));
-	      wPic3 = ImageIO.read(this.getClass().getResource("/CarPic.png"));	     
-	      
-	      //Components Alignment
-	      wIcon1.setHorizontalAlignment(SwingConstants.CENTER);
-	      wIcon2.setHorizontalAlignment(SwingConstants.RIGHT);
-	      wIcon1.setIcon(new ImageIcon(wPic1));    
-	      
 	      //Background/Foreground Settings
 	      LotAvailability.setForeground(new java.awt.Color(143,0,255));
 	      levelLabel.setForeground(Color.WHITE);
@@ -88,27 +76,39 @@ public class EnterColumnGui extends JFrame implements Observer{
 	      getTicket.setBackground(new Color(143,0,255));
 	      panelSud.setBackground(new Color(92,92,92));  
 	      panelTop.setBackground(new Color(92,92,92)); 
-	      //Font Settings
+	    //Border Settings
+	      Border bWhiteLine = BorderFactory.createLineBorder(Color.white, 4, true); 
+	      LotAvailability.setBorder(bWhiteLine);
+	}
+	public void iconSetting() throws IOException {
+		//icon setting
+		  wPic1=  ImageIO.read(this.getClass().getResource("/ParkingPic.png"));
+	      wPic2 = ImageIO.read(this.getClass().getResource("/TicketPic.png"));
+	      wPic3 = ImageIO.read(this.getClass().getResource("/CarPic.png"));	     
+	      wPic4 = ImageIO.read(this.getClass().getResource("/ErrorPic.png"));
+	      //Components Alignment
+	      wIcon1.setHorizontalAlignment(SwingConstants.CENTER);
+	      wIcon2.setHorizontalAlignment(SwingConstants.RIGHT);
+	      wIcon1.setIcon(new ImageIcon(wPic1));    
+		
+	}
+	public void fontSetting() {
+		//Font Settings
 	      Font f = new Font("TimesRoman", Font.BOLD+Font.ITALIC, 20);  
 	      LotAvailability.setFont(new Font("TimesRoman", Font.BOLD, 25));
 	      getTicket.setFont(new Font("TimesRoman", Font.BOLD, 18)); 
 	      ShowTicketId.setFont(new Font("TimesRoman", Font.BOLD,20));
 	      levelLabel.setFont(new Font("TimesRoman", Font.BOLD,20));
 	      panelSud.setFont(new Font("TimesRoman", Font.BOLD, 20));
-	      panelTop.setFont(new Font("TimesRoman", Font.BOLD, 20));
-	      //Border Settings
-	      Border bWhiteLine = BorderFactory.createLineBorder(Color.white, 4, true); 
-	      LotAvailability.setBorder(bWhiteLine);
-	     
-	      //panel setting    
+	      panelTop.setFont(new Font("TimesRoman", Font.BOLD, 20));     
+	}
+	public void layoutSetting() {
+		 //panel setting    
 	      setMinimumSize(new java.awt.Dimension(400, 500));
 	      setResizable(false); 
 	      Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		  setLocation((int)(dim.getWidth()-this.getWidth())/2, (int) (dim.getHeight()-this.getHeight())/2);
-		      
-	          
 		  //Layout Settings
-    
 	      panelTop.setLayout(new BorderLayout());  
 	      panelTop.add(wIcon1,BorderLayout.NORTH);
 	      panelTop.add((new Label("Lot available:  ", Label.RIGHT)),BorderLayout.WEST);
@@ -125,7 +125,7 @@ public class EnterColumnGui extends JFrame implements Observer{
 	public void initErrorGui() throws IOException {
 		getTicket = new JButton("");
 		getTicket.setVisible(false);
-		wPic4 = ImageIO.read(this.getClass().getResource("/ErrorPic.png"));
+		
 	    ImageIcon icon=new ImageIcon(wPic4);		
     UIManager.put("OptionPane.background", Color.black);
     UIManager.put("OptionPane.messageForeground", Color.WHITE);
@@ -156,6 +156,10 @@ public class EnterColumnGui extends JFrame implements Observer{
 	public void setIdTicket(String code) {
 		this.wIcon2.setIcon( new ImageIcon(wPic2));
 		this.ShowTicketId.setText(" Ticket ID is:"+ code);
+	}
+	public void setNoAvailability() {
+		this.wIcon2.setIcon( new ImageIcon(wPic4));
+		this.ShowTicketId.setText(" Sorry, No Level Available");
 	}
 	public void setEmptyLevLabel() {
 		this.levelLabel.setText("");

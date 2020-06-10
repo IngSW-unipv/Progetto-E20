@@ -27,16 +27,21 @@ public class GenerationIdTicket {
         this.dbFacade = dbFacade;
     }
 
-    public String getAvailableLevel() {
+    public String getAvailableLevel()  {
         levelList = new ArrayList<>();
         levelList = dbFacade.getLevelList();
         contLevel = levelList.size();
         check = false;
+        Boolean checkLevelsAbsence;
+        if(contLevel!=0) {checkLevelsAbsence=true;}
+        else {checkLevelsAbsence=false;}
         int i = 0;
         levelName = "";
-        do {
+        if(!checkLevelsAbsence) {
+        	levelName="?";
+        }else {
+        do {      	
             if (!check) {
-                // TODO se levelList è vuoto qui esplode tutto
                 if (levelList.get(i).getAvailable() != 0) {
                     levelName = levelList.get(i).getName();
                     check = true;
@@ -46,17 +51,17 @@ public class GenerationIdTicket {
         } while (i < contLevel);
         if (!check) {
             levelName = "?";
-        }
+        }}
         return levelName;
     }
 
-    public String GenerateId() {
+    public String GenerateId()  {
 
         // ottengo la lunghezza di ogni array
         int lungCaratteri = alfaCharacters.length;
         int lungNumeri = numCharacters.length;
         String randomString = getAvailableLevel();
-
+        if(randomString!="?") {
         while (randomString.length() < lungId) {
 
             // ottengo un elemento casuale per ogni array
@@ -72,7 +77,8 @@ public class GenerationIdTicket {
 
         if (randomString.length() > lungId) {
             randomString = randomString.substring(0, lungId);
-        }
+        }}
+       
         return randomString;
 
     }

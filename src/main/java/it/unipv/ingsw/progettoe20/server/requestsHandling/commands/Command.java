@@ -14,7 +14,7 @@ public abstract class Command {
         this.out = out;
     }
 
-    public boolean handleRequest(String s){
+    public boolean handleRequest(String s) {
         return false;
     }
 }

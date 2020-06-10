@@ -22,55 +22,57 @@ private EnterColumn model;
 		initListener();
 	}
 	public void initListener() {
-		
 		g.getButton().addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
-				
-	            try {
-	              
+	           try {
 	              g.getButton().setEnabled(false);
 	              g.getButton().setBackground(new Color(143,0,255));
-	             
 	              if (g.getAvailability()>0) {
 	            	  
-	            Boolean checkIdGeneration = model.genTicket();
-	            if (checkIdGeneration) {
-	            	
-	            
-	            g.setIdTicket(model.getIdTicket());
-	            g.setLevelLabel(model.getIdTicket().substring(0,1));
-	              new Timer().schedule(new TimerTask() {
-
-	            	    @Override
-	            	    public void run() { 
-	            	    	model.setAvailability();
-	            	        model.setAvailability(model.getAvailability());
-	            	        g.getShowTicketId().setText(String.valueOf(""));
-	            	        g.setTransitionObject();
-	            	        g.getButton().setEnabled(true);
-	            	        model.setAvailability();
-	            	        g.setEmptyLevLabel();
-	            	        model.setAvailability(model.getAvailability());
-	            	        }
-	            	}, 10000 );
-	             }}
-	            	  
+		              Boolean checkIdGeneration = model.genTicket();
+				         if (checkIdGeneration) {
+				            	setTransitionElements();
+				         }
+				         else {
+				              g.setIdTicket("Error!†"); 
+				         }
+			      }
 	              else {
-	              g.setIdTicket("Attendi, nessuna disponibilit√†");
+	            	 g.setNoAvailability();//i livelli non hanno disponibilit‡
 	              }
-	            } catch (Exception ex) {
-	              g.setIdTicket("Errore");
+	            }catch (Exception ex) {
+	              g.setIdTicket("Error!");
 	            }
 	         }
 		});
+		closingWindowsListener();       
+		}
+		public void setTransitionElements() {
+            g.setIdTicket(model.getIdTicket());
+            g.setLevelLabel(model.getIdTicket().substring(0,1));
+              new Timer().schedule(new TimerTask() {
+
+            	    @Override
+            	    public void run() { 
+            	    	model.setAvailability();
+            	        model.setAvailability(model.getAvailability());
+            	        g.getShowTicketId().setText(String.valueOf(""));
+            	        g.setTransitionObject();
+            	        g.getButton().setEnabled(true);
+            	        model.setAvailability();
+            	        g.setEmptyLevLabel();
+            	        model.setAvailability(model.getAvailability());
+            	        }
+            	}, 10000 );
+             }	
+		
+	public void closingWindowsListener() {
 		 g.addWindowListener(new java.awt.event.WindowAdapter() {
-	            @Override
-	            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-	                model.closeSocket();
-	            }
-	        });     
-	         
+	     @Override
+	     public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+	    	 model.closeSocket();
+	     }
+	     }); 	
 	}
 	public void checkConn() throws IOException {
 		

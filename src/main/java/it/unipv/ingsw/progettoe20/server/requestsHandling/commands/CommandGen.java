@@ -1,7 +1,9 @@
 package it.unipv.ingsw.progettoe20.server.requestsHandling.commands;
 
+
 import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.GenerationIdTicket;
+
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 import it.unipv.ingsw.progettoe20.server.model.Ticket;
@@ -18,7 +20,7 @@ public class CommandGen extends Command {
     }
 
     @Override
-    public boolean handleRequest(String s) {
+    public boolean handleRequest(String s)  {
         String id;
         do {
             id = generator.GenerateId();

@@ -42,7 +42,7 @@ public class ClientHandler extends Thread {
             e.printStackTrace();
         } catch (IllegalArgumentException ie) {
             Logger.log(ie.getMessage());
-        }
+        } 
 
         try {
             socket.close();

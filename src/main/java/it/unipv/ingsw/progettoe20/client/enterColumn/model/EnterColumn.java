@@ -4,6 +4,7 @@ import it.unipv.ingsw.progettoe20.Protocol;
 
 import java.io.BufferedReader;
 import java.util.Observable;
+import java.util.Scanner;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -17,10 +18,13 @@ public class EnterColumn extends Observable{
 	private boolean isConnected=false;
 	private String answer;
 	private Socket clientSocket;
+	private String inputType;
+	private  String id="";
 	 /**
      * costruttore  
      */
-	public EnterColumn()  {
+	public EnterColumn(String inputType)  {
+		this.inputType = inputType;//gli viene passato dal tester (args[0])
 		checkServerConnection();
 		setAvailability();
 	}
@@ -32,11 +36,12 @@ public class EnterColumn extends Observable{
      */
 	public void checkServerConnection() {
 		
-		   try {
+		   try {  
 	            clientSocket = new Socket("localhost", 9000);
 	            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 	            out = new PrintWriter(clientSocket.getOutputStream(), true);
 	            isConnected = true;
+	            checkInputType();
 	        } catch (IOException i) {
 	            isConnected = false;
 	        }
@@ -69,11 +74,17 @@ public class EnterColumn extends Observable{
 		   try {
 	            out.println(Protocol.REQUEST_GENERATE_ID);
 	            answer = in.readLine();
+	            id=answer.substring(5,answer.length());
+	            if(id.equals("?")) {
+	            	return false;
+	            } 
+	            else if(answer.equals(Protocol.RESPONSE_OK + ":" +id))
+	            {
 	            System.out.println(answer);
-	            String id=answer.substring(5,answer.length());
-	            if(answer.equals(Protocol.RESPONSE_OK + ":" +id))
-	            {return true;}
-	            else {return false;}
+	            return true;
+	            }else {
+	            return false;
+	            }
 	            
 	        } catch (IOException i) {
 	            return false;
@@ -81,10 +92,40 @@ public class EnterColumn extends Observable{
 	            isConnected = false;
 	            return false;
 	        }
-			
-
 	 }
-	 
+			
+		  
+	  public void checkInputType() throws IOException {
+	        if (inputType.equals("cli")) {
+	            cli();
+	        } else System.out.println("GUI avviata");
+
+	    }
+	  /**
+		* Metodo che rappresenta l'interfaccia testuale
+		* @throws IOException 
+		*/
+	  private void cli() throws IOException {
+		 String insertText = "";
+		 Scanner scanner = new Scanner(System.in);
+		 while (true) {
+		  System.out.println("Hai scelto la modlità command line input, inserisci gen se vuoi prelevare il ticket o exit per terminare.");
+		  insertText = scanner.next();
+		  if (insertText.equals("exit")) break;
+		  if (insertText.equals("gen")) {
+		        	this.setAvailability();
+		            System.out.println("Numero posti disponibili:"+this.totalLot);
+		            if(genTicket()) {
+		              		this.setAvailability();
+		                	System.out.println("Livello associato:"+ this.id.substring(0,1));
+		                	System.out.println("Numero posti disponibili aggiornato:"+this.totalLot);
+		            } else
+		           System.out.println("Id non generato");
+		   }}
+		   System.out.println("Hai terminato l'esecuzione");
+		   scanner.close();
+		   System.exit(0);
+	     }
 	 /**
 	     * metodo che controlla la connessione
 	     *
@@ -130,7 +171,9 @@ public class EnterColumn extends Observable{
 	public int getAvailability() {
 		return this.totalLot;
 	}
-
+	public String getId() {
+		return this.getId();
+	}
 	public void setAvailability(int availability) {
 	    this.totalLot=availability;
 	    this.setChanged();

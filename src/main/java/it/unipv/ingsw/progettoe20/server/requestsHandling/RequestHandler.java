@@ -1,7 +1,9 @@
 package it.unipv.ingsw.progettoe20.server.requestsHandling;
 
+
 import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.GenerationIdTicket;
+
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.requestsHandling.commands.Command;
 
@@ -33,6 +35,7 @@ public class RequestHandler {
      *
      * @param request richiesta effettuata dal client.
      * @return true se il client ha richiesto la chiusura della connessione, false altrimenti.
+     * @throws LevelSAbsentException 
      */
     public boolean handle(String request) throws IllegalArgumentException {
         try{
