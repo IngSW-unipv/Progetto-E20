@@ -3,12 +3,7 @@ package it.unipv.ingsw.progettoe20.client.ExitColumn.Controller;
 import it.unipv.ingsw.progettoe20.client.ExitColumn.Model.ExitColumn;
 import it.unipv.ingsw.progettoe20.client.ExitColumn.Model.ResponseEnum;
 import it.unipv.ingsw.progettoe20.client.ExitColumn.View.ExitColumnGUI;
-import it.unipv.ingsw.progettoe20.client.ExitColumn.View.PannelCheckFalse;
-import it.unipv.ingsw.progettoe20.client.ExitColumn.View.PannelCheckNoID;
-import it.unipv.ingsw.progettoe20.client.ExitColumn.View.PannelCheckTrue;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
@@ -46,7 +41,7 @@ public class ExitColumnController {
                     //System.out.println("corretto"); stampa di test
 
                     //cambio di pannello
-                    gui.setContentPane(gui.getPannelCheckTrue());
+                    gui.setContentPane(gui.getPanelCheckTrue());
                     gui.invalidate();
                     gui.validate();
                     //timer fine messaggio inizio nuova schermata per successivo ticket
@@ -63,7 +58,7 @@ public class ExitColumnController {
 
 
                 } else if (check == ResponseEnum.NO_PAID){
-                    gui.setContentPane(gui.getPannelCheckFalse());
+                    gui.setContentPane(gui.getPanelCheckFalse());
                     gui.invalidate();
                     gui.validate();
                     new Timer().schedule(new TimerTask() {
@@ -79,7 +74,7 @@ public class ExitColumnController {
 
                 }
                 else if (check==ResponseEnum.NO_ID_FOUND){
-                    gui.setContentPane(gui.getPannelCheckNoID());
+                    gui.setContentPane(gui.getPanelCheckNoID());
                     gui.invalidate();
                     gui.validate();
                     new Timer().schedule(new TimerTask() {
