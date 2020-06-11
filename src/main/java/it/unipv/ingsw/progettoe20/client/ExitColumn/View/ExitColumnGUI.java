@@ -110,6 +110,9 @@ public class ExitColumnGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pannello;
+    private JPanel pannelCheckFalse =new PannelCheckFalse();
+    private JPanel pannelCheckNoID =new PannelCheckNoID();
+    private JPanel pannelCheckTrue = new PannelCheckTrue();
 
 
     //Getter componenti per listener
@@ -124,6 +127,18 @@ public class ExitColumnGUI extends javax.swing.JFrame {
 
     public JPanel getPannello() {
         return pannello;
+    }
+
+    public JPanel getPannelCheckFalse() {
+        return pannelCheckFalse;
+    }
+
+    public JPanel getPannelCheckNoID() {
+        return pannelCheckNoID;
+    }
+
+    public JPanel getPannelCheckTrue() {
+        return pannelCheckTrue;
     }
 }
 

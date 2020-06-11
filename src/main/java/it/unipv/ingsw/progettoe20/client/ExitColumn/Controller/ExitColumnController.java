@@ -46,7 +46,7 @@ public class ExitColumnController {
                     //System.out.println("corretto"); stampa di test
 
                     //cambio di pannello
-                    gui.setContentPane(new PannelCheckTrue());
+                    gui.setContentPane(gui.getPannelCheckTrue());
                     gui.invalidate();
                     gui.validate();
                     //timer fine messaggio inizio nuova schermata per successivo ticket
@@ -63,8 +63,7 @@ public class ExitColumnController {
 
 
                 } else if (check == ResponseEnum.NO_PAID){
-                    //System.out.println("non corretto"); stampa di test
-                    gui.setContentPane(new PannelCheckFalse());
+                    gui.setContentPane(gui.getPannelCheckFalse());
                     gui.invalidate();
                     gui.validate();
                     new Timer().schedule(new TimerTask() {
@@ -80,8 +79,7 @@ public class ExitColumnController {
 
                 }
                 else if (check==ResponseEnum.NO_ID_FOUND){
-                    //System.out.println("non corretto"); stampa di test
-                    gui.setContentPane(new PannelCheckNoID());
+                    gui.setContentPane(gui.getPannelCheckNoID());
                     gui.invalidate();
                     gui.validate();
                     new Timer().schedule(new TimerTask() {
