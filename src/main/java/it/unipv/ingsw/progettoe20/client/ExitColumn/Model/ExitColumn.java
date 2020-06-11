@@ -74,7 +74,7 @@ public class ExitColumn {
 
         if (checkId(id)) {
             try {
-                out.println("paid:" + id);
+                out.println(Protocol.REQUEST_PAYMENT_CHECK+ Protocol.SEPARATOR + id);
                 String answer = in.readLine();
                 System.out.println(answer);
                 if (answer.equals(Protocol.RESPONSE_PAID_TRUE)) {
@@ -99,7 +99,7 @@ public class ExitColumn {
      */
     public Boolean deleteTicket(String id) {
         try {
-            out.println("delete:" + id);
+            out.println(Protocol.REQUEST_DELETE_ID + Protocol.SEPARATOR + id);
             String answer = in.readLine();
             System.out.println(answer);
             return answer.equals(Protocol.RESPONSE_OK);
@@ -120,7 +120,7 @@ public class ExitColumn {
      */
     public boolean checkId(String id) {
         try {
-            out.println("id:" + id);
+            out.println(Protocol.REQUEST_CHECK_ID + Protocol.SEPARATOR + id);
             String answer = in.readLine();
             System.out.println(answer);
             return answer.equals(Protocol.RESPONSE_ID_FOUND);
