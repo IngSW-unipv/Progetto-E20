@@ -21,7 +21,6 @@ public class ObliterationColumn {
     private BufferedReader in;
     private PrintWriter out;
     private Boolean onlineFlag;
-    private double paymentAmount = 0;
     private String inputType;
 
     /**
@@ -53,7 +52,7 @@ public class ObliterationColumn {
             out.println(Protocol.REQUEST_CHECK_ID + ":" + id);
             String answer = in.readLine();
             System.out.println(answer);
-            if (answer.equals("done")) {
+            if (answer.equals(Protocol.RESPONSE_ID_FOUND)) {
                 return true;
             } else return false;
         } catch (IOException i) {
@@ -76,8 +75,7 @@ public class ObliterationColumn {
         try {
             out.println(Protocol.REQUEST_PAYMENT_ACCEPTED + ":" + id);
             String answer = in.readLine();
-            System.out.println(answer);
-            if (answer.equals("done")) {
+            if (answer.equals(Protocol.RESPONSE_OK)) {
                 return true;
             } else return false;
         } catch (IOException i) {
@@ -99,7 +97,6 @@ public class ObliterationColumn {
         try {
             out.println(Protocol.REQUEST_PAY_AMOUNT + ":" + id);
             String answer = in.readLine();
-            System.out.println(answer);
             return answer;
         } catch (IOException i) {
             onlineFlag = false;
@@ -147,7 +144,7 @@ public class ObliterationColumn {
             insertText = scanner.next();
             if (insertText.equals("exit")) break;
             if (checkId(insertText)) {
-                System.out.println("accettare il pagamento di " + "$" + paymentAmount + " (inserisci si per procedere).");
+                System.out.println("accettare il pagamento di " + "$" +  PaymentAmount(insertText) + " (inserisci si per procedere).");
                 acceptText = scanner.next();
                 if (acceptText.equals("si")) {
                     Pay(insertText);
