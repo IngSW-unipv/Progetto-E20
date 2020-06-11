@@ -22,6 +22,7 @@ public class Protocol {
     public static final String RESPONSE_ERROR = "error";
     public static final String RESPONSE_PAID_TRUE = "paid:true";
     public static final String RESPONSE_PAID_FALSE = "paid:false";
+    public static final String RESPONSE_PAID_TIME_EXPIRED = "paid:expired";
 
     // Ping
     public static final String PING = "ping";

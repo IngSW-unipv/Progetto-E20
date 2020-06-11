@@ -51,9 +51,6 @@ public class Ticket {
      */
 
     public boolean obliterationCheck() {
-
-        if (!paid) return false;
-
         Timestamp callTime = new Timestamp(System.currentTimeMillis());
         long diff = callTime.getTime() - paymentTime.getTime();
         long diffSeconds = TimeUnit.MILLISECONDS.toSeconds(diff);

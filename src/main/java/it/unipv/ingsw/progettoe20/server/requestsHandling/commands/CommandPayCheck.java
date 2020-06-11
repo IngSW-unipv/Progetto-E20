@@ -6,7 +6,7 @@ import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
 
-public class CommandPayCheck extends Command{
+public class CommandPayCheck extends Command {
     public CommandPayCheck(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);
     }
@@ -14,10 +14,12 @@ public class CommandPayCheck extends Command{
     @Override
     public boolean handleRequest(String s) {
         try {
-            if (dbFacade.getTicketById(s).obliterationCheck()) {
-                out.println(Protocol.RESPONSE_PAID_TRUE);
-            } else {
+            if (!dbFacade.getTicketById(s).isPaid()) {
                 out.println(Protocol.RESPONSE_PAID_FALSE);
+            } else if (!dbFacade.getTicketById(s).obliterationCheck()) {
+                out.println(Protocol.RESPONSE_PAID_TIME_EXPIRED);
+            } else {
+                out.println(Protocol.RESPONSE_PAID_TRUE);
             }
         } catch (IllegalArgumentException i) {
             Logger.log(i.getMessage());
