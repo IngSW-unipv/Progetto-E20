@@ -20,6 +20,8 @@ public class Protocol {
     // Responses
     public static final String RESPONSE_OK = "done";
     public static final String RESPONSE_ERROR = "error";
+    public static final String RESPONSE_ID_FOUND = "id:found";
+    public static final String RESPONSE_ID_NOT_FOUND = "id:not found";
     public static final String RESPONSE_PAID_TRUE = "paid:true";
     public static final String RESPONSE_PAID_FALSE = "paid:false";
     public static final String RESPONSE_PAID_TIME_EXPIRED = "paid:expired";

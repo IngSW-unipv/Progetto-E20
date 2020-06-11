@@ -43,7 +43,6 @@ public class ExitColumn {
 
     /**
      * Metodo che verifica la metodologia di input (GUI o cli)
-     *
      */
     public void checkInputType() {
         if (inputType.equals("cli")) {
@@ -71,6 +70,7 @@ public class ExitColumn {
      * @return Response Enum con i vari esiti del check
      */
     public ResponseEnum checkObliteration(String id) {
+        System.out.println("perform request...");
 
         if (checkId(id)) {
             try {
@@ -85,7 +85,7 @@ public class ExitColumn {
                 return ResponseEnum.ERROR_GENERIC;
             } catch (NullPointerException n) {
                 isConnected = false;
-                return ResponseEnum.ERROR_GENERIC; //TODO is ok??
+                return ResponseEnum.ERROR_GENERIC;
             }
         } else return ResponseEnum.NO_ID_FOUND;
 
@@ -123,7 +123,7 @@ public class ExitColumn {
             out.println("id:" + id);
             String answer = in.readLine();
             System.out.println(answer);
-            return answer.equals(Protocol.RESPONSE_OK);
+            return answer.equals(Protocol.RESPONSE_ID_FOUND);
         } catch (IOException i) {
             return false;
         } catch (NullPointerException n) {
