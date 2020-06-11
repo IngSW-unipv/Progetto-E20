@@ -1,6 +1,7 @@
 package it.unipv.ingsw.progettoe20.client.enterColumn.model;
 
 import it.unipv.ingsw.progettoe20.Protocol;
+import it.unipv.ingsw.progettoe20.client.ClientConstants;
 
 import java.io.BufferedReader;
 import java.util.Observable;
@@ -37,7 +38,7 @@ public class EnterColumn extends Observable{
 	public void checkServerConnection() {
 		
 		   try {  
-	            clientSocket = new Socket("localhost", 9000);
+			    clientSocket = new Socket(ClientConstants.HOST, ClientConstants.PORT);
 	            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 	            out = new PrintWriter(clientSocket.getOutputStream(), true);
 	            isConnected = true;
@@ -78,12 +79,9 @@ public class EnterColumn extends Observable{
 	            if(id.equals("?")) {
 	            	return false;
 	            } 
-	            else if(answer.equals(Protocol.RESPONSE_OK + ":" +id))
-	            {
+	            else{
 	            System.out.println(answer);
 	            return true;
-	            }else {
-	            return false;
 	            }
 	            
 	        } catch (IOException i) {
