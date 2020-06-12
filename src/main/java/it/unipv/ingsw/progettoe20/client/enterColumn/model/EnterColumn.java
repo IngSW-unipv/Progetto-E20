@@ -13,7 +13,10 @@ import java.net.Socket;
 
 
 /**
- * The type Enter column.
+ Questa classe rappresenta la colonna di entrata nel parcheggio, si occupa di mantenere 
+ * aggiornato lo stato dei posti disponibili, della generazione del ticket nel caso ci siano
+ * disponibilità nel parcheggio.  
+ * Inoltre vi è l'indicazione del livello a cui è associato il ticket.
  */
 public class EnterColumn extends Observable{
 	private int totalLot;
@@ -28,7 +31,7 @@ public class EnterColumn extends Observable{
 	/**
 	 * costruttore
 	 *
-	 * @param inputType the input type
+	 * @param inputType: paramentro che fornisce il tipo di interfaccia richiesta(utenteo grafica)
 	 */
 	public EnterColumn(String inputType)  {
 		this.inputType = inputType;//gli viene passato dal tester (args[0])
@@ -39,7 +42,7 @@ public class EnterColumn extends Observable{
 	/**
 	 * metodo che imposta la connessione al database
 	 *
-	 * @return true se il database ï¿½ connesso
+	 * @return true se il database è connesso
 	 */
 	public void checkServerConnection() {
 		
@@ -117,7 +120,7 @@ public class EnterColumn extends Observable{
 		 String insertText = "";
 		 Scanner scanner = new Scanner(System.in);
 		 while (true) {
-		  System.out.println("Hai scelto la modlitÃ  command line input, inserisci gen se vuoi prelevare il ticket o exit per terminare.");
+		  System.out.println("Hai scelto la modlità  command line input, inserisci gen se vuoi prelevare il ticket o exit per terminare.");
 		  insertText = scanner.next();
 		  if (insertText.equals("exit")) break;
 		  if (insertText.equals("gen")) {
@@ -149,7 +152,7 @@ public class EnterColumn extends Observable{
 	/**
 	 * metodo che manda la richiesta di aggiornamento dei posti disponibili del parcheggio
 	 *
-	 * @return true se la richiesta ï¿½ stata portata a termine correttamente, false se invece non lo Ã¨
+	 * @return true se la richiesta è stata portata a termine correttamente, false se invece non lo Ã¨
 	 */
 	public Boolean setAvailability() {
 		 try {
@@ -193,7 +196,7 @@ public class EnterColumn extends Observable{
 	}
 
 	/**
-	 * Gets id.
+	 * Ritorna l'id.
 	 *
 	 * @return the id
 	 */
@@ -202,7 +205,8 @@ public class EnterColumn extends Observable{
 	}
 
 	/**
-	 * Sets availability.
+	 * Ritorna la disponibilità attuale.
+	 *Notifica agli observer il cambiamento di disponibilità
 	 *
 	 * @param availability the availability
 	 */

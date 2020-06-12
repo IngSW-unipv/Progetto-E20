@@ -12,7 +12,10 @@ import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
 
 
 /**
- * The type Controller.
+ * Controller del client EnterColumn
+ * contiene il Listener associato al bottone getTicket
+ * il quale avvia il metodo del model per generare il Ticket
+ * in base all'esito verrà  modificato il panel.
  */
 public class Controller {
 private EnterColumnGui g;
@@ -21,8 +24,8 @@ private EnterColumn model;
 	/**
 	 * Instantiates a new Controller.
 	 *
-	 * @param g     the g
-	 * @param model the model
+	 * @param EnterColumnGui interfacciaGrafica
+	 * @param EnterColumn model 
 	 * @throws IOException the io exception
 	 */
 	public Controller( EnterColumnGui g, EnterColumn model) throws IOException {
@@ -33,7 +36,7 @@ private EnterColumn model;
 	}
 
 	/**
-	 * Init listener.
+	 * Inizializza il listener.
 	 */
 	public void initListener() {
 		g.getButton().addActionListener(new ActionListener() {
@@ -63,7 +66,7 @@ private EnterColumn model;
 		}
 
 	/**
-	 * Sets transition elements.
+	 * Imposta elementi dopo l'avvio del metodo della generazione del ticket.
 	 */
 	public void setTransitionElements() {
             g.setIdTicket(model.getIdTicket());
@@ -85,7 +88,7 @@ private EnterColumn model;
              }
 
 	/**
-	 * Closing windows listener.
+	 * Chiusura della windows listener.
 	 */
 	public void closingWindowsListener() {
 		 g.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -97,7 +100,7 @@ private EnterColumn model;
 	}
 
 	/**
-	 * Check conn.
+	 * Metodo che controlla la connessione.
 	 *
 	 * @throws IOException the io exception
 	 */
