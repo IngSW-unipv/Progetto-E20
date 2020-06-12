@@ -7,21 +7,10 @@ import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 class CommandHandler {
 	static void handle(String command) {
-		switch (command) {
-		// A friendly pin
-		case CommandStrings.PING:
-			System.out.println(CommandStrings.PONG);
-			break;
-		// Admin GUI requested
-		case CommandStrings.GUI:
-			AdministratorFactory.create(DatabaseFacade.getInstance());
-			AdministratorGUI adminGui = new AdministratorGUI();
-			break;
-		// Server stop requested
-		case CommandStrings.EXIT:
-			System.out.println(CommandStrings.EXIT_REQUESTED);
-			Logger.close();
-			System.exit(0);
+		try {
+			CommandStrategy.valueOf(command).command();
+		} catch (IllegalArgumentException i){
+			System.out.println("Invalid Statement");
 		}
 	}
 }
