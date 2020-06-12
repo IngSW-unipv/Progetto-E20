@@ -3,14 +3,16 @@ package it.unipv.ingsw.progettoe20.client.ExitColumn.View;
 import javax.swing.*;
 import java.awt.*;
 
-/*
-  GUI principale del client ExitColumn
-  uso librerie grafiche per layout
-  le pic sono contenute tutte nella resources del progetto
-*/
-
+/**
+ * GUI principale del client ExitColumn
+ * uso librerie grafiche per layout
+ * le pic sono contenute tutte nella resources del progetto.
+ */
 public class ExitColumnGUI extends javax.swing.JFrame {
 
+    /**
+     * Costruttore Exit column gui.
+     */
     public ExitColumnGUI() {
         initComponents();
     }
@@ -80,8 +82,11 @@ public class ExitColumnGUI extends javax.swing.JFrame {
         pack();
     }
 
-    //Metodo per richiamare errore di connessione
 
+
+    /**
+     * Metodo per richiamare il pannello errore di connessione.
+     */
     public void errorConnection() {
         UIManager.put("OptionPane.background", Color.black);
         UIManager.put("OptionPane.messageForeground", Color.WHITE);
@@ -92,7 +97,9 @@ public class ExitColumnGUI extends javax.swing.JFrame {
 
     }
 
-    //metodo errori generici
+    /**
+     * metodo errori generici.
+     */
     public void errorGeneric() {
         UIManager.put("OptionPane.background", Color.black);
         UIManager.put("OptionPane.messageForeground", Color.WHITE);
@@ -110,33 +117,63 @@ public class ExitColumnGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pannello;
-    private JPanel panelCheckFalse =new PanelCheckFalse();
-    private JPanel panelCheckNoID =new PanelCheckNoID();
+    private JPanel panelCheckFalse = new PanelCheckFalse();
+    private JPanel panelCheckNoID = new PanelCheckNoID();
     private JPanel panelCheckTrue = new PanelCheckTrue();
 
 
     //Getter componenti per listener
 
+    /**
+     * Getter bottone buttonTicket.
+     *
+     * @return il buttonTicket
+     */
     public JButton getButtonTicket() {
         return buttonTicket;
     }
 
+    /**
+     * Getter text field 1.
+     *
+     * @return il text field 1
+     */
     public JTextField getjTextField1() {
         return jTextField1;
     }
 
+    /**
+     * Getter pannello.
+     *
+     * @return pannello
+     */
     public JPanel getPannello() {
         return pannello;
     }
 
+    /**
+     * Getter pannello checkFalse.
+     *
+     * @return il pannello checkFalse
+     */
     public JPanel getPanelCheckFalse() {
         return panelCheckFalse;
     }
 
+    /**
+     * Getter pannello checkNoId.
+     *
+     * @return il pannello checkNoId
+     */
     public JPanel getPanelCheckNoID() {
         return panelCheckNoID;
     }
 
+    /**
+     * Getter pannello checkTrue.
+     *
+     * @return il pannello checkTrue
+     */
     public JPanel getPanelCheckTrue() {
         return panelCheckTrue;
     }

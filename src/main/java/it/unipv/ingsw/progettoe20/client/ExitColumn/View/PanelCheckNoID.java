@@ -2,12 +2,16 @@ package it.unipv.ingsw.progettoe20.client.ExitColumn.View;
 
 import javax.swing.*;
 
-/*
-  Splash-panel in caso di ticket non idoneo
-*/
 
+
+/**
+ * Splash-panel in caso di ticket non presente nel DB.
+ */
 public class PanelCheckNoID extends JPanel {
 
+    /**
+     *  Costruttore Panel check no id.
+     */
     public PanelCheckNoID() {
         initComponents();
     }
@@ -61,6 +65,11 @@ public class PanelCheckNoID extends JPanel {
 
     //Getter componenti per listener
 
+    /**
+     * Gettter pannello errore.
+     *
+     * @return  pannello errore
+     */
     public JPanel getPannelloErrore() {
         return PannelloErrore;
     }

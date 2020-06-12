@@ -9,18 +9,23 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/*
-  Controller del client ExitColumn
-  contiene il Listener associato al bottone Conferma
-  il quale avvia il metodo del model per verificare il pagamento
-  in base all'esito verrà modificato il panel
-*/
-
+/**
+ * Controller del client ExitColumn
+ * contiene il Listener associato al bottone Conferma
+ * il quale avvia il metodo del model per verificare il pagamento
+ * in base all'esito verrà modificato il panel.
+ */
 public class ExitColumnController {
     private ExitColumnGUI gui;
     private ExitColumn model;
 
 
+    /**
+     * Costruttore Exit column controller.
+     *
+     * @param gui   gui Exit column
+     * @param model modello Exit column
+     */
     public ExitColumnController(ExitColumnGUI gui, ExitColumn model) {
         this.gui = gui;
         this.model = model;
@@ -29,6 +34,9 @@ public class ExitColumnController {
     }
 
 
+    /**
+     * Inizializza listener.
+     */
     public void initListener() {
 
         gui.getButtonTicket().addActionListener(new ActionListener() {
@@ -57,7 +65,7 @@ public class ExitColumnController {
                     }, 2500); //tempo dello splash-panel
 
 
-                } else if (check == ResponseEnum.NO_PAID){
+                } else if (check == ResponseEnum.NO_PAID) {
                     gui.setContentPane(gui.getPanelCheckFalse());
                     gui.invalidate();
                     gui.validate();
@@ -72,8 +80,7 @@ public class ExitColumnController {
                         }
                     }, 2500);
 
-                }
-                else if (check==ResponseEnum.NO_ID_FOUND){
+                } else if (check == ResponseEnum.NO_ID_FOUND) {
                     gui.setContentPane(gui.getPanelCheckNoID());
                     gui.invalidate();
                     gui.validate();
@@ -88,8 +95,7 @@ public class ExitColumnController {
                         }
                     }, 2500);
 
-                }
-                else gui.errorGeneric();
+                } else gui.errorGeneric();
             }
         });
 
@@ -105,7 +111,12 @@ public class ExitColumnController {
 
     }
 
-    //Metodo che controlla connessione e nel caso chiude il client
+    /**
+     * Metodo che controlla connessione
+     * e nel caso chiude il client dopo il messaggio di errore.
+     *
+     * @param isConnected gui Exit column
+     */
 
     private void checkConnection(Boolean isConnected) {
 

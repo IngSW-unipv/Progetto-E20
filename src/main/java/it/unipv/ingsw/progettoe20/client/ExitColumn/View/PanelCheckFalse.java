@@ -2,12 +2,15 @@ package it.unipv.ingsw.progettoe20.client.ExitColumn.View;
 
 import javax.swing.*;
 
-/*
-  Splash-panel in caso di ticket non idoneo
-*/
 
+/**
+ * Splash-panel in caso di ticket non correttamente obliterato.
+ */
 public class PanelCheckFalse extends JPanel {
 
+    /**
+     * Costruttore Panel check false.
+     */
     public PanelCheckFalse() {
         initComponents();
     }
@@ -61,6 +64,11 @@ public class PanelCheckFalse extends JPanel {
 
     //Getter componenti per listener
 
+    /**
+     * Getter pannello errore.
+     *
+     * @return il pannello errore
+     */
     public JPanel getPannelloErrore() {
         return PannelloErrore;
     }

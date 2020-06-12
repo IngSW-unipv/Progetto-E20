@@ -2,12 +2,15 @@ package it.unipv.ingsw.progettoe20.client.ExitColumn.View;
 
 import javax.swing.*;
 
-/*
-  Splash-panel in caso di ticket idoneo
-*/
 
+/**
+ * Splash-panel in caso di ticket corettamente obliterato.
+ */
 public class PanelCheckTrue extends javax.swing.JPanel {
 
+    /**
+     * Costruttore Panel check true.
+     */
     public PanelCheckTrue() {
         initComponents();
     }
@@ -60,6 +63,11 @@ public class PanelCheckTrue extends javax.swing.JPanel {
 
     //Getter componenti per listener
 
+    /**
+     * Getter pannello conferma.
+     *
+     * @return  pannello conferma
+     */
     public JPanel getPannelloConferma() {
         return PannelloConferma;
     }
