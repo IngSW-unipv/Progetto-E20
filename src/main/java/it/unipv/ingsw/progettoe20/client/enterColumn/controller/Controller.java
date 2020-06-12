@@ -11,16 +11,30 @@ import it.unipv.ingsw.progettoe20.client.enterColumn.model.EnterColumn;
 import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
 
 
-
+/**
+ * The type Controller.
+ */
 public class Controller {
 private EnterColumnGui g;
 private EnterColumn model;
+
+	/**
+	 * Instantiates a new Controller.
+	 *
+	 * @param g     the g
+	 * @param model the model
+	 * @throws IOException the io exception
+	 */
 	public Controller( EnterColumnGui g, EnterColumn model) throws IOException {
 		this.g=g;
 		this.model=model;
 		checkConn();
 		initListener();
 	}
+
+	/**
+	 * Init listener.
+	 */
 	public void initListener() {
 		g.getButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -34,11 +48,11 @@ private EnterColumn model;
 				            	setTransitionElements();
 				         }
 				         else {
-				              g.setIdTicket("Error! "); 
+				              g.setIdTicket("Error!ï¿½"); 
 				         }
 			      }
 	              else {
-	            	 g.setNoAvailability();//i livelli non hanno disponibilità
+	            	 g.setNoAvailability();//i livelli non hanno disponibilitï¿½
 	              }
 	            }catch (Exception ex) {
 	              g.setIdTicket("Error!");
@@ -47,7 +61,11 @@ private EnterColumn model;
 		});
 		closingWindowsListener();       
 		}
-		public void setTransitionElements() {
+
+	/**
+	 * Sets transition elements.
+	 */
+	public void setTransitionElements() {
             g.setIdTicket(model.getIdTicket());
             g.setLevelLabel(model.getIdTicket().substring(0,1));
               new Timer().schedule(new TimerTask() {
@@ -64,8 +82,11 @@ private EnterColumn model;
             	        model.setAvailability(model.getAvailability());
             	        }
             	}, 10000 );
-             }	
-		
+             }
+
+	/**
+	 * Closing windows listener.
+	 */
 	public void closingWindowsListener() {
 		 g.addWindowListener(new java.awt.event.WindowAdapter() {
 	     @Override
@@ -74,6 +95,12 @@ private EnterColumn model;
 	     }
 	     }); 	
 	}
+
+	/**
+	 * Check conn.
+	 *
+	 * @throws IOException the io exception
+	 */
 	public void checkConn() throws IOException {
 		
 		if (!this.model.getIsConn()) {

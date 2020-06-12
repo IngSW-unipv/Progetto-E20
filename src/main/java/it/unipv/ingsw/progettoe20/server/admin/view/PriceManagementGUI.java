@@ -18,6 +18,10 @@ import it.unipv.ingsw.progettoe20.server.admin.controller.PriceListener;
  * Permette di modificare i valori delle diverse tariffe disponibili.
  */
 
+
+/**
+ * The type Price management gui.
+ */
 public class PriceManagementGUI extends AbstractGUI {
 
 	private JComboBox<String> combo;
@@ -26,22 +30,45 @@ public class PriceManagementGUI extends AbstractGUI {
 	private JPanel panel, panel2;
 	private JButton confirm, home;
 
+	/**
+	 * Instantiates a new Price management gui.
+	 */
 	public PriceManagementGUI() {
 		super();
 	}
 
+	/**
+	 * Gets combo.
+	 *
+	 * @return the combo
+	 */
 	public JComboBox<String> getCombo() {
 		return combo;
 	}
 
+	/**
+	 * Gets field.
+	 *
+	 * @return the field
+	 */
 	public JTextField getField() {
 		return price;
 	}
 
+	/**
+	 * Gets confirm.
+	 *
+	 * @return the confirm
+	 */
 	public JButton getConfirm() {
 		return confirm;
 	}
 
+	/**
+	 * Gets home.
+	 *
+	 * @return the home
+	 */
 	public JButton getHome() {
 		return home;
 	}

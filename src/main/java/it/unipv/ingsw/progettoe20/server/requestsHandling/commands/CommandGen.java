@@ -25,7 +25,6 @@ public class CommandGen extends Command {
         do {
             id = generator.GenerateId();
         } while (dbFacade.checkTicketById(id));
-        //se non ci sono posti disponibili in tutti i livelli?
         Ticket newTicket = new Ticket(id);
         dbFacade.updateTicket(newTicket);
         Level level = dbFacade.getLevelByName(generator.getAvailableLevel());

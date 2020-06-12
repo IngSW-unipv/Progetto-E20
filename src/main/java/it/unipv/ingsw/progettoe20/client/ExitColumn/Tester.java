@@ -6,10 +6,17 @@ import it.unipv.ingsw.progettoe20.client.ExitColumn.View.ExitColumnGUI;
 
 import javax.swing.*;
 
-//Tester per il client ExitColumn
 
+/**
+ * Tester per il client ExitColumn.
+ */
 public class Tester {
 
+    /**
+     * Main del tester.
+     *
+     * @param args parametri in ingresso
+     */
     public static void main(String[] args) {
 
         //controllo se viene avviato con parameteo cli come input type

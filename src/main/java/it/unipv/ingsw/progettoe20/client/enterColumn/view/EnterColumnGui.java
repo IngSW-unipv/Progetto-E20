@@ -22,7 +22,9 @@ import javax.swing.border.Border;
 import it.unipv.ingsw.progettoe20.client.enterColumn.model.EnterColumn;
 
 
-
+/**
+ * The type Enter column gui.
+ */
 public class EnterColumnGui extends JFrame implements Observer{
 
 	private EnterColumn column;
@@ -39,18 +41,34 @@ public class EnterColumnGui extends JFrame implements Observer{
 	private JPanel panelTop;
 	private JPanel panelSud;
 
+	/**
+	 * Instantiates a new Enter column gui.
+	 *
+	 * @param column the column
+	 * @throws IOException the io exception
+	 */
 	public EnterColumnGui(EnterColumn column) throws IOException {
 		this.column=column;
 		
 		initGuiComponents();
 		setAvailability();
 	}
+
+	/**
+	 * Init gui components.
+	 *
+	 * @throws IOException the io exception
+	 */
 	public void initGuiComponents() throws IOException {
 		initComponets();
 		iconSetting();
 		fontSetting();
 		layoutSetting(); 		
 	}
+
+	/**
+	 * Init componets.
+	 */
 	public void initComponets() {
 		 //setTitleGui
 		  setTitle("Enter Column Gui");
@@ -80,6 +98,12 @@ public class EnterColumnGui extends JFrame implements Observer{
 	      Border bWhiteLine = BorderFactory.createLineBorder(Color.white, 4, true); 
 	      LotAvailability.setBorder(bWhiteLine);
 	}
+
+	/**
+	 * Icon setting.
+	 *
+	 * @throws IOException the io exception
+	 */
 	public void iconSetting() throws IOException {
 		//icon setting
 		  wPic1=  ImageIO.read(this.getClass().getResource("/ParkingPic.png"));
@@ -92,6 +116,10 @@ public class EnterColumnGui extends JFrame implements Observer{
 	      wIcon1.setIcon(new ImageIcon(wPic1));    
 		
 	}
+
+	/**
+	 * Font setting.
+	 */
 	public void fontSetting() {
 		//Font Settings
 	      Font f = new Font("TimesRoman", Font.BOLD+Font.ITALIC, 20);  
@@ -102,6 +130,10 @@ public class EnterColumnGui extends JFrame implements Observer{
 	      panelSud.setFont(new Font("TimesRoman", Font.BOLD, 20));
 	      panelTop.setFont(new Font("TimesRoman", Font.BOLD, 20));     
 	}
+
+	/**
+	 * Layout setting.
+	 */
 	public void layoutSetting() {
 		 //panel setting    
 	      setMinimumSize(new java.awt.Dimension(400, 500));
@@ -122,6 +154,12 @@ public class EnterColumnGui extends JFrame implements Observer{
 	      getContentPane().add(panelSud,BorderLayout.CENTER);
 	      
 	}
+
+	/**
+	 * Init error gui.
+	 *
+	 * @throws IOException the io exception
+	 */
 	public void initErrorGui() throws IOException {
 		getTicket = new JButton("");
 		getTicket.setVisible(false);
@@ -136,34 +174,69 @@ public class EnterColumnGui extends JFrame implements Observer{
 
 }
 
-	
 
+	/**
+	 * Gets button.
+	 *
+	 * @return the button
+	 */
 	public JButton getButton() {
 		return getTicket;
 	}
-	
+
+	/**
+	 * Sets availability.
+	 */
 	public void setAvailability() {
 		this.LotAvailability.setText(String.valueOf(this.column.getAvailability()).toString());
 	}
-	
+
+	/**
+	 * Sets level ticket.
+	 *
+	 * @param text the text
+	 */
 	public void setLevelTicket(String text) {
 		this.levelLabel.setText("Please, Go to "+ text +" level!");
 	}
+
+	/**
+	 * Gets availability.
+	 *
+	 * @return the availability
+	 */
 	public int getAvailability() {
 		return Integer.parseInt(LotAvailability.getText());
 	}
-	
+
+	/**
+	 * Sets id ticket.
+	 *
+	 * @param code the code
+	 */
 	public void setIdTicket(String code) {
 		this.wIcon2.setIcon( new ImageIcon(wPic2));
 		this.ShowTicketId.setText(" Ticket ID is:"+ code);
 	}
+
+	/**
+	 * Sets no availability.
+	 */
 	public void setNoAvailability() {
 		this.wIcon2.setIcon( new ImageIcon(wPic4));
 		this.ShowTicketId.setText(" Sorry, No Level Available");
 	}
+
+	/**
+	 * Sets empty lev label.
+	 */
 	public void setEmptyLevLabel() {
 		this.levelLabel.setText("");
 	}
+
+	/**
+	 * Sets transition object.
+	 */
 	public void setTransitionObject() {
 		ImageIcon img= new ImageIcon(wPic3);
 		img.getImage().flush();
@@ -171,11 +244,21 @@ public class EnterColumnGui extends JFrame implements Observer{
 		
 		
 	}
-	
+
+	/**
+	 * Gets show ticket id.
+	 *
+	 * @return the show ticket id
+	 */
 	public JLabel getShowTicketId() {
 		return this.ShowTicketId;
 	}
-	
+
+	/**
+	 * Sets level label.
+	 *
+	 * @param text the text
+	 */
 	public void setLevelLabel(String text) {
 		this.levelLabel.setText("Please, go to "+text+" level!");
 	}

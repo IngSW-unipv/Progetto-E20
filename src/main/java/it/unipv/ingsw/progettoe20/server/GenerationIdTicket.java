@@ -33,8 +33,11 @@ public class GenerationIdTicket {
         contLevel = levelList.size();
         check = false;
         Boolean checkLevelsAbsence;
-        if(contLevel!=0) {checkLevelsAbsence=true;}
-        else {checkLevelsAbsence=false;}
+        if(contLevel!=0){
+        	checkLevelsAbsence=true;
+        }else{
+        checkLevelsAbsence=false;
+        }
         int i = 0;
         levelName = "";
         if(!checkLevelsAbsence) {

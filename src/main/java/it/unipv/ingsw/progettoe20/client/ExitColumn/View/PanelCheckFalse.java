@@ -2,13 +2,16 @@ package it.unipv.ingsw.progettoe20.client.ExitColumn.View;
 
 import javax.swing.*;
 
-/*
-  Splash-panel in caso di ticket non idoneo
-*/
 
-public class PannelCheckFalse extends JPanel {
+/**
+ * Splash-panel in caso di ticket non correttamente obliterato.
+ */
+public class PanelCheckFalse extends JPanel {
 
-    public PannelCheckFalse() {
+    /**
+     * Costruttore Panel check false.
+     */
+    public PanelCheckFalse() {
         initComponents();
     }
 
@@ -32,7 +35,7 @@ public class PannelCheckFalse extends JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 30));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ErrorPic.png")));
-        jLabel4.setText("Errore: Ticket non correttamente obliterato");
+        jLabel4.setText("<html>Errore: Ticket non correttamente obliterato <br> recarsi alla Obliteration Column<html>");
         PannelloErrore.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
 
         //impostazioni di layout
@@ -61,6 +64,11 @@ public class PannelCheckFalse extends JPanel {
 
     //Getter componenti per listener
 
+    /**
+     * Getter pannello errore.
+     *
+     * @return il pannello errore
+     */
     public JPanel getPannelloErrore() {
         return PannelloErrore;
     }
