@@ -6,6 +6,10 @@ import it.unipv.ingsw.progettoe20.server.model.Price;
 /*
  * Classe per la gestione delle tariffe
  */
+
+/**
+ * The type Price administrator.
+ */
 public class PriceAdministrator {
 
 	private static PriceAdministrator instance;
@@ -19,6 +23,11 @@ public class PriceAdministrator {
 
 	}
 
+	/**
+	 * Gets instance.
+	 *
+	 * @return the instance
+	 */
 	/*
 	 * Restituisce l'istanza dell'amministratore delle tariffe
 	 */
@@ -26,6 +35,11 @@ public class PriceAdministrator {
 		return instance;
 	}
 
+	/**
+	 * Create.
+	 *
+	 * @param pDatabaseManager the p database manager
+	 */
 	/*
 	 * Crea l'unica instanza dell'amministratore delle tariffe
 	 */
@@ -33,6 +47,12 @@ public class PriceAdministrator {
 		instance = new PriceAdministrator(pDatabaseManager);
 	}
 
+	/**
+	 * Change price.
+	 *
+	 * @param price   the price
+	 * @param minutes the minutes
+	 */
 	/*
 	 * Modifica le tariffe
 	 *

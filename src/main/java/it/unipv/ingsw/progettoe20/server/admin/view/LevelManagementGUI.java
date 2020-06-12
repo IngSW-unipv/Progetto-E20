@@ -19,6 +19,9 @@ import it.unipv.ingsw.progettoe20.server.admin.controller.LevelListener;
  * [Quando si aggiunge un livello, è inizialmente vuoto]
  */
 
+/**
+ * The type Level management gui.
+ */
 public class LevelManagementGUI extends AbstractGUI {
 
 	private JLabel title, inserthereLevel, insertherePLots;
@@ -27,26 +30,54 @@ public class LevelManagementGUI extends AbstractGUI {
 	private JComboBox<String> combo;
 	private JButton confirm, home;
 
+	/**
+	 * Instantiates a new Level management gui.
+	 */
 	public LevelManagementGUI() {
 		super();
 	}
 
+	/**
+	 * Gets levelname.
+	 *
+	 * @return the levelname
+	 */
 	public JTextField getLevelname() {
 		return levelname;
 	}
 
+	/**
+	 * Gets combo.
+	 *
+	 * @return the combo
+	 */
 	public JComboBox<String> getCombo() {
 		return combo;
 	}
 
+	/**
+	 * Gets confirm.
+	 *
+	 * @return the confirm
+	 */
 	public JButton getConfirm() {
 		return confirm;
 	}
 
+	/**
+	 * Gets home.
+	 *
+	 * @return the home
+	 */
 	public JButton getHome() {
 		return home;
 	}
 
+	/**
+	 * Gets parking lots.
+	 *
+	 * @return the parking lots
+	 */
 	public JTextField getParkingLots() {
 		return parkinglots;
 	}

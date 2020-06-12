@@ -6,6 +6,10 @@ import it.unipv.ingsw.progettoe20.server.model.Level;
 /*
  * Classe per la gestione dei parcheggi
  */
+
+/**
+ * The type Parking administrator.
+ */
 public class ParkingAdministrator {
 
 	private static ParkingAdministrator instance;
@@ -19,6 +23,11 @@ public class ParkingAdministrator {
 
 	}
 
+	/**
+	 * Gets instance.
+	 *
+	 * @return the instance
+	 */
 	/*
 	 * Restituisce l'istanza dell'amministratore dei parcheggi
 	 */
@@ -26,6 +35,11 @@ public class ParkingAdministrator {
 		return instance;
 	}
 
+	/**
+	 * Create.
+	 *
+	 * @param pDatabaseManager the p database manager
+	 */
 	/*
 	 * Crea l'unica instanza dell'amministratore dei parcheggi
 	 */
@@ -33,6 +47,13 @@ public class ParkingAdministrator {
 		instance = new ParkingAdministrator(pDatabaseManager);
 	}
 
+	/**
+	 * Add parkings int.
+	 *
+	 * @param name the name
+	 * @param n    the n
+	 * @return the int
+	 */
 	/*
 	 * Aggiunge nuovi posti al parcheggio
 	 *
@@ -51,6 +72,13 @@ public class ParkingAdministrator {
 		return newCapacity;
 	}
 
+	/**
+	 * Remove parkings int.
+	 *
+	 * @param name the name
+	 * @param n    the n
+	 * @return the int
+	 */
 	/*
 	 * Toglie posti al parcheggio
 	 *

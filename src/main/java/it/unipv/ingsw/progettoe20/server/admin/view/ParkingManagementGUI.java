@@ -17,6 +17,10 @@ import it.unipv.ingsw.progettoe20.server.admin.controller.ParkingListener;
  * Classe per la gestione del parcheggi.
  * Si può modificare il numero di parcheggi disponibili nella struttura.
  */
+
+/**
+ * The type Parking management gui.
+ */
 public class ParkingManagementGUI extends AbstractGUI {
 
 	private JComboBox<String> combo;
@@ -25,26 +29,54 @@ public class ParkingManagementGUI extends AbstractGUI {
 	private JPanel panel, panel2, panel3;
 	private JButton confirm, home;
 
+	/**
+	 * Instantiates a new Parking management gui.
+	 */
 	public ParkingManagementGUI() {
 		super();
 	}
 
+	/**
+	 * Gets combo.
+	 *
+	 * @return the combo
+	 */
 	public JComboBox<String> getCombo() {
 		return combo;
 	}
 
+	/**
+	 * Gets home.
+	 *
+	 * @return the home
+	 */
 	public JButton getHome() {
 		return home;
 	}
 
+	/**
+	 * Gets field.
+	 *
+	 * @return the field
+	 */
 	public JTextField getField() {
 		return levelname;
 	}
 
+	/**
+	 * Gets field 2.
+	 *
+	 * @return the field 2
+	 */
 	public JTextField getField2() {
 		return parkinglots;
 	}
 
+	/**
+	 * Gets confirm.
+	 *
+	 * @return the confirm
+	 */
 	public JButton getConfirm() {
 		return confirm;
 	}

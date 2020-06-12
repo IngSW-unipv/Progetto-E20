@@ -10,11 +10,20 @@ import it.unipv.ingsw.progettoe20.server.database.DBConstants;
  * Listener che che controlla le operazioni effettuate nella schermata del PriceManagementGUI
  * Modifica le tariffe disponibili
  */
+
+/**
+ * The type Price listener.
+ */
 public class PriceListener extends AbstractListener {
 
 	private final PriceManagementGUI gui;
 	private final PriceAdministrator admin;
 
+	/**
+	 * Instantiates a new Price listener.
+	 *
+	 * @param gui the gui
+	 */
 	public PriceListener(PriceManagementGUI gui) {
 		this.gui = gui;
 		admin = PriceAdministrator.getInstance();
@@ -26,6 +35,11 @@ public class PriceListener extends AbstractListener {
 		gui.setVisible(false);
 	}
 
+	/**
+	 * Entered number double.
+	 *
+	 * @return the double
+	 */
 	/*
 	 * Legge la nuova tariffa inserita nel JTextField
 	 *
