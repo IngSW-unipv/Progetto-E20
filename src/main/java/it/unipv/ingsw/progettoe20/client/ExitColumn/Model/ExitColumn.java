@@ -26,8 +26,9 @@ public class ExitColumn {
 
     /**
      * Costruttore del client Exit column
+     *
+     * @param inputType tipologia di input (GUI o CLI)
      */
-
     public ExitColumn(String inputType) {
         try {
             this.inputType = inputType; //gli viene passato dal tester (args[0])
@@ -64,9 +65,9 @@ public class ExitColumn {
 
 
     /**
-     * Metodo che richiede la conferma di corretta obliterazione
+     * Metodo che verifica l'obliterazione
      *
-     * @param id
+     * @param id riferimento al ticket
      * @return Response Enum con i vari esiti del check
      */
     public ResponseEnum checkObliteration(String id) {
@@ -94,7 +95,7 @@ public class ExitColumn {
     /**
      * Metodo che elimina il Ticket
      *
-     * @param id
+     * @param id riferimento al ticket
      * @return true se il ticket (a cui è associato l'id) è stato eliminato,false in caso contrario
      */
     public Boolean deleteTicket(String id) {
@@ -115,7 +116,7 @@ public class ExitColumn {
     /**
      * metodo che cerca l'id nel database
      *
-     * @param id
+     * @param id riferimento al ticket
      * @return true se l'id é presente nel database, false se invece non lo è
      */
     public boolean checkId(String id) {
@@ -145,7 +146,11 @@ public class ExitColumn {
         }
     }
 
-    //getter per avvisare stato connessione con il Server
+    /**
+     * getter stato connessione con il Server
+     *
+     * @return Boolean
+     */
     public Boolean getIsConnected() {
         return isConnected;
     }
