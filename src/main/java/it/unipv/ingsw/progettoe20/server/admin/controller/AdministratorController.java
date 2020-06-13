@@ -3,7 +3,7 @@ package it.unipv.ingsw.progettoe20.server.admin.controller;
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 
 /*
- * Controller per la gestione per l'Administrator.
+ * Controller per la gestione per l'Administrator
  */
 public class AdministratorController {
 
