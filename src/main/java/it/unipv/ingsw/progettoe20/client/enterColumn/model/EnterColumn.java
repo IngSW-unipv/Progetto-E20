@@ -1,13 +1,23 @@
 package it.unipv.ingsw.progettoe20.client.enterColumn.model;
 
+import it.unipv.ingsw.progettoe20.Protocol;
+import it.unipv.ingsw.progettoe20.client.ClientConstants;
+
 import java.io.BufferedReader;
 import java.util.Observable;
+import java.util.Scanner;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
 
+/**
+ Questa classe rappresenta la colonna di entrata nel parcheggio, si occupa di mantenere 
+ * aggiornato lo stato dei posti disponibili, della generazione del ticket nel caso ci siano
+ * disponibilità nel parcheggio.  
+ * Inoltre vi è l'indicazione del livello a cui è associato il ticket.
+ */
 public class EnterColumn extends Observable{
 	private int totalLot;
 	private BufferedReader in;
@@ -15,36 +25,42 @@ public class EnterColumn extends Observable{
 	private boolean isConnected=false;
 	private String answer;
 	private Socket clientSocket;
-	 /**
-     * costruttore  
-     */
-	public EnterColumn()  {
+	private String inputType;
+	private  String id="";
+
+	/**
+	 * costruttore
+	 *
+	 * @param inputType: paramentro che fornisce il tipo di interfaccia richiesta(utenteo grafica)
+	 */
+	public EnterColumn(String inputType)  {
+		this.inputType = inputType;//gli viene passato dal tester (args[0])
 		checkServerConnection();
 		setAvailability();
 	}
-	
-	 /**
-     * metodo che imposta la connessione al database
-     *
-     * @return true se il database ï¿½ connesso
-     */
+
+	/**
+	 * metodo che imposta la connessione al database
+	 *
+	 * @return true se il database è connesso
+	 */
 	public void checkServerConnection() {
 		
-		   try {
-	            clientSocket = new Socket("localhost", 9000);
+		   try {  
+			    clientSocket = new Socket(ClientConstants.HOST, ClientConstants.PORT);
 	            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 	            out = new PrintWriter(clientSocket.getOutputStream(), true);
 	            isConnected = true;
+	            checkInputType();
 	        } catch (IOException i) {
 	            isConnected = false;
 	        }
-	} 
-	
-	 /**
-     * metodo che chiude la socket
-     *
-     */
-	 public void closeSocket() {
+	}
+
+	/**
+	 * metodo che chiude la socket
+	 */
+	public void closeSocket() {
 	        try {
 	            clientSocket.close();
 	        }
@@ -54,24 +70,27 @@ public class EnterColumn extends Observable{
 	        catch ( NullPointerException n) {
 	            isConnected = false;
 	        }
-	    }	
-	 
-	 /**
-	     * metodo che manda la richiesta per la generazione del Ticket
-	     *
-	     * @param
-	     * @return true se l'id Ã¨ stato generato correttamente, false se invece non lo Ã¨
-	     */
-	 
-	 public Boolean genTicket() throws IOException {
+	    }
+
+	/**
+	 * metodo che manda la richiesta per la generazione del Ticket
+	 *
+	 * @param
+	 * @return true se l'id Ã¨ stato generato correttamente, false se invece non lo Ã¨
+	 * @throws IOException the io exception
+	 */
+	public Boolean genTicket() throws IOException {
 		   try {
-	            out.println("genid");
+	            out.println(Protocol.REQUEST_GENERATE_ID);
 	            answer = in.readLine();
+	            id=answer.substring(5,answer.length());
+	            if(id.equals("?")) {
+	            	return false;
+	            } 
+	            else{
 	            System.out.println(answer);
-	            String id=answer.substring(5,answer.length());
-	            if(answer.equals("done:"+id)) 
-	            {return true;}
-	            else {return false;}
+	            return true;
+	            }
 	            
 	        } catch (IOException i) {
 	            return false;
@@ -79,34 +98,70 @@ public class EnterColumn extends Observable{
 	            isConnected = false;
 	            return false;
 	        }
-			
-
 	 }
-	 
-	 /**
-	     * metodo che controlla la connessione
-	     *
-	     */
-	 
+
+
+	/**
+	 * Check input type.
+	 *
+	 * @throws IOException the io exception
+	 */
+	public void checkInputType() throws IOException {
+	        if (inputType.equals("cli")) {
+	            cli();
+	        } else System.out.println("GUI avviata");
+
+	    }
+	  /**
+		* Metodo che rappresenta l'interfaccia testuale
+		* @throws IOException 
+		*/
+	  private void cli() throws IOException {
+		 String insertText = "";
+		 Scanner scanner = new Scanner(System.in);
+		 while (true) {
+		  System.out.println("Hai scelto la modlità  command line input, inserisci gen se vuoi prelevare il ticket o exit per terminare.");
+		  insertText = scanner.next();
+		  if (insertText.equals("exit")) break;
+		  if (insertText.equals("gen")) {
+		        	this.setAvailability();
+		            System.out.println("Numero posti disponibili:"+this.totalLot);
+		            if(genTicket()) {
+		              		this.setAvailability();
+		                	System.out.println("Livello associato:"+ this.id.substring(0,1));
+		                	System.out.println("Numero posti disponibili aggiornato:"+this.totalLot);
+		            } else
+		           System.out.println("Id non generato");
+		   }}
+		   System.out.println("Hai terminato l'esecuzione");
+		   scanner.close();
+		   System.exit(0);
+	     }
+
+	/**
+	 * metodo che controlla la connessione
+	 *
+	 * @return the is conn
+	 */
 	public boolean getIsConn() {
 		
 		return this.isConnected;
-	}	
-		
-	
-	 /**
-     * metodo che manda la richiesta di aggiornamento dei posti disponibili del parcheggio
-     * @return true se la richiesta ï¿½ stata portata a termine correttamente, false se invece non lo Ã¨
-     */
-	
+	}
+
+
+	/**
+	 * metodo che manda la richiesta di aggiornamento dei posti disponibili del parcheggio
+	 *
+	 * @return true se la richiesta è stata portata a termine correttamente, false se invece non lo Ã¨
+	 */
 	public Boolean setAvailability() {
 		 try {
-	            out.println("parkinglot");
+	            out.println(Protocol.REQUEST_TOTAL_AVAILABILITY);
 	            answer = in.readLine();
 	            
 	            String stringLot=answer.substring(5,answer.length());
 	            totalLot=Integer.parseInt(stringLot);
-	            if(answer.equals("done:"+ totalLot)) 
+	            if(answer.equals(Protocol.RESPONSE_OK + ":"+ totalLot))
 	            {return true;}
 	            else {return false;}
 	            
@@ -117,18 +172,44 @@ public class EnterColumn extends Observable{
 	            return false;
 	        }
 	    }
-		
-	
+
+
+	/**
+	 * Gets id ticket.
+	 *
+	 * @return the id ticket
+	 */
 	public String getIdTicket() {
 		int countString= answer.length();
 		String id= answer.substring(5, countString);
 		return id;
 		
 	}
+
+	/**
+	 * Gets availability.
+	 *
+	 * @return the availability
+	 */
 	public int getAvailability() {
 		return this.totalLot;
 	}
 
+	/**
+	 * Ritorna l'id.
+	 *
+	 * @return the id
+	 */
+	public String getId() {
+		return this.getId();
+	}
+
+	/**
+	 * Ritorna la disponibilità attuale.
+	 *Notifica agli observer il cambiamento di disponibilità
+	 *
+	 * @param availability the availability
+	 */
 	public void setAvailability(int availability) {
 	    this.totalLot=availability;
 	    this.setChanged();

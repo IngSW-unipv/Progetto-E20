@@ -5,11 +5,19 @@ import javax.swing.JOptionPane;
 import it.unipv.ingsw.progettoe20.server.admin.model.LevelAdministrator;
 import it.unipv.ingsw.progettoe20.server.admin.view.LevelManagementGUI;
 
+/**
+ * The type Level listener.
+ */
 public class LevelListener extends AbstractListener {
 
 	private LevelManagementGUI gui;
 	private LevelAdministrator admin;
 
+	/**
+	 * Instantiates a new Level listener.
+	 *
+	 * @param gui the gui
+	 */
 	public LevelListener(LevelManagementGUI gui) {
 		this.gui = gui;
 		admin = LevelAdministrator.getInstance();

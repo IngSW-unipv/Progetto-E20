@@ -2,13 +2,16 @@ package it.unipv.ingsw.progettoe20.client.ExitColumn.View;
 
 import javax.swing.*;
 
-/*
-  Splash-panel in caso di ticket idoneo
-*/
 
-public class PannelCheckTrue extends javax.swing.JPanel {
+/**
+ * Splash-panel in caso di ticket corettamente obliterato.
+ */
+public class PanelCheckTrue extends javax.swing.JPanel {
 
-    public PannelCheckTrue() {
+    /**
+     * Costruttore Panel check true.
+     */
+    public PanelCheckTrue() {
         initComponents();
     }
 
@@ -31,7 +34,7 @@ public class PannelCheckTrue extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarPic.png")));
-        jLabel4.setText("Grazie e buona giornata");
+        jLabel4.setText("Thank you and goodbye!");
         PannelloConferma.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
 
         //impostazioni di layout
@@ -60,6 +63,11 @@ public class PannelCheckTrue extends javax.swing.JPanel {
 
     //Getter componenti per listener
 
+    /**
+     * Getter pannello conferma.
+     *
+     * @return  pannello conferma
+     */
     public JPanel getPannelloConferma() {
         return PannelloConferma;
     }

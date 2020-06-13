@@ -6,6 +6,9 @@ import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
  * Classe Factory per la creazione delle tre classi che gestiscono parcheggi, livelli e tariffeu
  */
 
+/**
+ * The type Administrator factory.
+ */
 public class AdministratorFactory {
 
 	private static AdministratorFactory instance;
@@ -22,6 +25,11 @@ public class AdministratorFactory {
 
 	}
 
+	/**
+	 * Gets instance.
+	 *
+	 * @return the instance
+	 */
 	/*
 	 * Restituisce l'istanza dell'amministratore
 	 */
@@ -29,6 +37,11 @@ public class AdministratorFactory {
 		return instance;
 	}
 
+	/**
+	 * Create.
+	 *
+	 * @param pDatabaseManager the p database manager
+	 */
 	/*
 	 * Crea l'unica instanza dell'amministratore
 	 */

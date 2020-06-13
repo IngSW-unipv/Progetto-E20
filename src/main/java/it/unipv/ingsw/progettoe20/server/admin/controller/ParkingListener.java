@@ -9,11 +9,20 @@ import it.unipv.ingsw.progettoe20.server.admin.view.ParkingManagementGUI;
  *Listener che controlla le operazioni effettuate nella schermata del ParkingManagementGUI
  *Aggiunge o rimuove dei parcheggi.
  */
+
+/**
+ * The type Parking listener.
+ */
 public class ParkingListener extends AbstractListener {
 
 	private ParkingManagementGUI gui;
 	private ParkingAdministrator admin;
 
+	/**
+	 * Instantiates a new Parking listener.
+	 *
+	 * @param gui the gui
+	 */
 	public ParkingListener(ParkingManagementGUI gui) {
 		this.gui = gui;
 		admin = ParkingAdministrator.getInstance();
@@ -29,6 +38,11 @@ public class ParkingListener extends AbstractListener {
 		gui.setVisible(false);
 	}
 
+	/**
+	 * Entered level string.
+	 *
+	 * @return the string
+	 */
 	/*
 	 * Legge il nome del livello inserito nel JTextField
 	 *
@@ -47,6 +61,11 @@ public class ParkingListener extends AbstractListener {
 		return name;
 	}
 
+	/**
+	 * Entered parking lots int.
+	 *
+	 * @return the int
+	 */
 	/*
 	 * Legge il numero di parcheggi inseriti nel JTextField
 	 *

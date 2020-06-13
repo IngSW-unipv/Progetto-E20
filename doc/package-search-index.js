@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"it.unipv.ingsw.progettoe20.server.admin.controller"},{"l":"it.unipv.ingsw.progettoe20.server.admin.model"},{"l":"it.unipv.ingsw.progettoe20.server.admin.view"}]

@@ -8,15 +8,20 @@ import it.unipv.ingsw.progettoe20.server.admin.view.LevelManagementGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.ParkingManagementGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.PriceManagementGUI;
 
-/*
- Listener che controlla quale bottone è stato schiacciato nella schermata dell'AdiministratorGUI
- Apre Parking Management oppure Price Management in base al bottone premuto
- */
 
+/**
+ * Listener che controlla quale bottone è stato schiacciato nella schermata dell'AdiministratorGUI
+ *  Apre Parking Management oppure Price Management in base al bottone premuto
+ */
 public class AdministratorListener implements ActionListener {
 
 	private final AdministratorGUI adminGUI;
 
+	/**
+	 * Instantiates a new Administrator listener.
+	 *
+	 * @param gui the gui
+	 */
 	public AdministratorListener(AdministratorGUI gui) {
 		this.adminGUI = gui;
 	}

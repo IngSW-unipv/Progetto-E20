@@ -6,6 +6,10 @@ import it.unipv.ingsw.progettoe20.server.model.Level;
 /*
  * Classe per la gestione dei livelli
  */
+
+/**
+ * The type Level administrator.
+ */
 public class LevelAdministrator {
 
 	private static LevelAdministrator instance;
@@ -19,6 +23,11 @@ public class LevelAdministrator {
 
 	}
 
+	/**
+	 * Gets instance.
+	 *
+	 * @return the instance
+	 */
 	/*
 	 * Restituisce l'istanza dell'amministratore dei livelli
 	 */
@@ -26,6 +35,11 @@ public class LevelAdministrator {
 		return instance;
 	}
 
+	/**
+	 * Create.
+	 *
+	 * @param pDatabaseManager the p database manager
+	 */
 	/*
 	 * Crea l'unica instanza dell'amministratore dei livelli
 	 */
@@ -33,6 +47,12 @@ public class LevelAdministrator {
 		instance = new LevelAdministrator(pDatabaseManager);
 	}
 
+	/**
+	 * Add level.
+	 *
+	 * @param name     the name
+	 * @param capacity the capacity
+	 */
 	/*
 	 * Aggiunge un livello al parcheggio
 	 *
@@ -45,6 +65,11 @@ public class LevelAdministrator {
 		databaseFacade.updateLevel(newLevel);
 	}
 
+	/**
+	 * Remove level.
+	 *
+	 * @param name the name
+	 */
 	/*
 	 * Rimuove un livello al parcheggio se presente
 	 *

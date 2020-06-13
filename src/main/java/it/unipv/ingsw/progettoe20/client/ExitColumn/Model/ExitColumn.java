@@ -1,10 +1,4 @@
 package it.unipv.ingsw.progettoe20.client.ExitColumn.Model;
-/*
-  Questa classe rappresenta la colonna di uscita dal parcheggio, si occupa di controllare
-  che il ticket sia valido per l'uscita verficandone l'obliterazione e il tempo intercorso,
-  in caso positivo permette l'uscita del veicolo
-  in caso negativo richiede di recarsi alla colonnina di obliterazione
-*/
 
 import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.client.ClientConstants;
@@ -16,6 +10,13 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * Questa classe rappresenta la colonna di uscita dal parcheggio, si occupa di controllare
+ * che il ticket sia valido per l'uscita verficandone l'obliterazione e il tempo intercorso,
+ * in caso positivo permette l'uscita del veicolo
+ * in caso negativo richiede di recarsi alla colonnina di obliterazione.
+ */
+
 public class ExitColumn {
 
     private Socket clientSocket;
@@ -25,9 +26,10 @@ public class ExitColumn {
     private String inputType;
 
     /**
-     * Costruttore del client Exit column
+     * Costruttore del client Exit column.
+     *
+     * @param inputType tipologia di input (GUI o CLI)
      */
-
     public ExitColumn(String inputType) {
         try {
             this.inputType = inputType; //gli viene passato dal tester (args[0])
@@ -42,8 +44,7 @@ public class ExitColumn {
     }
 
     /**
-     * Metodo che verifica la metodologia di input (GUI o cli)
-     *
+     * Metodo che verifica la metodologia di input (GUI o cli).
      */
     public void checkInputType() {
         if (inputType.equals("cli")) {
@@ -65,16 +66,17 @@ public class ExitColumn {
 
 
     /**
-     * Metodo che richiede la conferma di corretta obliterazione
+     * Metodo che verifica l'obliterazione.
      *
-     * @param id
+     * @param id riferimento al ticket
      * @return Response Enum con i vari esiti del check
      */
     public ResponseEnum checkObliteration(String id) {
+        System.out.println("perform request...");
 
         if (checkId(id)) {
             try {
-                out.println("paid:" + id);
+                out.println(Protocol.REQUEST_PAYMENT_CHECK + Protocol.SEPARATOR + id);
                 String answer = in.readLine();
                 System.out.println(answer);
                 if (answer.equals(Protocol.RESPONSE_PAID_TRUE)) {
@@ -85,21 +87,21 @@ public class ExitColumn {
                 return ResponseEnum.ERROR_GENERIC;
             } catch (NullPointerException n) {
                 isConnected = false;
-                return ResponseEnum.ERROR_GENERIC; //TODO is ok??
+                return ResponseEnum.ERROR_GENERIC;
             }
         } else return ResponseEnum.NO_ID_FOUND;
 
     }
 
     /**
-     * Metodo che elimina il Ticket
+     * Metodo che elimina il Ticket.
      *
-     * @param id
+     * @param id riferimento al ticket
      * @return true se il ticket (a cui è associato l'id) è stato eliminato,false in caso contrario
      */
     public Boolean deleteTicket(String id) {
         try {
-            out.println("delete:" + id);
+            out.println(Protocol.REQUEST_DELETE_ID + Protocol.SEPARATOR + id);
             String answer = in.readLine();
             System.out.println(answer);
             return answer.equals(Protocol.RESPONSE_OK);
@@ -113,17 +115,17 @@ public class ExitColumn {
     }
 
     /**
-     * metodo che cerca l'id nel database
+     * metodo che cerca l'id nel database.
      *
-     * @param id
+     * @param id riferimento al ticket
      * @return true se l'id é presente nel database, false se invece non lo è
      */
     public boolean checkId(String id) {
         try {
-            out.println("id:" + id);
+            out.println(Protocol.REQUEST_CHECK_ID + Protocol.SEPARATOR + id);
             String answer = in.readLine();
             System.out.println(answer);
-            return answer.equals(Protocol.RESPONSE_OK);
+            return answer.equals(Protocol.RESPONSE_ID_FOUND);
         } catch (IOException i) {
             return false;
         } catch (NullPointerException n) {
@@ -133,7 +135,7 @@ public class ExitColumn {
     }
 
     /**
-     * metodo per chiudere il clientSocket
+     * metodo per chiudere il clientSocket.
      */
     public void closeSocket() {
         try {
@@ -145,7 +147,11 @@ public class ExitColumn {
         }
     }
 
-    //getter per avvisare stato connessione con il Server
+    /**
+     * getter stato connessione con il Server.
+     *
+     * @return Boolean
+     */
     public Boolean getIsConnected() {
         return isConnected;
     }
