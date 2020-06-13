@@ -35,7 +35,7 @@ public class PanelCheckFalse extends JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 30));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ErrorPic.png")));
-        jLabel4.setText("<html>Errore: Ticket non correttamente obliterato <br> recarsi alla Obliteration Column<html>");
+        jLabel4.setText("<html>Error: Ticket is not properly obliterated <br> please go to Obliteration Column<html>");
         PannelloErrore.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
 
         //impostazioni di layout

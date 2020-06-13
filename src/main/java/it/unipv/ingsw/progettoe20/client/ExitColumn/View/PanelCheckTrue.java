@@ -34,7 +34,7 @@ public class PanelCheckTrue extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarPic.png")));
-        jLabel4.setText("Grazie e buona giornata");
+        jLabel4.setText("Thank you and goodbye!");
         PannelloConferma.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
 
         //impostazioni di layout

@@ -42,7 +42,7 @@ public class ExitColumnGUI extends javax.swing.JFrame {
         //impostazioni bottone
         buttonTicket.setBackground(new java.awt.Color(255, 255, 255));
         buttonTicket.setFont(new java.awt.Font("Tahoma", 0, 18));
-        buttonTicket.setText("INSERISCI");
+        buttonTicket.setText("INSERT");
 
         pannello.add(buttonTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 230, 58));
 

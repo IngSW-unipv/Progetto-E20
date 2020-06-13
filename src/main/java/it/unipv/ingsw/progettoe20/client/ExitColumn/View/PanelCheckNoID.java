@@ -36,7 +36,7 @@ public class PanelCheckNoID extends JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NoTicketPic.png")));
-        jLabel4.setText("Errore: ID Ticket non valido");
+        jLabel4.setText("Error: ID Ticket not found");
         PannelloErrore.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
 
         //impostazioni di layout
