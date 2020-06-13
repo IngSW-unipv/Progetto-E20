@@ -16,15 +16,10 @@ import it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorControlle
  Offre la scelta tra gestione delle tariffe e gestione dei parcheggi
 */
 
-<<<<<<< HEAD
-public class AdministratorGUI extends AbstractGUI {
-=======
-
 /**
  * The type Administrator gui.
  */
-public class AdministratorGUI extends JFrame {
->>>>>>> 8193458d93fb8d20871a3536cffa0d2f536151ee
+public class AdministratorGUI extends AbstractGUI {
 
 	private JLabel title;
 	private JPanel panel;
@@ -100,44 +95,11 @@ public class AdministratorGUI extends JFrame {
 		panel.add(btnLavels);
 		panel.add(btnPrices);
 
-<<<<<<< HEAD
-		
 	}
 
 	@Override
 	public void initListener() {
 		// TODO Auto-generated method stub
-		
-=======
-		administratorController = new AdministratorController(this);
-	}
-
-	/**
-	 * Gets btn parkings.
-	 *
-	 * @return the btn parkings
-	 */
-	public JButton getBtnParkings() {
-		return btnParkings;
-	}
-
-	/**
-	 * Gets btn prices.
-	 *
-	 * @return the btn prices
-	 */
-	public JButton getBtnPrices() {
-		return btnPrices;
-	}
-
-	/**
-	 * Gets btn levels.
-	 *
-	 * @return the btn levels
-	 */
-	public JButton getBtnLevels() {
-		return btnLavels;
->>>>>>> 8193458d93fb8d20871a3536cffa0d2f536151ee
 	}
 
 }
