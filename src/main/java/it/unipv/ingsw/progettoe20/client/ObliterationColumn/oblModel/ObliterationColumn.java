@@ -142,20 +142,20 @@ public class ObliterationColumn {
         Scanner scanner = new Scanner(System.in);
         while (true) {
 
-            System.out.println("Hai scelto la modlità command line input, inserisci il TicketID o exit per terminare.");
+            System.out.println("You chosed command line input mode, insert 'TicketID' or 'exit' to terminate process.");
             insertText = scanner.next();
             if (insertText.equals("exit")) break;
             if (checkId(insertText)) {
-                System.out.println("accettare il pagamento di " + "$" +  PaymentAmount(insertText) + " (inserisci si per procedere).");
+                System.out.println("Accept payment of " + "€" +  PaymentAmount(insertText) + " (type yes to proceed).");
                 acceptText = scanner.next();
-                if (acceptText.equals("si")) {
+                if (acceptText.toUpperCase().equals("YES")) {
                     Pay(insertText);
-                    System.out.println("pagamento accettato");
-                } else System.out.println("pagamento rifiutato");
+                    System.out.println("Payment accepted");
+                } else System.out.println("Payment refused");
             }
 
         }
-        System.out.println("Hai terminato l'esecuzione");
+        System.out.println("Process terminated");
         scanner.close();
         System.exit(0);
     }
