@@ -53,12 +53,12 @@ public class ExitColumn {
             Scanner scanner = new Scanner(System.in);
             while (true) {
 
-                System.out.println("Hai scelto la modlità command line input, inserisci il TicketID o exit per terminare.");
+                System.out.println("You chose command line input mode, insert TicketID or exit to terminate process.");
                 insertText = scanner.next();
                 if (insertText.equals(ClientStrings.EXIT)) break; //Viene chiamata l'uscita
                 checkObliteration(insertText);
             }
-            System.out.println("Hai terminato l'esecuzione");
+            System.out.println("Process terminated");
             System.exit(0);
 
         } else System.out.println(ClientStrings.GUI_STARTED);
