@@ -15,7 +15,7 @@ import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
  * Controller del client EnterColumn
  * contiene il Listener associato al bottone getTicket
  * il quale avvia il metodo del model per generare il Ticket
- * in base all'esito verrà  modificato il panel.
+ * in base all'esito verra' modificato il panel.
  */
 public class Controller {
 private EnterColumnGui g;
@@ -24,11 +24,11 @@ private EnterColumn model;
 	/**
 	 * Instantiates a new Controller.
 	 *
-	 * @param EnterColumnGui interfacciaGrafica
-	 * @param EnterColumn model 
+	 * @param g interfacciaGrafica
+	 * @param model model
 	 * @throws IOException the io exception
 	 */
-	public Controller( EnterColumnGui g, EnterColumn model) throws IOException {
+	public Controller(EnterColumnGui g, EnterColumn model) throws IOException {
 		this.g=g;
 		this.model=model;
 		checkConn();

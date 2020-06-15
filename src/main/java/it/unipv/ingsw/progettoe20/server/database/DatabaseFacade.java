@@ -486,6 +486,7 @@ public class DatabaseFacade {
      * un'eccezione.
      *
      * @param minutes identificatore del record.
+     * @return presenza.
      */
     public boolean checkPriceByMinutes(int minutes) throws IllegalArgumentException {
         Connection connection;

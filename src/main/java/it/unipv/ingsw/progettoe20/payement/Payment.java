@@ -23,6 +23,8 @@ public class Payment extends JFrame {
 	private double price; //receive the price by server to pay
 	/**
 	 * Create the frame payment.
+	 *
+	 * @param price prezzo da pagare
 	 */
 	public Payment(double price) {
 		//initialize the value of price

@@ -48,6 +48,8 @@ public class Ticket {
 
     /**
      * metodo che verifica la correttezza dell'obliterazione (flag e data pagamento)
+     *
+     * @return un booleano di verifica.
      */
 
     public boolean obliterationCheck() {

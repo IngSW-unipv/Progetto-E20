@@ -16,7 +16,7 @@ class CommandHandler {
 	 */
 	static void handle(String command) {
 		try {
-			CommandStrategy.valueOf(command).command();
+			CommandStrategy.valueOf(command.toUpperCase()).command();
 		} catch (IllegalArgumentException i){
 			System.out.println("Invalid Statement");
 		}
