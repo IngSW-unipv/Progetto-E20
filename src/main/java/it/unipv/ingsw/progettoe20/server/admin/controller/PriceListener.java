@@ -65,6 +65,7 @@ public class PriceListener extends AbstractListener {
 	 */
 	@Override
 	public void change() {
+		try{
 		double newprice = enteredNumber();
 		String action = (String) gui.getCombo().getSelectedItem();
 		int minutes;
@@ -80,12 +81,13 @@ public class PriceListener extends AbstractListener {
 		} else {
 			// Se si vuole modificare la tariffa minima
 			minutes = DBConstants.MINUTES_MINIMUM;
-
 		}
-
 		// Modifica della tariffa
 		admin.changePrice(newprice, minutes);
 		gui.getField().setText("");
 		JOptionPane.showMessageDialog(null, "Price: " + newprice + " euro", "Info", 1, null);
+	} catch(IllegalArgumentException i){
+			return;
+		}
 	}
 }
