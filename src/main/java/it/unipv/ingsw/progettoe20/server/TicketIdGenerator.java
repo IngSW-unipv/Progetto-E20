@@ -59,6 +59,8 @@ public class TicketIdGenerator {
     }
 
     public String generateId()  {
+        //TODO con questa implementazione viene generata una stringa di numeri e caratteri alternati
+        // sarebbe meglio avere una stringa casuale anche nel pattern
 
         // ottengo la lunghezza di ogni array
         int lungCaratteri = alfaCharacters.length;
