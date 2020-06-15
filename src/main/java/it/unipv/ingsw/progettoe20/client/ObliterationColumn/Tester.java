@@ -1,5 +1,6 @@
 package it.unipv.ingsw.progettoe20.client.ObliterationColumn;
 
+import it.unipv.ingsw.progettoe20.client.ClientStrings;
 import it.unipv.ingsw.progettoe20.client.ObliterationColumn.oblController.OblController;
 import it.unipv.ingsw.progettoe20.client.ObliterationColumn.oblModel.ObliterationColumn;
 import it.unipv.ingsw.progettoe20.client.ObliterationColumn.oblView.OblGui;
@@ -13,7 +14,7 @@ public class Tester {
         //args = new String[1];
         //args[0] = "cli"; //per testare velocemente l'interfaccia testuale
 
-        if (args.length != 0 && args[0].equals("cli")) {
+        if (args.length != 0 && args[0].equals(ClientStrings.COMMAND_CLI)) {
 
             ObliterationColumn model = new ObliterationColumn(args[0]);
         } else {

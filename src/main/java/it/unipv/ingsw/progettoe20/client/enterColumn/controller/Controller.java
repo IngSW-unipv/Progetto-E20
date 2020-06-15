@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import it.unipv.ingsw.progettoe20.client.ClientStrings;
 import it.unipv.ingsw.progettoe20.client.enterColumn.model.EnterColumn;
 import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
 
@@ -18,97 +19,95 @@ import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
  * in base all'esito verra' modificato il panel.
  */
 public class Controller {
-private EnterColumnGui g;
-private EnterColumn model;
+    private EnterColumnGui g;
+    private EnterColumn model;
 
-	/**
-	 * Instantiates a new Controller.
-	 *
-	 * @param g interfacciaGrafica
-	 * @param model model
-	 * @throws IOException the io exception
-	 */
-	public Controller(EnterColumnGui g, EnterColumn model) throws IOException {
-		this.g=g;
-		this.model=model;
-		checkConn();
-		initListener();
-	}
+    /**
+     * Instantiates a new Controller.
+     *
+     * @param g     interfacciaGrafica
+     * @param model model
+     * @throws IOException the io exception
+     */
+    public Controller(EnterColumnGui g, EnterColumn model) throws IOException {
+        this.g = g;
+        this.model = model;
+        checkConn();
+        initListener();
+    }
 
-	/**
-	 * Inizializza il listener.
-	 */
-	public void initListener() {
-		g.getButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-	           try {
-	              g.getButton().setEnabled(false);
-	              g.getButton().setBackground(new Color(143,0,255));
-	              if (g.getAvailability()>0) {
-	            	  
-		              Boolean checkIdGeneration = model.genTicket();
-				         if (checkIdGeneration) {
-				            	setTransitionElements();
-				         }
-				         else {
-				              g.setIdTicket("Error!�"); 
-				         }
-			      }
-	              else {
-	            	 g.setNoAvailability();//i livelli non hanno disponibilit�
-	              }
-	            }catch (Exception ex) {
-	              g.setIdTicket("Error!");
-	            }
-	         }
-		});
-		closingWindowsListener();       
-		}
+    /**
+     * Inizializza il listener.
+     */
+    public void initListener() {
+        g.getButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    g.getButton().setEnabled(false);
+                    g.getButton().setBackground(new Color(143, 0, 255));
+                    if (g.getAvailability() > 0) {
 
-	/**
-	 * Imposta elementi dopo l'avvio del metodo della generazione del ticket.
-	 */
-	public void setTransitionElements() {
-            g.setIdTicket(model.getIdTicket());
-            g.setLevelLabel(model.getIdTicket().substring(0,1));
-              new Timer().schedule(new TimerTask() {
+                        Boolean checkIdGeneration = model.genTicket();
+                        if (checkIdGeneration) {
+                            setTransitionElements();
+                        } else {
+                            g.setIdTicket(ClientStrings.ERROR_GENERIC);
+                        }
+                    } else {
+                        g.setNoAvailability();//i livelli non hanno disponibilit�
+                    }
+                } catch (Exception ex) {
+                    g.setIdTicket(ClientStrings.ERROR_GENERIC);
+                }
+            }
+        });
+        closingWindowsListener();
+    }
 
-            	    @Override
-            	    public void run() { 
-            	    	model.setAvailability();
-            	        model.setAvailability(model.getAvailability());
-            	        g.getShowTicketId().setText(String.valueOf(""));
-            	        g.setTransitionObject();
-            	        g.getButton().setEnabled(true);
-            	        model.setAvailability();
-            	        g.setEmptyLevLabel();
-            	        model.setAvailability(model.getAvailability());
-            	        }
-            	}, 10000 );
-             }
+    /**
+     * Imposta elementi dopo l'avvio del metodo della generazione del ticket.
+     */
+    public void setTransitionElements() {
+        g.setIdTicket(model.getIdTicket());
+        g.setLevelLabel(model.getIdTicket().substring(0, 1));
+        new Timer().schedule(new TimerTask() {
 
-	/**
-	 * Chiusura della windows listener.
-	 */
-	public void closingWindowsListener() {
-		 g.addWindowListener(new java.awt.event.WindowAdapter() {
-	     @Override
-	     public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-	    	 model.closeSocket();
-	     }
-	     }); 	
-	}
+            @Override
+            public void run() {
+                model.setAvailability();
+                model.setAvailability(model.getAvailability());
+                g.getShowTicketId().setText(String.valueOf(""));
+                g.setTransitionObject();
+                g.getButton().setEnabled(true);
+                model.setAvailability();
+                g.setEmptyLevLabel();
+                model.setAvailability(model.getAvailability());
+            }
+        }, 10000);
+    }
 
-	/**
-	 * Metodo che controlla la connessione.
-	 *
-	 * @throws IOException the io exception
-	 */
-	public void checkConn() throws IOException {
-		
-		if (!this.model.getIsConn()) {
-			this.g.initErrorGui();
-			System.exit(0);
-		}
-	}
+    /**
+     * Chiusura della windows listener.
+     */
+    public void closingWindowsListener() {
+        g.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                model.closeSocket();
+            }
+        });
+    }
+
+    /**
+     * Metodo che controlla la connessione.
+     *
+     * @throws IOException the io exception
+     */
+    public void checkConn() throws IOException {
+
+        if (!this.model.getIsConn()) {
+            this.g.initErrorGui();
+            System.exit(0);
+        }
+    }
 }

@@ -2,6 +2,7 @@ package it.unipv.ingsw.progettoe20.client.ExitColumn.Model;
 
 import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.client.ClientConstants;
+import it.unipv.ingsw.progettoe20.client.ClientStrings;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,20 +48,20 @@ public class ExitColumn {
      * Metodo che verifica la metodologia di input (GUI o cli).
      */
     public void checkInputType() {
-        if (inputType.equals("cli")) {
+        if (inputType.equals(ClientStrings.COMMAND_CLI)) {
             String insertText = "";
             Scanner scanner = new Scanner(System.in);
             while (true) {
 
                 System.out.println("Hai scelto la modlità command line input, inserisci il TicketID o exit per terminare.");
                 insertText = scanner.next();
-                if (insertText.equals("exit")) break; //Viene chiamata l'uscita
+                if (insertText.equals(ClientStrings.EXIT)) break; //Viene chiamata l'uscita
                 checkObliteration(insertText);
             }
             System.out.println("Hai terminato l'esecuzione");
             System.exit(0);
 
-        } else System.out.println("GUI avviata");
+        } else System.out.println(ClientStrings.GUI_STARTED);
 
     }
 

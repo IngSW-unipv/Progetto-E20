@@ -2,6 +2,7 @@ package it.unipv.ingsw.progettoe20.client.ObliterationColumn.oblModel;
 
 import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.client.ClientConstants;
+import it.unipv.ingsw.progettoe20.client.ClientStrings;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -144,7 +145,7 @@ public class ObliterationColumn {
 
             System.out.println("You chosed command line input mode, insert 'TicketID' or 'exit' to terminate process.");
             insertText = scanner.next();
-            if (insertText.equals("exit")) break;
+            if (insertText.equals(ClientStrings.EXIT)) break;
             if (checkId(insertText)) {
                 System.out.println("Accept payment of " + "€" +  PaymentAmount(insertText) + " (type yes to proceed).");
                 acceptText = scanner.next();
