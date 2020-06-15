@@ -39,8 +39,4 @@ public class ServerFacade {
 			Logger.log(ErrorStrings.SERVER_START_FAIL);
 		}
 	}
-
-	public DatabaseFacade getDbManager() {
-		return dbManager;
-	}
 }

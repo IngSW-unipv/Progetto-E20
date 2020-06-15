@@ -40,7 +40,7 @@ public class DatabaseFacade {
      * controlla e inizializza la connessione. Il pool di connessioni viene
      * inizializzato ad una connessione.
      */
-    private DatabaseFacade() {
+    public DatabaseFacade() {
         passwordInit();
 
         String dbUrl = DBConstants.DB_URL;

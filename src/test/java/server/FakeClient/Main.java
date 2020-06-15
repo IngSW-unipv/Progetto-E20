@@ -20,7 +20,8 @@ public class Main {
     public static void main(String[] args) {
         ServerFacade serverFacade = new ServerFacade();
         serverFacade.init();
-        DatabaseFacade dbFacade = serverFacade.getDbManager();
+        //TODO database asks 2 times for password
+        DatabaseFacade dbFacade = new DatabaseFacade();
         new Thread(serverFacade::start).start();
 
         String generatedTicket;
