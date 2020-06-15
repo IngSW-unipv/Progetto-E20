@@ -1,7 +1,7 @@
 package it.unipv.ingsw.progettoe20.server.requestsHandling.commands;
 
 import it.unipv.ingsw.progettoe20.Protocol;
-import it.unipv.ingsw.progettoe20.server.GenerationIdTicket;
+import it.unipv.ingsw.progettoe20.server.TicketIdGenerator;
 import it.unipv.ingsw.progettoe20.server.Logger;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
@@ -11,12 +11,12 @@ import java.util.List;
 
 public class CommandDel extends Command {
 
-    private GenerationIdTicket generator;
+    private TicketIdGenerator generator;
     private List<Level> levelList;
 
     public CommandDel(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);
-        this.generator = new GenerationIdTicket(dbFacade);
+        this.generator = new TicketIdGenerator(dbFacade);
     }
 
     @Override

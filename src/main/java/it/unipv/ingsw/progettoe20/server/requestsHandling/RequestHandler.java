@@ -2,7 +2,7 @@ package it.unipv.ingsw.progettoe20.server.requestsHandling;
 
 
 import it.unipv.ingsw.progettoe20.Protocol;
-import it.unipv.ingsw.progettoe20.server.GenerationIdTicket;
+import it.unipv.ingsw.progettoe20.server.TicketIdGenerator;
 
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.requestsHandling.commands.Command;
@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 public class RequestHandler {
     private DatabaseFacade dbFacade;
     private PrintWriter out;
-    private GenerationIdTicket generator;
+    private TicketIdGenerator generator;
     private RequestMap requestMap;
     /**
      * Costruisce un RequestHandler.
@@ -26,7 +26,7 @@ public class RequestHandler {
     public RequestHandler(DatabaseFacade dbFacade, PrintWriter out) {
         this.dbFacade = dbFacade;
         this.out = out;
-        this.generator = new GenerationIdTicket(dbFacade);
+        this.generator = new TicketIdGenerator(dbFacade);
         requestMap = new RequestMap(dbFacade, out);
     }
 

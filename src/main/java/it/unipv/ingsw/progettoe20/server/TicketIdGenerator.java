@@ -7,7 +7,7 @@ import java.util.Random;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 
-public class GenerationIdTicket {
+public class TicketIdGenerator {
     private DatabaseFacade dbFacade;
     private final int lungId = 8;
     private List<Level> levelList;
@@ -23,7 +23,7 @@ public class GenerationIdTicket {
 
     private Random rand = new Random();
 
-    public GenerationIdTicket(DatabaseFacade dbFacade) {
+    public TicketIdGenerator(DatabaseFacade dbFacade) {
         this.dbFacade = dbFacade;
     }
 
@@ -32,7 +32,7 @@ public class GenerationIdTicket {
         levelList = dbFacade.getLevelList();
         contLevel = levelList.size();
         check = false;
-        Boolean checkLevelsAbsence;
+        boolean checkLevelsAbsence;
         if(contLevel!=0){
         	checkLevelsAbsence=true;
         }else{
@@ -58,7 +58,7 @@ public class GenerationIdTicket {
         return levelName;
     }
 
-    public String GenerateId()  {
+    public String generateId()  {
 
         // ottengo la lunghezza di ogni array
         int lungCaratteri = alfaCharacters.length;
