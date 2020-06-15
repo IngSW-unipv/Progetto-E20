@@ -15,8 +15,8 @@ import java.net.Socket;
 /**
  Questa classe rappresenta la colonna di entrata nel parcheggio, si occupa di mantenere 
  * aggiornato lo stato dei posti disponibili, della generazione del ticket nel caso ci siano
- * disponibilità nel parcheggio.  
- * Inoltre vi è l'indicazione del livello a cui è associato il ticket.
+ * disponibilita' nel parcheggio.
+ * Inoltre vi e' l'indicazione del livello a cui ï¿½ associato il ticket.
  */
 public class EnterColumn extends Observable{
 	private int totalLot;
@@ -41,8 +41,6 @@ public class EnterColumn extends Observable{
 
 	/**
 	 * metodo che imposta la connessione al database
-	 *
-	 * @return true se il database è connesso
 	 */
 	public void checkServerConnection() {
 		
@@ -75,7 +73,6 @@ public class EnterColumn extends Observable{
 	/**
 	 * metodo che manda la richiesta per la generazione del Ticket
 	 *
-	 * @param
 	 * @return true se l'id Ã¨ stato generato correttamente, false se invece non lo Ã¨
 	 * @throws IOException the io exception
 	 */
@@ -120,7 +117,7 @@ public class EnterColumn extends Observable{
 		 String insertText = "";
 		 Scanner scanner = new Scanner(System.in);
 		 while (true) {
-		  System.out.println("Hai scelto la modlità  command line input, inserisci gen se vuoi prelevare il ticket o exit per terminare.");
+		  System.out.println("Hai scelto la modlita' command line input, inserisci gen se vuoi prelevare il ticket o exit per terminare.");
 		  insertText = scanner.next();
 		  if (insertText.equals("exit")) break;
 		  if (insertText.equals("gen")) {
@@ -152,7 +149,7 @@ public class EnterColumn extends Observable{
 	/**
 	 * metodo che manda la richiesta di aggiornamento dei posti disponibili del parcheggio
 	 *
-	 * @return true se la richiesta è stata portata a termine correttamente, false se invece non lo Ã¨
+	 * @return true se la richiesta ï¿½ stata portata a termine correttamente, false se invece non lo Ã¨
 	 */
 	public Boolean setAvailability() {
 		 try {
@@ -205,8 +202,8 @@ public class EnterColumn extends Observable{
 	}
 
 	/**
-	 * Ritorna la disponibilità attuale.
-	 *Notifica agli observer il cambiamento di disponibilità
+	 * Ritorna la disponibilitï¿½ attuale.
+	 *Notifica agli observer il cambiamento di disponibilitï¿½
 	 *
 	 * @param availability the availability
 	 */

@@ -35,7 +35,7 @@ public class RequestHandler {
      *
      * @param request richiesta effettuata dal client.
      * @return true se il client ha richiesto la chiusura della connessione, false altrimenti.
-     * @throws LevelSAbsentException 
+     * @throws IllegalArgumentException se la richiesta non è valida.
      */
     public boolean handle(String request) throws IllegalArgumentException {
         try{

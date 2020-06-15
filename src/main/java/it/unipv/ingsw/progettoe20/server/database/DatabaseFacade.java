@@ -213,6 +213,7 @@ public class DatabaseFacade {
      * un'eccezione.
      *
      * @param id identificatore del record.
+     * @return booleano di verifica.
      */
     public boolean checkTicketById(String id) {
         Connection connection;
@@ -336,6 +337,7 @@ public class DatabaseFacade {
      * un'eccezione.
      *
      * @param name identificatore del record.
+     * @return booleano di verifica.
      */
     public boolean checkLevelByName(String name) throws IllegalArgumentException {
         Connection connection;
@@ -486,6 +488,7 @@ public class DatabaseFacade {
      * un'eccezione.
      *
      * @param minutes identificatore del record.
+     * @return presenza.
      */
     public boolean checkPriceByMinutes(int minutes) throws IllegalArgumentException {
         Connection connection;

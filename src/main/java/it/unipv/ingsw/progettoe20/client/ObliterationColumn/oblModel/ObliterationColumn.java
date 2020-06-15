@@ -25,6 +25,8 @@ public class ObliterationColumn {
 
     /**
      * metodo che inizializza la classe Obliteration column come client
+     *
+     * @param inputType tipologia di input
      */
     public ObliterationColumn(String inputType) {
         try {
@@ -44,7 +46,7 @@ public class ObliterationColumn {
     /**
      * metodo che cerca l'id nel database
      *
-     * @param id
+     * @param id id del ticket
      * @return true se l'id é presente nel database, false se invece non viene trovato
      */
     public boolean checkId(String id) {
@@ -68,7 +70,7 @@ public class ObliterationColumn {
     /**
      * Metodo che permette il pagamento
      *
-     * @param id
+     * @param id id del ticket
      * @return true se il pagamento va a buon fine, altrimenti false
      */
     public boolean Pay(String id) {
@@ -90,7 +92,7 @@ public class ObliterationColumn {
     /**
      * metodo che permette di visualizzare l'ammontare del pagamento
      *
-     * @param id
+     * @param id id del ticket
      * @return paymentAmount(da mostrare nel display del client)
      */
     public String PaymentAmount(String id) {
