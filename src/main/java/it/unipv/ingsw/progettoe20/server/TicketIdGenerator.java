@@ -65,26 +65,26 @@ public class TicketIdGenerator {
         // ottengo la lunghezza di ogni array
         int lungCaratteri = alfaCharacters.length;
         int lungNumeri = numCharacters.length;
-        String randomString = getAvailableLevel();
-        if(randomString!="?") {
+        StringBuilder randomString = new StringBuilder(getAvailableLevel());
+        if(!randomString.toString().equals("?")) {
         while (randomString.length() < lungId) {
 
             // ottengo un elemento casuale per ogni array
             int c = rand.nextInt(lungCaratteri);
             int n = rand.nextInt(lungNumeri);
             // aggiungo una lettera casuale
-            randomString += alfaCharacters[c];
-            randomString += numCharacters[n];
+            randomString.append(alfaCharacters[c]);
+            randomString.append(numCharacters[n]);
 
         }
         // se la stringa generata dovesse superare il numero di caratteri
         // richiesto, la taglio.
 
         if (randomString.length() > lungId) {
-            randomString = randomString.substring(0, lungId);
+            randomString = new StringBuilder(randomString.substring(0, lungId));
         }}
        
-        return randomString;
+        return randomString.toString();
 
     }
 }
