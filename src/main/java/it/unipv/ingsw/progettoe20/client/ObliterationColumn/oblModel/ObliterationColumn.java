@@ -25,6 +25,8 @@ public class ObliterationColumn {
 
     /**
      * metodo che inizializza la classe Obliteration column come client
+     *
+     * @param inputType tipologia di input
      */
     public ObliterationColumn(String inputType) {
         try {

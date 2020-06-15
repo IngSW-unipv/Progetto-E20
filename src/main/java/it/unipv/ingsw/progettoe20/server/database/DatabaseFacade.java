@@ -213,6 +213,7 @@ public class DatabaseFacade {
      * un'eccezione.
      *
      * @param id identificatore del record.
+     * @return  boolean
      */
     public boolean checkTicketById(String id) {
         Connection connection;
@@ -336,6 +337,8 @@ public class DatabaseFacade {
      * un'eccezione.
      *
      * @param name identificatore del record.
+     * @return  boolean
+     * @throws IllegalArgumentException  illegal argument exception
      */
     public boolean checkLevelByName(String name) throws IllegalArgumentException {
         Connection connection;
