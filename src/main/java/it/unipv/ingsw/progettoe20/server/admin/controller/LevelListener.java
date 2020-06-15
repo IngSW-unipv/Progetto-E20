@@ -74,21 +74,27 @@ public class LevelListener extends AbstractListener {
 	 */
 	@Override
 	protected void change() {
-		String action = (String) gui.getCombo().getSelectedItem();
-		String name = enteredLevel();
+		try {
+			String action = (String) gui.getCombo().getSelectedItem();
+			String name = enteredLevel();
 
-		if (action.equals("Add level")) {
-			// Aggiunge un livello
-			int number = enteredParkingLots();
-			admin.addLevel(name, number);
-			JOptionPane.showMessageDialog(null, "Level " + name + " added", "Info", 1, null);
-		} else {
-			// Rimuove un livello
-			admin.removeLevel(name);
-			JOptionPane.showMessageDialog(null, "Level " + name + " removed", "Info", 1, null);
+			if (action.equals("Add level")) {
+				// Aggiunge un livello
+				int number = enteredParkingLots();
+				admin.addLevel(name, number);
+				JOptionPane.showMessageDialog(null, "Level " + name + " added", "Info", 1, null);
+			} else {
 
+				// Rimuove un livello
+				admin.removeLevel(name);
+				JOptionPane.showMessageDialog(null, "Level " + name + " removed", "Info", 1, null);
+
+
+			}
+
+		} catch (IllegalArgumentException i) {
+			return;
 		}
-
 	}
 
 }
