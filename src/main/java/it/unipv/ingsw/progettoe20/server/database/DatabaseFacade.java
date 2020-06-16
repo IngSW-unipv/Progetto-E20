@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import it.unipv.ingsw.progettoe20.server.database.dao.LevelDao;
+import it.unipv.ingsw.progettoe20.server.database.dao.PriceDao;
+import it.unipv.ingsw.progettoe20.server.database.dao.TicketDao;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 /*  Resources
@@ -31,9 +34,11 @@ import it.unipv.ingsw.progettoe20.server.model.Ticket;
  * Gestisce la connessione al database.
  */
 public class DatabaseFacade {
-    // TODO: this class should be splitted according to patterns
     private static DatabaseFacade dbFacade = null;
     private BasicDataSource connectionPool;
+    private TicketDao ticketDao;
+    private LevelDao levelDao;
+    private PriceDao priceDao;
 
     /**
      * Costruisce un nuovo DatabaseFacade. Chiede la password del database, la
@@ -52,6 +57,10 @@ public class DatabaseFacade {
         connectionPool.setMaxTotal(DBConstants.MAX_CONNECTIONS);
         System.out.print("Connecting...");
         connectionPool.setInitialSize(1);
+        ticketDao = new TicketDao(connectionPool);
+        levelDao = new LevelDao(connectionPool);
+        priceDao = new PriceDao(connectionPool);
+
         System.out.println("done");
     }
 
@@ -170,42 +179,7 @@ public class DatabaseFacade {
      * @param ticket oggetto Ticket da salvare nel DB.
      */
     public void updateTicket(Ticket ticket) {
-        Connection connection;
-        PreparedStatement pstmt;
-
-        try {
-            connection = connectionPool.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // throw some error
-            return;
-        }
-
-        try {
-            Statement stmt = connection.createStatement();
-
-            if (checkTicketById(ticket.getId())) {
-                pstmt = connection.prepareStatement(Queries.TICKET_UPDATE);
-                pstmt.setTimestamp(1, ticket.getEntranceTime());
-                pstmt.setTimestamp(2, ticket.getPaymentTime());
-                pstmt.setBoolean(3, ticket.isPaid());
-                pstmt.setString(4, ticket.getId());
-                pstmt.executeUpdate();
-                Logger.log("Ticket " + ticket.getId() + " updated successfully");
-            } else {
-                pstmt = connection.prepareStatement(Queries.TICKET_NEW);
-                pstmt.setString(1, ticket.getId());
-                pstmt.setTimestamp(2, ticket.getEntranceTime());
-                pstmt.setTimestamp(3, ticket.getPaymentTime());
-                pstmt.setBoolean(4, ticket.isPaid());
-                pstmt.executeUpdate();
-                Logger.log("Ticket " + ticket.getId() + " created successfully");
-            }
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ticketDao.update(ticket);
     }
 
     /**
@@ -216,22 +190,7 @@ public class DatabaseFacade {
      * @return booleano di verifica.
      */
     public boolean checkTicketById(String id) {
-        Connection connection;
-        try {
-            connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.TICKET_GET);
-            pstmt.setString(1, id);
-            ResultSet result = pstmt.executeQuery();
-            if (!result.next()) {
-                return false;
-            }
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
+        return ticketDao.checkTicketById(id);
     }
 
     /**
@@ -241,22 +200,7 @@ public class DatabaseFacade {
      * @throws IllegalArgumentException se il ticket non è presente nel DB.
      */
     public void removeTicket(Ticket ticket) throws IllegalArgumentException {
-        try {
-            if (!checkTicketById(ticket.getId())) {
-                throw new IllegalArgumentException(ErrorStrings.ID_NOT_FOUND);
-            }
-            Connection connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.TICKET_REMOVE);
-            pstmt.setString(1, ticket.getId());
-            pstmt.executeUpdate();
-            Logger.log(ticket.getId() + " removed from database");
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ticketDao.delete(ticket);
     }
 
     /**
@@ -266,30 +210,7 @@ public class DatabaseFacade {
      * @return ticket richiesto.
      */
     public Ticket getTicketById(String id) {
-        Ticket ticket;
-        try {
-            if (!checkTicketById(id)) {
-                throw new IllegalArgumentException(ErrorStrings.ID_NOT_FOUND);
-            }
-            Connection connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.TICKET_GET);
-            pstmt.setString(1, id);
-            ResultSet result = pstmt.executeQuery();
-
-            result.next();
-            Timestamp entranceTime = result.getTimestamp(DBConstants.TICKET_SECOND_COLUMN);
-            Timestamp paymentTime = result.getTimestamp(DBConstants.TICKET_THIRD_COLUMN);
-            boolean paid = result.getBoolean(DBConstants.TICKET_FOURTH_COLUMN);
-            ticket = new Ticket(id, entranceTime, paymentTime, paid);
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return ticket;
+        return ticketDao.get(id);
     }
 
     /**
@@ -298,64 +219,7 @@ public class DatabaseFacade {
      * @param level oggetto Level da salvare nel DB.
      */
     public void updateLevel(Level level) {
-        Connection connection;
-        PreparedStatement pstmt;
-        try {
-            connection = connectionPool.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // throw some error
-            return;
-        }
-
-        try {
-            Statement stmt = connection.createStatement();
-
-            if (checkLevelByName(level.getName())) {
-                pstmt = connection.prepareStatement(Queries.LEVEL_UPDATE);
-                pstmt.setInt(1, level.getAvailable());
-                pstmt.setInt(2, level.getTotal());
-                pstmt.setString(3, level.getName());
-                pstmt.executeUpdate();
-                Logger.log("Level" + level.getName() + " updated successfully");
-            } else {
-                pstmt = connection.prepareStatement(Queries.LEVEL_NEW);
-                pstmt.setString(1, level.getName());
-                pstmt.setInt(2, level.getAvailable());
-                pstmt.setInt(3, level.getTotal());
-                pstmt.executeUpdate();
-                Logger.log("Level " + level.getName() + " created successfully");
-            }
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Controlla che un livello sia presente nella table. Se non è presente lancia
-     * un'eccezione.
-     *
-     * @param name identificatore del record.
-     * @return booleano di verifica.
-     */
-    public boolean checkLevelByName(String name) throws IllegalArgumentException {
-        Connection connection;
-        try {
-            connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);
-            pstmt.setString(1, name.toUpperCase());
-            ResultSet result = pstmt.executeQuery();
-            if (!result.next()) {
-                return false;
-            }
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
+        levelDao.update(level);
     }
 
     /**
@@ -365,22 +229,7 @@ public class DatabaseFacade {
      * @throws IllegalArgumentException se il livello non è presente nel DB.
      */
     public void removeLevel(Level level) throws IllegalArgumentException {
-        try {
-            if (!checkLevelByName(level.getName())) {
-                throw new IllegalArgumentException(ErrorStrings.LEVEL_NOT_FOUND);
-            }
-            Connection connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_REMOVE);
-            pstmt.setString(1, level.getName());
-            pstmt.executeUpdate();
-            Logger.log(level.getName() + " removed from database");
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        levelDao.delete(level);
     }
 
     /**
@@ -390,29 +239,7 @@ public class DatabaseFacade {
      * @return Level richiesto.
      */
     public Level getLevelByName(String name) {
-        Level level;
-        try {
-            if (!checkLevelByName(name)) {
-                throw new IllegalArgumentException(ErrorStrings.LEVEL_NOT_FOUND);
-            }
-            Connection connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);
-            pstmt.setString(1, name.toUpperCase());
-            ResultSet result = pstmt.executeQuery();
-
-            result.next();
-            int available = result.getInt(DBConstants.LEVEL_SECOND_COLUMN);
-            int total = result.getInt(DBConstants.LEVEL_THIRD_COLUMN);
-            level = new Level(name, available, total);
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return level;
+        return levelDao.get(name);
     }
 
     /**
@@ -421,28 +248,7 @@ public class DatabaseFacade {
      * @return LevelList.
      */
     public List<Level> getLevelList() {
-        Level level;
-        List<Level> levelList = new ArrayList<>();
-        try {
-            Connection connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET_LIST);
-            ResultSet result = pstmt.executeQuery();
-            while (result.next()) {
-                String name = result.getString(DBConstants.LEVEL_FIRST_COLUMN);
-                int available = result.getInt(DBConstants.LEVEL_SECOND_COLUMN);
-                int total = result.getInt(DBConstants.LEVEL_THIRD_COLUMN);
-                level = new Level(name, available, total);
-                levelList.add(level);
-            }
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return levelList;
+        return levelDao.getAll();
     }
 
     /**
@@ -451,63 +257,7 @@ public class DatabaseFacade {
      * @param price oggetto Price da salvare nel DB.
      */
     public void updatePrice(Price price) {
-        Connection connection;
-        PreparedStatement pstmt;
-        try {
-            connection = connectionPool.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // throw some error
-            return;
-        }
-
-        try {
-            Statement stmt = connection.createStatement();
-
-            if (checkPriceByMinutes(price.getMinutes())) {
-                pstmt = connection.prepareStatement(Queries.PRICES_UPDATE);
-                pstmt.setDouble(1, price.getPrice());
-                pstmt.setInt(2, price.getMinutes());
-                pstmt.executeUpdate();
-                Logger.log("Price for " + price.getMinutes() + " minutes updated successfully");
-            } else {
-                pstmt = connection.prepareStatement(Queries.PRICES_NEW);
-                pstmt.setInt(1, price.getMinutes());
-                pstmt.setDouble(2, price.getPrice());
-                pstmt.executeUpdate();
-                Logger.log("Price for " + price.getMinutes() + " minutes created successfully");
-            }
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Controlla che una tariffa sia presente nella table. Se non è presente lancia
-     * un'eccezione.
-     *
-     * @param minutes identificatore del record.
-     * @return presenza.
-     */
-    public boolean checkPriceByMinutes(int minutes) throws IllegalArgumentException {
-        Connection connection;
-
-        try {
-            connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            ResultSet result = stmt.executeQuery(Queries.PRICES_GET_LIST);
-            while (result.next()) {
-                if (result.getInt(DBConstants.PRICES_FIRST_COLUMN) == minutes) {
-                    return true;
-                }
-            }
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+        priceDao.update(price);
     }
 
     /**
@@ -517,22 +267,7 @@ public class DatabaseFacade {
      * @throws IllegalArgumentException se il livello non è presente nel DB.
      */
     public void removePrice(Price price) throws IllegalArgumentException {
-        try {
-            if (!checkPriceByMinutes(price.getMinutes())) {
-                throw new IllegalArgumentException(ErrorStrings.PRICE_NOT_FOUND);
-            }
-            Connection connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_REMOVE);
-            pstmt.setInt(1, price.getMinutes());
-            pstmt.executeUpdate();
-            Logger.log("Price for " + price.getMinutes() + " minutes removed from database");
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        priceDao.delete(price);
     }
 
     /**
@@ -542,28 +277,7 @@ public class DatabaseFacade {
      * @return Level richiesto.
      */
     public Price getPricelByMinutes(int minutes) {
-        Price price;
-        try {
-            if (!checkPriceByMinutes(minutes)) {
-                throw new IllegalArgumentException(ErrorStrings.PRICE_NOT_FOUND);
-            }
-            Connection connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);
-            pstmt.setInt(1, minutes);
-            ResultSet result = pstmt.executeQuery();
-
-            result.next();
-            double dbPrice = result.getDouble(DBConstants.PRICES_SECOND_COLUMN);
-            price = new Price(minutes, dbPrice);
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return price;
+        return priceDao.get(String.valueOf(minutes));
     }
 
     /**
@@ -572,26 +286,6 @@ public class DatabaseFacade {
      * @return LevelList.
      */
     public List<Price> getPriceList() {
-        Price price;
-        List<Price> priceList = new ArrayList<>();
-        try {
-            Connection connection = connectionPool.getConnection();
-
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_GET_LIST);
-            ResultSet result = pstmt.executeQuery();
-            while (result.next()) {
-                int minutes = result.getInt(DBConstants.PRICES_FIRST_COLUMN);
-                double dbPrice = result.getDouble(DBConstants.PRICES_SECOND_COLUMN);
-                price = new Price(minutes, dbPrice);
-                priceList.add(price);
-            }
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return priceList;
+        return priceDao.getAll();
     }
 }
