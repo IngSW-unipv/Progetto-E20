@@ -72,6 +72,7 @@ public class ParkingAdministrator {
 			throw new IllegalArgumentException("Impossible! You want to remove too many parking lots");
 		} else {
 			level.setTotal(newTotal);
+			level.setAvailable(newAvailable);
 			databaseFacade.updateLevel(level);
 		}
 		return newTotal;

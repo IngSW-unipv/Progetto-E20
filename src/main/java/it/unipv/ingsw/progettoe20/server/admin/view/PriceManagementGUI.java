@@ -13,15 +13,11 @@ import javax.swing.JTextField;
 
 import it.unipv.ingsw.progettoe20.server.admin.controller.PriceListener;
 
-/*
- * Classe per la gestione delle tariffe.
- * Permette di modificare i valori delle diverse tariffe disponibili.
- */
-
-
 /**
- * The type Price management gui.
+ * Classe per la gestione delle tariffe. Permette di modificare i valori delle
+ * diverse tariffe disponibili.
  */
+
 public class PriceManagementGUI extends AbstractGUI {
 
 	private JComboBox<String> combo;
@@ -31,7 +27,7 @@ public class PriceManagementGUI extends AbstractGUI {
 	private JButton confirm, home;
 
 	/**
-	 * Instantiates a new Price management gui.
+	 * Inizializza una nuova istanza di PriceManagementGUI.
 	 */
 	public PriceManagementGUI() {
 		super();
