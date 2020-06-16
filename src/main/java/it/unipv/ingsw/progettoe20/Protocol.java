@@ -19,6 +19,7 @@ public class Protocol {
     public static final String REQUEST_TOTAL_AVAILABILITY = "totava";
     // Responses
     public static final String RESPONSE_OK = "done";
+    public static final String RESPONSE_NO_LEVEL = "?";
     public static final String RESPONSE_ERROR = "error";
     public static final String RESPONSE_ID_FOUND = "id:found";
     public static final String RESPONSE_ID_NOT_FOUND = "id:not found";

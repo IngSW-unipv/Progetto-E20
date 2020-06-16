@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 
@@ -41,7 +42,7 @@ public class TicketIdGenerator {
         int i = 0;
         levelName = "";
         if (!checkLevelsAbsence) {
-            levelName = "?";
+            levelName = Protocol.RESPONSE_NO_LEVEL;
         } else {
             do {
                 if (!check) {
@@ -53,7 +54,7 @@ public class TicketIdGenerator {
                 i++;
             } while (i < contLevel);
             if (!check) {
-                levelName = "?";
+                levelName = Protocol.RESPONSE_NO_LEVEL;
             }
         }
         return levelName;
@@ -66,7 +67,7 @@ public class TicketIdGenerator {
         int lungNumeri = numCharacters.length;
         double randomPattern;
         StringBuilder randomString = new StringBuilder(getAvailableLevel());
-        if (!randomString.toString().equals("?")) {
+        if (!randomString.toString().equals(Protocol.RESPONSE_NO_LEVEL)) {
             while (randomString.length() < lungId) {
 
                 randomPattern = Math.random(); //numero casuale tra 0.0 e 1.0

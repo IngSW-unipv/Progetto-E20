@@ -5,7 +5,7 @@ public class CommandStrings {
     static final String EXIT = "exit";
     static final String PING = "ping";
     static final String GUI = "gui";
-
+    static final String CLI = "cli";
 // Responses
     static final String PONG = "pong";
 

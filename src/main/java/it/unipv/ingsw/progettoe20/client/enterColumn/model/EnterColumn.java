@@ -80,8 +80,8 @@ public class EnterColumn extends Observable {
             out.println(Protocol.REQUEST_GENERATE_ID);
             answer = in.readLine();
             id = answer.substring(5, answer.length());
-            //TODO il server non risponde mai "?", intendi Protocol.RESPONSE_ERROR?
-            if (id.equals("?")) {
+            
+            if (id.equals(Protocol.RESPONSE_NO_LEVEL)) {
                 return false;
             } else {
                 System.out.println(answer);
