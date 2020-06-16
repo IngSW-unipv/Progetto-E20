@@ -12,9 +12,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class PaymentCalculatorTest {
-    private static String ID = "testtest";
-    private static boolean FLAG = false;
-
     private static ArrayList<Price> list;
     private static Ticket fiveMinTicket;
     private static Ticket nineHoursTicket;
@@ -24,6 +21,8 @@ public class PaymentCalculatorTest {
 
     @BeforeAll
     public static void init() {
+        String ID = "testtest";
+        boolean FLAG = false;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         // Init prices list

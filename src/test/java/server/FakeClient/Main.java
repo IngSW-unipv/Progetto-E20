@@ -11,13 +11,14 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 
 public class Main {
-    //TODO: [IMPORTANT] testing on production db is a big nono, fix before exam
 
     /**
      * Lancia tutti i test.
      * @param args
      */
     public static void main(String[] args) {
+        System.out.println(TestConstants.TEST_WELCOME);
+
         ServerFacade serverFacade = new ServerFacade();
         serverFacade.init();
         //TODO database asks 2 times for password
