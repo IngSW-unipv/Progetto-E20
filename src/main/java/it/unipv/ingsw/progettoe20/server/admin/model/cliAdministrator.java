@@ -21,7 +21,8 @@ public class cliAdministrator {
 	            	
 	            }else if(insertText.equals("lot")){
 	            	
-	            }
+	            }else if (insertText.equals(ClientStrings.EXIT)) break;
+	            
 	           
 	        }
 		
