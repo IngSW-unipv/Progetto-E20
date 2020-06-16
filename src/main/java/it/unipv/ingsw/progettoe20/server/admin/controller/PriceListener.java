@@ -38,17 +38,42 @@ public class PriceListener extends AbstractListener {
 	 * @return price nuova tariffa inserita
 	 */
 	public double enteredNumber() {
-		String str = gui.getField().getText();
-		double price = 0.0;
-
-		if (str.equals("")) {
-			// Se non viene inserito nessun numero
-			JOptionPane.showMessageDialog(null, "Please, enter the number", "Error", 1, null);
-			throw new IllegalArgumentException("Impossible! Enter the number");
+		String price = gui.getField().getText();
+		if (price != null) {
+			try {
+				return Double.parseDouble(price);
+			} catch (Exception e) {
+				return -1;
+			}
 		}
+		return -1;
+	}
 
-		price = Double.parseDouble(str);
-		return price;
+	/**
+	 * Fa le chiamate per aggiornare le tariffe
+	 *
+	 * @param action   item scelto nella combobox
+	 * @param newprice nuova tariffa
+	 */
+	public void updatePrices(String action, double newprice) {
+		int minutes;
+
+		if (action.equals("Hourly price")) {
+			// Se si vuole modificare la tariffa oraria
+			minutes = DBConstants.MINUTES_HOURLY;
+
+		} else if (action.equals("Maximum price")) {
+			// Se si vuole modificare la tariffa massima
+			minutes = DBConstants.MINUTES_MAXIMUM;
+
+		} else {
+			// Se si vuole modificare la tariffa minima
+			minutes = DBConstants.MINUTES_MINIMUM;
+		}
+		// Modifica della tariffa
+		admin.changePrice(newprice, minutes);
+		gui.getField().setText("");
+		JOptionPane.showMessageDialog(null, "Price: " + newprice + " euro", "Info", 1, null);
 	}
 
 	@Override
@@ -56,26 +81,16 @@ public class PriceListener extends AbstractListener {
 		try {
 			double newprice = enteredNumber();
 			String action = (String) gui.getCombo().getSelectedItem();
-			int minutes;
 
-			if (action.equals("Hourly price")) {
-				// Se si vuole modificare la tariffa oraria
-				minutes = DBConstants.MINUTES_HOURLY;
-
-			} else if (action.equals("Maximum price")) {
-				// Se si vuole modificare la tariffa massima
-				minutes = DBConstants.MINUTES_MAXIMUM;
-
+			if (newprice < 0) {
+				// Se la tariffa inserita non è valida
+				JOptionPane.showMessageDialog(null, "the parking lot's number is not valid", "Error", 1, null);
 			} else {
-				// Se si vuole modificare la tariffa minima
-				minutes = DBConstants.MINUTES_MINIMUM;
+				// Se è valida
+				updatePrices(action, newprice);
 			}
-			// Modifica della tariffa
-			admin.changePrice(newprice, minutes);
-			gui.getField().setText("");
-			JOptionPane.showMessageDialog(null, "Price: " + newprice + " euro", "Info", 1, null);
-		} catch (IllegalArgumentException i) {
-			return;
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 1, null);
 		}
 	}
 }

@@ -40,13 +40,14 @@ public class ParkingListener extends AbstractListener {
 	public String enteredLevel() {
 		String name = gui.getField().getText();
 
-		if (name.equals("")) {
-			// Se non viene inserito nessun nome
-			JOptionPane.showMessageDialog(null, "Please, enter the level", "Error", 1, null);
-			throw new IllegalArgumentException("Impossible! Enter the level name");
+		if (name != null) {
+			try {
+				return name;
+			} catch (Exception e) {
+				return "";
+			}
 		}
-
-		return name;
+		return "";
 	}
 
 	/**
@@ -56,16 +57,33 @@ public class ParkingListener extends AbstractListener {
 	 */
 	public int enteredParkingLots() {
 		String parkingLots = gui.getField2().getText();
-		int number = 0;
-
-		if (parkingLots.equals("")) {
-			// Se non viene inserito nessun numero
-			JOptionPane.showMessageDialog(null, "Please, enter the parking lots", "Error", 1, null);
-			throw new IllegalArgumentException("Impossible! Enter the parking lots");
+		if (parkingLots != null) {
+			try {
+				return Integer.parseInt(parkingLots);
+			} catch (Exception e) {
+				return -1;
+			}
 		}
+		return -1;
+	}
 
-		number = Integer.parseInt(parkingLots);
-		return number;
+	/**
+	 * Fa le chiamate per aggiornare i posti auto nel parcheggio
+	 *
+	 * @param action item scelto nella combobox
+	 * @param name   nome del livello a cui aggiungere/togliere i parcheggi
+	 * @param number numbero di posti auto da aggiungere/togliere
+	 */
+	public void updateParkingLots(String action, String name, int number) {
+		if (action.equals("Add parkings")) {
+			// Aggiunge parcheggi
+			int capacity = admin.addParkings(name, number);
+			JOptionPane.showMessageDialog(null, "available parkings: " + capacity, "Info", 1, null);
+		} else {
+			// Rimuove dei parcheggi
+			int capacity = admin.removeParkings(name, number);
+			JOptionPane.showMessageDialog(null, "available parkings: " + capacity, "Info", 1, null);
+		}
 	}
 
 	@Override
@@ -75,17 +93,18 @@ public class ParkingListener extends AbstractListener {
 			String name = enteredLevel();
 			int number = enteredParkingLots();
 
-			if (action.equals("Add parkings")) {
-				// Aggiunge parcheggi
-				int capacity = admin.addParkings(name, number);
-				JOptionPane.showMessageDialog(null, "available parkings: " + capacity, "Info", 1, null);
+			if (number < 0) {
+				// Se il numero di parcheggi inserito non è valido
+				JOptionPane.showMessageDialog(null, "the parking lot's number is not valid", "Error", 1, null);
+			} else if (name.isBlank()) {
+				// Se il nome del livello non è valido
+				JOptionPane.showMessageDialog(null, "the level name is not valid", "Error", 1, null);
 			} else {
-				// Rimuove dei parcheggi
-				int capacity = admin.removeParkings(name, number);
-				JOptionPane.showMessageDialog(null, "available parkings: " + capacity, "Info", 1, null);
+				// Se tutte le informazioni sono valide
+				updateParkingLots(action, name, number);
 			}
-		} catch (IllegalArgumentException i) {
-			return;
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 1, null);
 		}
 	}
 }
