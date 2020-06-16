@@ -27,63 +27,73 @@ public class TicketIdGenerator {
         this.dbFacade = dbFacade;
     }
 
-    public String getAvailableLevel()  {
+    public String getAvailableLevel() {
         levelList = new ArrayList<>();
         levelList = dbFacade.getLevelList();
         contLevel = levelList.size();
         check = false;
         boolean checkLevelsAbsence;
-        if(contLevel!=0){
-        	checkLevelsAbsence=true;
-        }else{
-        checkLevelsAbsence=false;
+        if (contLevel != 0) {
+            checkLevelsAbsence = true;
+        } else {
+            checkLevelsAbsence = false;
         }
         int i = 0;
         levelName = "";
-        if(!checkLevelsAbsence) {
-        	levelName="?";
-        }else {
-        do {      	
-            if (!check) {
-                if (levelList.get(i).getAvailable() != 0) {
-                    levelName = levelList.get(i).getName();
-                    check = true;
-                }
-            }
-            i++;
-        } while (i < contLevel);
-        if (!check) {
+        if (!checkLevelsAbsence) {
             levelName = "?";
-        }}
+        } else {
+            do {
+                if (!check) {
+                    if (levelList.get(i).getAvailable() != 0) {
+                        levelName = levelList.get(i).getName();
+                        check = true;
+                    }
+                }
+                i++;
+            } while (i < contLevel);
+            if (!check) {
+                levelName = "?";
+            }
+        }
         return levelName;
     }
 
-    public String generateId()  {
-        //TODO con questa implementazione viene generata una stringa di numeri e caratteri alternati
-        // sarebbe meglio avere una stringa casuale anche nel pattern
+    public String generateId() {
 
         // ottengo la lunghezza di ogni array
         int lungCaratteri = alfaCharacters.length;
         int lungNumeri = numCharacters.length;
+        double randomPattern;
         StringBuilder randomString = new StringBuilder(getAvailableLevel());
-        if(!randomString.toString().equals("?")) {
-        while (randomString.length() < lungId) {
+        if (!randomString.toString().equals("?")) {
+            while (randomString.length() < lungId) {
 
-            // ottengo un elemento casuale per ogni array
-            int c = rand.nextInt(lungCaratteri);
-            int n = rand.nextInt(lungNumeri);
-            // aggiungo una lettera casuale
-            randomString.append(alfaCharacters[c]);
-            randomString.append(numCharacters[n]);
+                randomPattern = Math.random(); //numero casuale tra 0.0 e 1.0
 
+                //append carattere
+                if (randomPattern < 0.5) {
+                    // ottengo un elemento casuale per ogni array
+                    int c = rand.nextInt(lungCaratteri);
+                    // aggiungo una lettera casuale
+                    randomString.append(alfaCharacters[c]);
+                }
+                //append numero
+                else {
+                    int n = rand.nextInt(lungNumeri);
+                    randomString.append(numCharacters[n]);
+                }
+
+
+            }
+            // se la stringa generata dovesse superare il numero di caratteri
+            // richiesto, la taglio.
+
+            if (randomString.length() > lungId) {
+                randomString = new StringBuilder(randomString.substring(0, lungId));
+            }
         }
-        // se la stringa generata dovesse superare il numero di caratteri
-        // richiesto, la taglio.
 
-        if (randomString.length() > lungId) {
-            randomString = new StringBuilder(randomString.substring(0, lungId));
-        }}
-       
         return randomString.toString();
 
     }
