@@ -15,7 +15,13 @@ public class cliAdministrator {
 	        while (true) {
 	            System.out.println("Hai scelto la modalità command line input, inserisci 'lev' per modificare i livelli, 'prices' per le tariffe e 'lot' per i posti del parcheggio");
 	            insertText = scanner.next();
-	            
+	            if (insertText.equals("lev")) {
+	                
+	            }else if(insertText.equals("prices")){
+	            	
+	            }else if(insertText.equals("lot")){
+	            	
+	            }
 	           
 	        }
 		
