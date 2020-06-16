@@ -4,13 +4,11 @@ import javax.swing.JFrame;
 
 import it.unipv.ingsw.progettoe20.server.admin.controller.AbstractListener;
 
-/*
- * Classe astratta per indicare i compiti delle GUI dell'Administrator
+/**
+ * Classe astratta per indicare i compiti principali delle GUI
+ * dell'Administrator
  */
 
-/**
- * The type Abstract gui.
- */
 public abstract class AbstractGUI extends JFrame {
 
 	/**
@@ -19,28 +17,20 @@ public abstract class AbstractGUI extends JFrame {
 	protected AbstractListener listener;
 
 	/**
-	 * Instantiates a new Abstract gui.
+	 * Inizializza una nuova istanza di AbstractGUI.
 	 */
-	/*
-	 * Costruttore
-	 */
+
 	public AbstractGUI() {
 		initComponents();
 		initListener();
 	}
 
 	/**
-	 * Init components.
-	 */
-	/*
-	 * Server per l'inizializzazione delle componenti della GUI
+	 * Serve per l'inizializzazione delle componenti della GUI
 	 */
 	public abstract void initComponents();
 
 	/**
-	 * Init listener.
-	 */
-	/*
 	 * Serve per inizializzare il listener ai bottoni
 	 */
 	public abstract void initListener();

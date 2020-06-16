@@ -6,23 +6,20 @@ import it.unipv.ingsw.progettoe20.server.admin.model.PriceAdministrator;
 import it.unipv.ingsw.progettoe20.server.admin.view.PriceManagementGUI;
 import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 
-/*
- * Listener che che controlla le operazioni effettuate nella schermata del PriceManagementGUI
- * Modifica le tariffe disponibili
+/**
+ * Listener che che controlla le operazioni effettuate nella schermata del
+ * PriceManagementGUI Modifica le tariffe disponibili
  */
 
-/**
- * The type Price listener.
- */
 public class PriceListener extends AbstractListener {
 
 	private final PriceManagementGUI gui;
 	private final PriceAdministrator admin;
 
 	/**
-	 * Instantiates a new Price listener.
+	 * Crea una istanza del PriceListener.
 	 *
-	 * @param gui the gui
+	 * @param gui istanza di PriceManagementGUI
 	 */
 	public PriceListener(PriceManagementGUI gui) {
 		this.gui = gui;
@@ -36,19 +33,13 @@ public class PriceListener extends AbstractListener {
 	}
 
 	/**
-	 * Entered number double.
+	 * Legge la nuova tariffa inserita nel JTextField.
 	 *
-	 * @return the double
-	 */
-	/*
-	 * Legge la nuova tariffa inserita nel JTextField
-	 *
-	 * @return number nuova tariffa inserita
-	 *
+	 * @return price nuova tariffa inserita
 	 */
 	public double enteredNumber() {
 		String str = gui.getField().getText();
-		double number = 0.0;
+		double price = 0.0;
 
 		if (str.equals("")) {
 			// Se non viene inserito nessun numero
@@ -56,37 +47,34 @@ public class PriceListener extends AbstractListener {
 			throw new IllegalArgumentException("Impossible! Enter the number");
 		}
 
-		number = Double.parseDouble(str);
-		return number;
+		price = Double.parseDouble(str);
+		return price;
 	}
 
-	/*
-	 * Modifica i valori delle tariffe in base a quanto scelto nella combo box
-	 */
 	@Override
 	public void change() {
-		try{
-		double newprice = enteredNumber();
-		String action = (String) gui.getCombo().getSelectedItem();
-		int minutes;
+		try {
+			double newprice = enteredNumber();
+			String action = (String) gui.getCombo().getSelectedItem();
+			int minutes;
 
-		if (action.equals("Hourly price")) {
-			// Se si vuole modificare la tariffa oraria
-			minutes = DBConstants.MINUTES_HOURLY;
+			if (action.equals("Hourly price")) {
+				// Se si vuole modificare la tariffa oraria
+				minutes = DBConstants.MINUTES_HOURLY;
 
-		} else if (action.equals("Maximum price")) {
-			// Se si vuole modificare la tariffa massima
-			minutes = DBConstants.MINUTES_MAXIMUM;
+			} else if (action.equals("Maximum price")) {
+				// Se si vuole modificare la tariffa massima
+				minutes = DBConstants.MINUTES_MAXIMUM;
 
-		} else {
-			// Se si vuole modificare la tariffa minima
-			minutes = DBConstants.MINUTES_MINIMUM;
-		}
-		// Modifica della tariffa
-		admin.changePrice(newprice, minutes);
-		gui.getField().setText("");
-		JOptionPane.showMessageDialog(null, "Price: " + newprice + " euro", "Info", 1, null);
-	} catch(IllegalArgumentException i){
+			} else {
+				// Se si vuole modificare la tariffa minima
+				minutes = DBConstants.MINUTES_MINIMUM;
+			}
+			// Modifica della tariffa
+			admin.changePrice(newprice, minutes);
+			gui.getField().setText("");
+			JOptionPane.showMessageDialog(null, "Price: " + newprice + " euro", "Info", 1, null);
+		} catch (IllegalArgumentException i) {
 			return;
 		}
 	}

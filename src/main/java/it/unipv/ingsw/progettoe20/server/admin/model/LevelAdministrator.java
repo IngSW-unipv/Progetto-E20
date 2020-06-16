@@ -3,75 +3,55 @@ package it.unipv.ingsw.progettoe20.server.admin.model;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 
-/*
+/**
  * Classe per la gestione dei livelli
  */
 
-/**
- * The type Level administrator.
- */
 public class LevelAdministrator {
 
 	private static LevelAdministrator instance;
 	private DatabaseFacade databaseFacade;
 
-	/*
+	/**
 	 * Costruttore privato --> Singleton
 	 */
-	private LevelAdministrator(final DatabaseFacade pDatabaseFacade) {
-		databaseFacade = pDatabaseFacade;
+	private LevelAdministrator(final DatabaseFacade dbFacade) {
+		databaseFacade = dbFacade;
 
 	}
 
 	/**
-	 * Gets instance.
+	 * Restituisce l'istanza dell'amministratore dei livelli.
 	 *
 	 * @return the instance
-	 */
-	/*
-	 * Restituisce l'istanza dell'amministratore dei livelli
 	 */
 	public static LevelAdministrator getInstance() {
 		return instance;
 	}
 
 	/**
-	 * Create.
+	 * Crea l'unica instanza dell'amministratore dei livelli.
 	 *
-	 * @param pDatabaseManager the p database manager
+	 * @param dbFacade istanza del DatabaseFacade
 	 */
-	/*
-	 * Crea l'unica instanza dell'amministratore dei livelli
-	 */
-	public static void create(final DatabaseFacade pDatabaseManager) {
-		instance = new LevelAdministrator(pDatabaseManager);
+
+	public static void create(final DatabaseFacade dbFacade) {
+		instance = new LevelAdministrator(dbFacade);
 	}
 
 	/**
-	 * Add level.
+	 * Aggiunge un livello al parcheggio.
 	 *
-	 * @param name     the name
-	 * @param capacity the capacity
+	 * @param name  nome del livello da aggiungere
+	 * @param total disponibilità totale del nuovo livello
 	 */
-	/*
-	 * Aggiunge un livello al parcheggio
-	 *
-	 * @param level nome del nuovo livello
-	 *
-	 * @param capacity numbero di parcheggi dentro il nuovo livello
-	 */
-	public void addLevel(String name, int capacity) {
-		Level newLevel = new Level(name, capacity);
+	public void addLevel(String name, int total) {
+		Level newLevel = new Level(name, total);
 		databaseFacade.updateLevel(newLevel);
 	}
 
 	/**
-	 * Remove level.
-	 *
-	 * @param name the name
-	 */
-	/*
-	 * Rimuove un livello al parcheggio se presente
+	 * Rimuove un livello al parcheggio se presente.
 	 *
 	 * @param name nome del livello da togliere
 	 */

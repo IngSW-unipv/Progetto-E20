@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 
 /**
- * The type Abstract listener.
+ * Classe astratta per indicare i compiti principali dei Listener
  */
 public abstract class AbstractListener implements ActionListener {
 
@@ -22,17 +22,11 @@ public abstract class AbstractListener implements ActionListener {
 	}
 
 	/**
-	 * Change.
-	 */
-	/*
 	 * Opera le modifiche sul database richieste tramite la GUI
 	 */
 	protected abstract void change();
 
 	/**
-	 * Change gui.
-	 */
-	/*
 	 * Torna alla GUI dell'Administrator
 	 *
 	 */

@@ -3,9 +3,6 @@ package it.unipv.ingsw.progettoe20.server.admin.controller;
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 
 /**
- * The type Administrator controller.
- */
-/*
  * Controller per la gestione per l'Administrator
  */
 public class AdministratorController {
@@ -13,19 +10,19 @@ public class AdministratorController {
 	private final AdministratorGUI gui;
 
 	/**
-	 * Instantiates a new Administrator controller.
+	 * Crea una istanza di AdministratorController.
 	 *
 	 * @param gui the gui
 	 */
 	public AdministratorController(AdministratorGUI gui) {
 		this.gui = gui;
-		initComponents();
+		initListener();
 	}
 
 	/**
-	 * Init components.
+	 * Inizializza il listener ai diversi bottoni.
 	 */
-	public void initComponents() {
+	public void initListener() {
 		AdministratorListener adminlistener = new AdministratorListener(gui);
 		gui.getBtnParkings().addActionListener(adminlistener);
 		gui.getBtnPrices().addActionListener(adminlistener);

@@ -11,14 +11,11 @@ import javax.swing.JPanel;
 
 import it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorController;
 
-/*
- Prima schermata di interfaccia dell'amministratore.
- Offre la scelta tra gestione delle tariffe e gestione dei parcheggi
-*/
-
 /**
- * The type Administrator gui.
+ * Prima schermata di interfaccia dell'amministratore. Offre la scelta tra
+ * gestione delle tariffe e gestione dei parcheggi
  */
+
 public class AdministratorGUI extends AbstractGUI {
 
 	private JLabel title;
@@ -27,7 +24,7 @@ public class AdministratorGUI extends AbstractGUI {
 	private AdministratorController administratorController;
 
 	/**
-	 * Instantiates a new Administrator gui.
+	 * Inizializza una nuova istanza di AdministratorGUI.
 	 */
 	public AdministratorGUI() {
 		super();

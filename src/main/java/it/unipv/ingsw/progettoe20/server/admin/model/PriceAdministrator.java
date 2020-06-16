@@ -3,62 +3,46 @@ package it.unipv.ingsw.progettoe20.server.admin.model;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Price;
 
-/*
+/**
  * Classe per la gestione delle tariffe
  */
 
-/**
- * The type Price administrator.
- */
 public class PriceAdministrator {
 
 	private static PriceAdministrator instance;
 	private DatabaseFacade databaseFacade;
 
-	/*
+	/**
 	 * Costruttore privato --> Singleton
 	 */
-	private PriceAdministrator(final DatabaseFacade pDatabaseFacade) {
-		databaseFacade = pDatabaseFacade;
+	private PriceAdministrator(final DatabaseFacade dbFacade) {
+		databaseFacade = dbFacade;
 
 	}
 
 	/**
-	 * Gets instance.
+	 * Restituisce l'istanza dell'amministratore delle tariffe.
 	 *
-	 * @return the instance
-	 */
-	/*
-	 * Restituisce l'istanza dell'amministratore delle tariffe
+	 * @return instance istanza di PriceAdministrator
 	 */
 	public static PriceAdministrator getInstance() {
 		return instance;
 	}
 
 	/**
-	 * Create.
+	 * Crea l'unica instanza dell'amministratore delle tariffe.
 	 *
-	 * @param pDatabaseManager the p database manager
+	 * @param dbFacade istanza di DatabaseFacade
 	 */
-	/*
-	 * Crea l'unica instanza dell'amministratore delle tariffe
-	 */
-	public static void create(final DatabaseFacade pDatabaseManager) {
-		instance = new PriceAdministrator(pDatabaseManager);
+	public static void create(final DatabaseFacade dbFacade) {
+		instance = new PriceAdministrator(dbFacade);
 	}
 
 	/**
-	 * Change price.
+	 * Modifica le tariffe.
 	 *
-	 * @param price   the price
-	 * @param minutes the minutes
-	 */
-	/*
-	 * Modifica le tariffe
-	 *
-	 * @param newprice nuovo prezzo
-	 *
-	 * @param type quale prezzo da modificare
+	 * @param price   nuovo prezzo
+	 * @param minutes minuti della tariffa
 	 */
 	public void changePrice(double price, int minutes) {
 		Price newPrice = new Price(minutes, price);

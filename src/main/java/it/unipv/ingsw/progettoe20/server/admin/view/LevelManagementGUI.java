@@ -13,15 +13,12 @@ import javax.swing.JTextField;
 
 import it.unipv.ingsw.progettoe20.server.admin.controller.LevelListener;
 
-/*
- * classe per la gestione dei livelli del parcheggio.
- * Si possono aggiungere o togliere livelli nella struttura
- * [Quando si aggiunge un livello, è inizialmente vuoto]
+/**
+ * Classe per la gestione dei livelli del parcheggio. Si possono aggiungere o
+ * togliere livelli nella struttura [Quando si aggiunge un livello, è
+ * inizialmente vuoto]
  */
 
-/**
- * The type Level management gui.
- */
 public class LevelManagementGUI extends AbstractGUI {
 
 	private JLabel title, inserthereLevel, insertherePLots;
@@ -31,7 +28,7 @@ public class LevelManagementGUI extends AbstractGUI {
 	private JButton confirm, home;
 
 	/**
-	 * Instantiates a new Level management gui.
+	 * Inizializza una nuova istanza di LevelManagementGUI.
 	 */
 	public LevelManagementGUI() {
 		super();
