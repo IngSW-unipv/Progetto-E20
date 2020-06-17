@@ -1,5 +1,8 @@
 package it.unipv.ingsw.progettoe20.server.admin.model.cli;
 
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.ADD_CLI;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.REMOVE_CLI;
+
 import java.util.Scanner;
 
 import it.unipv.ingsw.progettoe20.server.admin.model.LevelAdministrator;
@@ -17,8 +20,8 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 	@Override
 	public void handlerAdministratorCLI(Scanner scanner, String insertText) {
 		while (true) {
-			System.out.println("Digita " + CommandStrings.ADMINCLI_ADD + " per aggiungere, "
-					+ CommandStrings.ADMINCLI_REMOVE + " per rimuovere un livello, exit per uscire");
+			System.out.println("Digita " + ADD_CLI + " per aggiungere, " + REMOVE_CLI
+					+ " per rimuovere un livello, exit per uscire");
 			insertText = scanner.next();
 			levelInput(insertText);
 			if (insertText.equals(CommandStrings.EXIT)) {
@@ -28,9 +31,9 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 	}
 
 	private void levelInput(String insertText2) {
-		if (insertText.equals(CommandStrings.ADMINCLI_ADD)) {
+		if (ADD_CLI.equals(insertText)) {
 			addLevel();
-		} else if (insertText.equals(CommandStrings.ADMINCLI_REMOVE)) {
+		} else if (REMOVE_CLI.equals(insertText)) {
 			removeLevel();
 		}
 	}
