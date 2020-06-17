@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+//TODO JAVADOC
 
 public class RequestMap {
     private final Map<String, Command> REQUESTS;

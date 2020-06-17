@@ -5,12 +5,21 @@ import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 import java.sql.Timestamp;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Classe dei Ticket.
+ */
 public class Ticket {
     private String id;
     private Timestamp entranceTime;
     private Timestamp paymentTime;
     private boolean paid;
 
+    /**
+     * Costruttore Ticket tramite id.
+     *
+     * @param id  id
+     * @throws IllegalArgumentException  illegal argument exception
+     */
     public Ticket(String id) throws IllegalArgumentException {
         checkIdLength(id);
         this.id = id;
@@ -19,6 +28,15 @@ public class Ticket {
         paid = false;
     }
 
+    /**
+     * Costruttore Ticket tramite tutte le sue variabili.
+     *
+     * @param id            id
+     * @param entranceTime  tempo di entrata
+     * @param paymentTime   tempo di pagamento
+     * @param paid          booleano stato pagamento
+     * @throws IllegalArgumentException  illegal argument exception
+     */
     public Ticket(String id, Timestamp entranceTime, Timestamp paymentTime, boolean paid) throws IllegalArgumentException {
         checkIdLength(id);
         this.id = id;
@@ -33,14 +51,29 @@ public class Ticket {
         }
     }
 
+    /**
+     * Getter id.
+     *
+     * @return  id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Getter tempo di entrata.
+     *
+     * @return  tempo di entrata
+     */
     public Timestamp getEntranceTime() {
         return entranceTime;
     }
 
+    /**
+     * Getter tempo del pagamento.
+     *
+     * @return tempo del pagamento
+     */
     public Timestamp getPaymentTime() {
         return paymentTime;
     }
@@ -51,7 +84,6 @@ public class Ticket {
      *
      * @return un booleano di verifica.
      */
-
     public boolean obliterationCheck() {
         Timestamp callTime = new Timestamp(System.currentTimeMillis());
         long diff = callTime.getTime() - paymentTime.getTime();
@@ -60,22 +92,47 @@ public class Ticket {
         return (diffSeconds <= DBConstants.TICKET_MAX_EXIT_TIME_TOTAL_SECONDS);
     }
 
+    /**
+     * Getter nome livello.
+     *
+     * @return nome livello
+     */
     public String getLevelName() {
         return id.substring(0, 1);
     }
 
+    /**
+     * setter tempo del pagmento.
+     *
+     * @param paymentTime tempo del pagamento
+     */
     public void setPaymentTime(Timestamp paymentTime) {
         this.paymentTime = paymentTime;
     }
 
+    /**
+     * setter tempo di entrata
+     *
+     * @param entranceTime tempo di entrata
+     */
     public void setEntranceTime(Timestamp entranceTime) {
         this.entranceTime = entranceTime;
     }
 
+    /**
+     * check booleano pagamento.
+     *
+     * @return  booleano
+     */
     public boolean isPaid() {
         return paid;
     }
 
+    /**
+     * setter booleano pagamento.
+     *
+     * @param paid il flag di pagamento
+     */
     public void setPaid(boolean paid) {
         this.paid = paid;
     }

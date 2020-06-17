@@ -17,6 +17,7 @@ public class RequestHandler {
     private PrintWriter out;
     private TicketIdGenerator generator;
     private RequestMap requestMap;
+
     /**
      * Costruisce un RequestHandler.
      *

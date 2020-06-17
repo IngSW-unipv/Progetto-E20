@@ -1,5 +1,8 @@
 package it.unipv.ingsw.progettoe20.client;
 
+/**
+ * Stringhe costanti dei client
+ */
 public class ClientStrings {
     public static final String COMMAND_CLI = "cli";
     public static final String COMMAND_GEN = "gen";

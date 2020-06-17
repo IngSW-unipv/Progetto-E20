@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 
 /**
- * Logs events to plain text file.
+ * Log degli eventi su file di testo.
  */
 public class Logger {
     public static final String LOG_FILE = "ServerLOGS";
@@ -23,15 +23,15 @@ public class Logger {
     }
 
     /**
-     * Write a string into logfile. Timestamp added by default.
-     * @param log string to write.
+     * Scrive una string nel file di log. Timestamp aggiunto di default.
+     * @param log string da scrivere.
      */
     public static void log(String log) {
         writer.println("[" + new Timestamp(System.currentTimeMillis()) + "]    " + log);
     }
 
     /**
-     * Close the file.
+     * Chiusura del  file.
      */
     public static void close() {
         writer.flush();
@@ -39,7 +39,7 @@ public class Logger {
     }
 
     /**
-     * Check if logfile already exist, if so it will be renamed adding .old.
+     * Controlla se il file di log esiste già, se è così viene rinominato in "ServerLOGS.old".
      */
     private static void checkFileExistence() {
         File f = new File(LOG_FILE);

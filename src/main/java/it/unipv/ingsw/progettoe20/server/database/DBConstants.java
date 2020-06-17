@@ -1,5 +1,8 @@
 package it.unipv.ingsw.progettoe20.server.database;
 
+/**
+ * Costanti del DB
+ */
 public class DBConstants {
 	public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	public static final String DB_NAME = "parking";

@@ -10,6 +10,7 @@ import it.unipv.ingsw.progettoe20.server.cli.CommandLineInterface;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.requestsHandling.RequestHandler;
 
+//TODO JAVADOC
 public class ServerFacade {
 	private DatabaseFacade dbManager;
 	private CommandLineInterface cli;

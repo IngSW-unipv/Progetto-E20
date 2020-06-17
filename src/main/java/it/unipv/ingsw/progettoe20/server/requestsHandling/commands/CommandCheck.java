@@ -4,7 +4,7 @@ import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
-
+//TODO JAVADOC
 public class CommandCheck extends Command {
 
     public CommandCheck(DatabaseFacade dbFacade, PrintWriter out) {
