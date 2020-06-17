@@ -8,7 +8,10 @@ import it.unipv.ingsw.progettoe20.server.model.Level;
 
 import java.io.PrintWriter;
 import java.util.List;
-//TODO JAVADOC
+
+/**
+ * Comando che cancella un ticket dal DB.
+ */
 public class CommandDel extends Command {
 
     private TicketIdGenerator generator;

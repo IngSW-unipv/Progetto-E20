@@ -8,8 +8,10 @@ import it.unipv.ingsw.progettoe20.server.model.Level;
 
 import java.io.PrintWriter;
 import java.util.List;
-//TODO JAVADOC
 
+/**
+ * Comando che restituisce al client il numero di posti disponibili nel parcheggio.
+ */
 public class CommandTotAva extends Command {
 
     public CommandTotAva(DatabaseFacade dbFacade, PrintWriter out) {

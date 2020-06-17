@@ -3,7 +3,10 @@ package it.unipv.ingsw.progettoe20.server.requestsHandling.commands;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
-//TODO JAVADOC
+
+/**
+ * Comando che risponde "pong". Utile per il debugging.
+ */
 public class CommandPing extends Command {
 
     public CommandPing(DatabaseFacade dbFacade, PrintWriter out) {

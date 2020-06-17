@@ -5,7 +5,10 @@ import it.unipv.ingsw.progettoe20.server.Logger;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
-//TODO JAVADOC
+
+/**
+ * Comando che verifica il pagamento di un ticket.
+ */
 public class CommandPayCheck extends Command {
     public CommandPayCheck(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);
