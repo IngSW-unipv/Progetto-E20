@@ -1,5 +1,7 @@
 package it.unipv.ingsw.progettoe20.server.admin.model;
 
+import java.util.List;
+
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 
@@ -60,4 +62,12 @@ public class LevelAdministrator {
 		databaseFacade.removeLevel(level);
 	}
 
+	/**
+	 * Mostra la lista di Livelli
+	 *
+	 * @return
+	 */
+	public List<Level> getLevelList() {
+		return databaseFacade.getLevelList();
+	}
 }

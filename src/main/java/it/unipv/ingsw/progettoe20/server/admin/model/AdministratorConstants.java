@@ -37,6 +37,7 @@ public class AdministratorConstants {
 	public static final String EXIT_CLI = "exit";
 	public static final String ADD_CLI = "add";
 	public static final String REMOVE_CLI = "remove";
+	public static final String LIST_CLI = "list";
 	public static final String HOURLY_CLI = "hourly";
 	public static final String MAXIMUM_CLI = "max";
 	public static final String MINIMUM_CLI = "min";

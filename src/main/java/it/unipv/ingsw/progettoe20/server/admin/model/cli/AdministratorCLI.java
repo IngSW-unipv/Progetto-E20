@@ -31,8 +31,8 @@ public class AdministratorCLI {
 		insertText = "";
 		scanner = new Scanner(System.in);
 		while (true) {
-			System.out.println("Hai scelto la modalità command line input. \n Inserisci: \n" + LEVEL_CLI
-					+ "per modificare i livelli \n" + PRICE_CLI + " per le tariffe \n" + PARKINGLOTS_CLI
+			System.out.println("Hai scelto la modalità command line input. Inserisci: \n" + LEVEL_CLI
+					+ " per modificare i livelli \n" + PRICE_CLI + " per le tariffe \n" + PARKINGLOTS_CLI
 					+ " per i posti del parcheggio");
 			insertText = scanner.next();
 			if (LEVEL_CLI.equals(insertText)) {

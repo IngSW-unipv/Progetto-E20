@@ -48,4 +48,11 @@ public class PriceAdministrator {
 		Price newPrice = new Price(minutes, price);
 		databaseFacade.updatePrice(newPrice);
 	}
+
+	/**
+	 * Mostra la lista delle tariffe
+	 */
+	public void getPriceList() {
+		databaseFacade.getPriceList();
+	}
 }
