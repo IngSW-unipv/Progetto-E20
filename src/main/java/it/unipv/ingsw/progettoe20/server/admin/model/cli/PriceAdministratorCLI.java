@@ -16,15 +16,18 @@ import it.unipv.ingsw.progettoe20.server.model.Price;
 
 public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 
-	private String insertText;
-	private Scanner scanner;
-
+	/**
+	 * Crea una istanza di PriceAdministratorCLI
+	 * 
+	 * @param scanner    scanner per la lettura da linea di comando
+	 * @param insertText stringa inserita dall'utente
+	 */
 	public PriceAdministratorCLI(Scanner scanner, String insertText) {
 		super(scanner, insertText);
 	}
 
 	@Override
-	public void handlerAdministratorCLI(Scanner scanner, String insertText2) {
+	public void handlerAdministratorCLI() {
 		while (true) {
 			System.out.println("Inserisci:\n" + HOURLY_CLI + " per modificare la tariffa oraria \n" + MAXIMUM_CLI
 					+ " per modificare la tariffa massima \n" + MINIMUM_CLI + " per modificare la tariffa minima \n"

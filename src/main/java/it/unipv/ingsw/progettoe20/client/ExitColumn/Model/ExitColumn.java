@@ -73,7 +73,7 @@ public class ExitColumn {
      * @return Response Enum con i vari esiti del check
      */
     public ResponseEnum checkObliteration(String id) {
-        System.out.println("perform request...");
+        System.out.println(ClientStrings.PERFORM_REQUEST);
 
         if (checkId(id)) {
             try {
@@ -142,7 +142,7 @@ public class ExitColumn {
         try {
             clientSocket.close();
         } catch (IOException i) {
-            System.out.println("Socket Error");
+            System.out.println(ClientStrings.ERROR_SOCKET);
         } catch (NullPointerException n) {
             isConnected = false;
         }

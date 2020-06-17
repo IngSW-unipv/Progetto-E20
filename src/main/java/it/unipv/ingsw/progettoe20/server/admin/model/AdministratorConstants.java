@@ -1,5 +1,9 @@
 package it.unipv.ingsw.progettoe20.server.admin.model;
 
+/**
+ * Classe che contiene tutte le costanti utilizzate dall'amministratore
+ *
+ */
 public class AdministratorConstants {
 
 	// costanti per i livelli

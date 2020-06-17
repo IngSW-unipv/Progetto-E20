@@ -6,7 +6,6 @@ import java.net.Socket;
 
 import it.unipv.ingsw.progettoe20.server.requestsHandling.RequestHandler;
 
-// TODO: add comments, find better solution for switch statement, write something in error catches
 
 /**
  * Il ClientHandler è l'unità che si occupa della connessione con il client.
