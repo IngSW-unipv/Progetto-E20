@@ -59,6 +59,7 @@ public class ExitColumn {
                 checkObliteration(insertText);
             }
             System.out.println("Process terminated");
+            this.closeSocket();
             System.exit(0);
 
         } else System.out.println(ClientStrings.GUI_STARTED);
