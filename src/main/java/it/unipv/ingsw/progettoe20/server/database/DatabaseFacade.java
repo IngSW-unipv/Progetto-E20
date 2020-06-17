@@ -29,13 +29,14 @@ import it.unipv.ingsw.progettoe20.server.Logger;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 import it.unipv.ingsw.progettoe20.server.model.Price;
 import it.unipv.ingsw.progettoe20.server.model.Ticket;
+import org.apache.ibatis.datasource.pooled.PooledDataSource;
 
 /**
  * Gestisce la connessione al database.
  */
 public class DatabaseFacade {
     private static DatabaseFacade dbFacade = null;
-    private BasicDataSource connectionPool;
+    private PooledDataSource connectionPool;
     private TicketDao ticketDao;
     private LevelDao levelDao;
     private PriceDao priceDao;
@@ -49,14 +50,13 @@ public class DatabaseFacade {
         passwordInit();
 
         String dbUrl = DBConstants.DB_URL;
-        connectionPool = new BasicDataSource();
+        connectionPool = new PooledDataSource();
         connectionPool.setUsername(DBConstants.USER);
         connectionPool.setPassword(DBConstants.PASS);
-        connectionPool.setDriverClassName(DBConstants.JDBC_DRIVER);
+        connectionPool.setDriver(DBConstants.JDBC_DRIVER);
         connectionPool.setUrl(dbUrl);
-        connectionPool.setMaxTotal(DBConstants.MAX_CONNECTIONS);
+        connectionPool.setPoolMaximumActiveConnections(DBConstants.MAX_CONNECTIONS);
         System.out.print("Connecting...");
-        connectionPool.setInitialSize(1);
         ticketDao = new TicketDao(connectionPool);
         levelDao = new LevelDao(connectionPool);
         priceDao = new PriceDao(connectionPool);
@@ -110,19 +110,12 @@ public class DatabaseFacade {
      * se assente crea il database e le table.
      */
     public void initDatabase() {
-        Connection connection;
         ArrayList<String> dbList;
 
-        try {
-            connection = connectionPool.getConnection();
-            dbList = getTablesList();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        }
         // Checks if database already exist
-        try {
-            Statement stmt = connection.createStatement();
+        try (Connection connection = connectionPool.getConnection();
+             Statement stmt = connection.createStatement();) {
+            dbList = getTablesList();
 
             if (!dbList.contains(DBConstants.TICKET_TABLE)) {
                 // Create table for tickets
@@ -147,12 +140,6 @@ public class DatabaseFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -163,14 +150,14 @@ public class DatabaseFacade {
      */
     private ArrayList<String> getTablesList() throws SQLException {
         ArrayList<String> response = new ArrayList<>();
-        Connection connection = connectionPool.getConnection();
-
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery(Queries.LIST_DB_TABLES);
-        while (rs.next()) {
-            response.add(rs.getString(1)); // 1 = first column
+        try (Connection connection = connectionPool.getConnection();
+             Statement stmt = connection.createStatement();) {
+            ResultSet rs = stmt.executeQuery(Queries.LIST_DB_TABLES);
+            while (rs.next()) {
+                response.add(rs.getString(1)); // 1 = first column
+            }
+            return response;
         }
-        return response;
     }
 
     /**

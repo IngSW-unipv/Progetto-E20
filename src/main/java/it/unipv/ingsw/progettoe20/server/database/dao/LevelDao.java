@@ -6,29 +6,30 @@ import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 import it.unipv.ingsw.progettoe20.server.database.Queries;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.ibatis.datasource.pooled.PooledDataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LevelDao implements Dao<Level> {
-    private BasicDataSource connectionPool;
+    private PooledDataSource connectionPool;
 
-    public LevelDao(BasicDataSource connectionPool) {
+    public LevelDao(PooledDataSource connectionPool) {
         this.connectionPool = connectionPool;
     }
 
     @Override
     public Level get(String name) {
         Level level;
-        try {
+        try (Connection connection = connectionPool.getConnection();
+             Statement stmt = connection.createStatement();
+             PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);) {
+
             if (!checkLevelByName(name)) {
                 throw new IllegalArgumentException(ErrorStrings.LEVEL_NOT_FOUND);
             }
-            Connection connection = connectionPool.getConnection();
 
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);
             pstmt.setString(1, name.toUpperCase());
             ResultSet result = pstmt.executeQuery();
 
@@ -37,7 +38,6 @@ public class LevelDao implements Dao<Level> {
             int total = result.getInt(DBConstants.LEVEL_THIRD_COLUMN);
             level = new Level(name, available, total);
 
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -49,11 +49,11 @@ public class LevelDao implements Dao<Level> {
     public List<Level> getAll() {
         Level level;
         List<Level> levelList = new ArrayList<>();
-        try {
-            Connection connection = connectionPool.getConnection();
 
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET_LIST);
+        try (Connection connection = connectionPool.getConnection();
+             Statement stmt = connection.createStatement();
+             PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET_LIST);) {
+
             ResultSet result = pstmt.executeQuery();
             while (result.next()) {
                 String name = result.getString(DBConstants.LEVEL_FIRST_COLUMN);
@@ -63,7 +63,6 @@ public class LevelDao implements Dao<Level> {
                 levelList.add(level);
             }
 
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -73,35 +72,30 @@ public class LevelDao implements Dao<Level> {
 
     @Override
     public void update(Level level) {
-        Connection connection;
-        PreparedStatement pstmt;
-        try {
-            connection = connectionPool.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // throw some error
-            return;
-        }
 
-        try {
-            Statement stmt = connection.createStatement();
+
+        try (Connection connection = connectionPool.getConnection();
+             Statement stmt = connection.createStatement();) {
 
             if (checkLevelByName(level.getName())) {
-                pstmt = connection.prepareStatement(Queries.LEVEL_UPDATE);
-                pstmt.setInt(1, level.getAvailable());
-                pstmt.setInt(2, level.getTotal());
-                pstmt.setString(3, level.getName());
-                pstmt.executeUpdate();
-                Logger.log("Level" + level.getName() + " updated successfully");
+                try (PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_UPDATE);) {
+
+                    pstmt.setInt(1, level.getAvailable());
+                    pstmt.setInt(2, level.getTotal());
+                    pstmt.setString(3, level.getName());
+                    pstmt.executeUpdate();
+                    Logger.log("Level" + level.getName() + " updated successfully");
+                }
+
             } else {
-                pstmt = connection.prepareStatement(Queries.LEVEL_NEW);
-                pstmt.setString(1, level.getName());
-                pstmt.setInt(2, level.getAvailable());
-                pstmt.setInt(3, level.getTotal());
-                pstmt.executeUpdate();
-                Logger.log("Level " + level.getName() + " created successfully");
+                try (PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_NEW);) {
+                    pstmt.setString(1, level.getName());
+                    pstmt.setInt(2, level.getAvailable());
+                    pstmt.setInt(3, level.getTotal());
+                    pstmt.executeUpdate();
+                    Logger.log("Level " + level.getName() + " created successfully");
+                }
             }
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,19 +103,18 @@ public class LevelDao implements Dao<Level> {
 
     @Override
     public void delete(Level level) {
-        try {
+        try (Connection connection = connectionPool.getConnection();
+             Statement stmt = connection.createStatement();
+             PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_REMOVE);) {
+
             if (!checkLevelByName(level.getName())) {
                 throw new IllegalArgumentException(ErrorStrings.LEVEL_NOT_FOUND);
             }
-            Connection connection = connectionPool.getConnection();
 
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_REMOVE);
             pstmt.setString(1, level.getName());
             pstmt.executeUpdate();
             Logger.log(level.getName() + " removed from database");
 
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -135,18 +128,19 @@ public class LevelDao implements Dao<Level> {
      * @return booleano di verifica.
      */
     public boolean checkLevelByName(String name) throws IllegalArgumentException {
-        Connection connection;
-        try {
-            connection = connectionPool.getConnection();
 
-            Statement stmt = connection.createStatement();
-            PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);
+        try (Connection connection = connectionPool.getConnection();
+             Statement stmt = connection.createStatement();
+             PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);) {
+
             pstmt.setString(1, name.toUpperCase());
             ResultSet result = pstmt.executeQuery();
             if (!result.next()) {
                 return false;
             }
-            connection.close();
+            //TODO STAMPA LE CONNESSIONE ATTIVE DA TOGLIERE (TEST USE)
+            System.out.println("active---" + connectionPool.getPoolState().getActiveConnectionCount());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
