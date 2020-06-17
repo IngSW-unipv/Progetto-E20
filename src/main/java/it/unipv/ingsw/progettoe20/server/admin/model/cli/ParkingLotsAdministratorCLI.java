@@ -8,7 +8,9 @@ import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstan
 import java.util.Scanner;
 
 import it.unipv.ingsw.progettoe20.server.admin.model.ParkingLotsAdministrator;
-
+/**
+ * Classe per la gestione dei posti nella CLI dell'amministratore
+ */
 public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 
 	/**
@@ -42,6 +44,13 @@ public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 
 	}
 
+	/**
+	 * Gestisce l'aggiunta o la rimozione di posti aiuto
+	 *
+	 * @param insertText operazione inserita come stringa dall'utente
+	 * @param name       nome del livello
+	 * @param lot        numero di posti da aggiungere/togliere
+	 */
 	private void lotInput(String insertText, String name, int lot) {
 		try {
 
@@ -58,6 +67,12 @@ public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 
 	}
 
+	/**
+	 * Chiama il metodo del ParkingLotsAdministrator per l'aggiunta di posti auto
+	 * 
+	 * @param name  nome del livello
+	 * @param total nuova capacità totale del livello
+	 */
 	public void addLot(String name, int total) {
 
 		ParkingLotsAdministrator.getInstance().addParkings(name, total);
@@ -65,6 +80,12 @@ public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 
 	}
 
+	/**
+	 * Chiama il metodo del ParkingLotsAdministrator per la rimozione di posti auto
+	 * 
+	 * @param name  nome del livello
+	 * @param total nuova capacità totale del livello
+	 */
 	public void removeLot(String name, int total) {
 
 		ParkingLotsAdministrator.getInstance().removeParkings(name, total);

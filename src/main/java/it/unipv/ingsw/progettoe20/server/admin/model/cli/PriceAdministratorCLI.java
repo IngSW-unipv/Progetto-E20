@@ -13,7 +13,9 @@ import java.util.Scanner;
 import it.unipv.ingsw.progettoe20.server.admin.model.PriceAdministrator;
 import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 import it.unipv.ingsw.progettoe20.server.model.Price;
-
+/**
+ * Classe per la gestione dei prezzi nella CLI dell'amministratore
+ */
 public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 
 	/**
@@ -49,6 +51,12 @@ public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 		}
 	}
 
+	/**
+	 * Gestisce il cambiamento delle tariffe
+	 *
+	 * @param priceType   tipo di tariffa da modificare
+	 * @param insertPrice nuovo prezzo
+	 */
 	public void priceInput(String priceType, String insertPrice) {
 		try {
 			double newPrice = Double.parseDouble(insertPrice);
@@ -67,6 +75,9 @@ public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 		}
 	}
 
+	/**
+	 * Stampa la lista dei prezzi presente nel database
+	 */
 	public void printList() {
 		List<Price> prices = PriceAdministrator.getInstance().getPriceList();
 		System.out.println("Price list:");

@@ -24,7 +24,7 @@ public class AdministratorListener implements ActionListener {
 	/**
 	 * Crea una istanza di AdministratorListener.
 	 *
-	 * @param gui the gui
+	 * @param gui istanza dell'AdministratorGUI
 	 */
 	public AdministratorListener(AdministratorGUI gui) {
 		this.adminGUI = gui;

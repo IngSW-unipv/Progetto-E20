@@ -6,7 +6,6 @@ import java.util.Scanner;
  * Classe astratta che mostra una linea guida per il comportamento delle classi
  * per la gestione della CLI dell'amministratore
  *
- * @author giulia
  *
  */
 public abstract class AbstractAdministratorCLI {

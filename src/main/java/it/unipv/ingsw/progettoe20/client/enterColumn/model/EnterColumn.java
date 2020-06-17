@@ -118,21 +118,22 @@ public class EnterColumn extends Observable {
         String insertText = "";
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Hai scelto la modalità command line input, inserisci gen se vuoi prelevare il ticket o exit per terminare.");
+            System.out.println("You've chosen the command line input mode,you have to enter 'gen' if you want to get your ID ticket or 'exit' to quit.");
             insertText = scanner.next();
             if (insertText.equals(ClientStrings.EXIT)) break;
             if (insertText.equals(ClientStrings.COMMAND_GEN)) {
                 this.setAvailability();
-                System.out.println("Numero posti disponibili:" + this.totalLot);
+                System.out.println("Lots Available:" + this.totalLot);
                 if (genTicket()) {
                     this.setAvailability();
-                    System.out.println("Livello associato:" + this.id.substring(0, 1));
-                    System.out.println("Numero posti disponibili aggiornato:" + this.totalLot);
+                    System.out.println("Please, go to " + this.id.substring(0, 1) + " level.");
+                    System.out.println("Lot Available updated is:" + this.totalLot);
                 } else
-                    System.out.println("Id non generato");
+                    System.out.println("Sorry, no Parking space available: Ticket ID not created.");
             }
         }
-        System.out.println("Hai terminato l'esecuzione");
+        System.out.println("Execution Terminated.");
+        this.closeSocket();
         scanner.close();
         System.exit(0);
     }
