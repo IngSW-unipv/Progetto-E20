@@ -65,7 +65,7 @@ public class LevelAdministrator {
 	/**
 	 * Mostra la lista di Livelli
 	 *
-	 * @return
+	 * @return lista dei livelli
 	 */
 	public List<Level> getLevelList() {
 		return databaseFacade.getLevelList();

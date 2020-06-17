@@ -12,15 +12,18 @@ import it.unipv.ingsw.progettoe20.server.cli.CommandStrings;
 
 public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 
-	private String insertText;
-	private Scanner scanner;
-
+	/**
+	 * Crea una istanza di ParkingLotsAdministratorCLI
+	 *
+	 * @param scanner    scanner per la lettura da linea di comando
+	 * @param insertText stringa inserita dall'utente
+	 */
 	public ParkingLotsAdministratorCLI(Scanner scanner, String insertText) {
 		super(scanner, insertText);
 	}
 
 	@Override
-	protected void handlerAdministratorCLI(Scanner scanner, String insertText2) {
+	protected void handlerAdministratorCLI() {
 		while (true) {
 			System.out.println("Digita " + ADD_CLI + " per aggiungere, " + REMOVE_CLI + " per rimuovere un posti, "
 					+ EXIT_CLI + " per uscire");

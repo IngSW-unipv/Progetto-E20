@@ -27,7 +27,7 @@ public class AdministratorCLI {
 	 * Inizia l'interfaccia da riga di comando e smista i compiti alle tre classi
 	 * per la gestione dei livelli, prezzi e posti.
 	 */
-	void initCLI() {
+	public void initCLI() {
 		insertText = "";
 		scanner = new Scanner(System.in);
 		while (true) {

@@ -53,8 +53,8 @@ public class PriceAdministrator {
 
 	/**
 	 * Mostra la lista delle tariffe
-	 * 
-	 * @return
+	 *
+	 * @return lista delle tariffe
 	 */
 	public List<Price> getPriceList() {
 		return databaseFacade.getPriceList();

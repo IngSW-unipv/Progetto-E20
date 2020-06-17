@@ -12,17 +12,23 @@ import java.util.Scanner;
 import it.unipv.ingsw.progettoe20.server.admin.model.LevelAdministrator;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 
+/**
+ * Classe per la gestione dei livelli nella CLI dell'amministratore
+ */
 public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 
-	private String insertText;
-	private Scanner scanner;
-
+	/**
+	 * Crea una istanza di LevelAdministratorCLI
+	 *
+	 * @param scanner    scanner per la lettura da linea di comando
+	 * @param insertText stringa inserita dall'utente
+	 */
 	public LevelAdministratorCLI(Scanner scanner, String insertText) {
 		super(scanner, insertText);
 	}
 
 	@Override
-	public void handlerAdministratorCLI(Scanner scanner, String insertText2) {
+	public void handlerAdministratorCLI() {
 		while (true) {
 			System.out.println("Inserisci:\n" + ADD_CLI + " per aggiungere un livello \n" + REMOVE_CLI
 					+ " per rimuovere un livello \n" + LIST_CLI + " per ottenere la lista dei livelli \n" + EXIT_CLI
