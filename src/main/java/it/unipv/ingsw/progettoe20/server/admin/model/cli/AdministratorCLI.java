@@ -1,8 +1,11 @@
 package it.unipv.ingsw.progettoe20.server.admin.model.cli;
 
-import java.util.Scanner;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.EXIT_CLI;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.LEVEL_CLI;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PARKINGLOTS_CLI;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PRICE_CLI;
 
-import it.unipv.ingsw.progettoe20.client.ClientStrings;
+import java.util.Scanner;
 
 /**
  * Classe per la gestione dell'interfaccia testuale dell'amministratore
@@ -28,19 +31,20 @@ public class AdministratorCLI {
 		insertText = "";
 		scanner = new Scanner(System.in);
 		while (true) {
-			System.out.println(
-					"Hai scelto la modalità command line input, inserisci 'lev' per modificare i livelli, 'prices' per le tariffe e 'lot' per i posti del parcheggio");
+			System.out.println("Hai scelto la modalità command line input. \n Inserisci: \n" + LEVEL_CLI
+					+ "per modificare i livelli \n" + PRICE_CLI + " per le tariffe \n" + PARKINGLOTS_CLI
+					+ " per i posti del parcheggio");
 			insertText = scanner.next();
-			if (insertText.equals("lev")) {
+			if (LEVEL_CLI.equals(insertText)) {
 				// Se si vogliono modificare i livelli
 				LevelAdministratorCLI levelCLI = new LevelAdministratorCLI(scanner, insertText);
-			} else if (insertText.equals("prices")) {
+			} else if (PRICE_CLI.equals(insertText)) {
 				// Se si vogliono modificare le tariffe
 				PriceAdministratorCLI priceCLI = new PriceAdministratorCLI(scanner, insertText);
-			} else if (insertText.equals("lot")) {
+			} else if (PARKINGLOTS_CLI.equals(insertText)) {
 				// Se si vogliono modificare i posti auto
 				ParkingLotsAdministratorCLI parkingCLI = new ParkingLotsAdministratorCLI(scanner, insertText);
-			} else if (insertText.equals(ClientStrings.EXIT)) {
+			} else if (EXIT_CLI.equals(insertText)) {
 				break;
 			}
 		}
