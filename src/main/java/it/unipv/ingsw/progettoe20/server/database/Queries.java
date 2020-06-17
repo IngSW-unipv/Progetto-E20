@@ -69,6 +69,11 @@ public class Queries {
     public static final String TICKET_GET = "SELECT * FROM " + DBConstants.TICKET_TABLE + " WHERE "
             + DBConstants.TICKET_FIRST_COLUMN + " = ?";
 
+    /**
+     * Restituisce la lista dei ticket.
+     */
+    public static final String TICKET_GET_LIST = "SELECT * FROM " + DBConstants.TICKET_TABLE;
+
 // LEVEL QUERIES
     /**
      * Crea un nuovo livello. Necessita dei parametri presenti nella query, nello

@@ -9,6 +9,7 @@ import it.unipv.ingsw.progettoe20.server.model.Ticket;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TicketDao implements Dao<Ticket> {
@@ -49,8 +50,28 @@ public class TicketDao implements Dao<Ticket> {
 
     @Override
     public List<Ticket> getAll() {
-        //TODO
-        return null;
+        Ticket ticket;
+        List<Ticket> ticketList = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(Queries.TICKET_GET_LIST);) {
+
+            ResultSet result = pstmt.executeQuery();
+            while (result.next()) {
+                String id = result.getString(DBConstants.TICKET_FIRST_COLUMN);
+                Timestamp entranceTime = result.getTimestamp(DBConstants.TICKET_SECOND_COLUMN);
+                Timestamp paymentTime = result.getTimestamp(DBConstants.TICKET_THIRD_COLUMN);
+                Boolean paid = result.getBoolean(DBConstants.TICKET_FOURTH_COLUMN);
+
+                ticket = new Ticket(id,entranceTime,paymentTime,paid);
+                ticketList.add(ticket);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return ticketList;
     }
 
     @Override
