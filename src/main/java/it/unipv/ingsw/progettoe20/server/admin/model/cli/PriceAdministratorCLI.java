@@ -18,7 +18,7 @@ public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 
 	/**
 	 * Crea una istanza di PriceAdministratorCLI
-	 * 
+	 *
 	 * @param scanner    scanner per la lettura da linea di comando
 	 * @param insertText stringa inserita dall'utente
 	 */
@@ -29,9 +29,9 @@ public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 	@Override
 	public void handlerAdministratorCLI() {
 		while (true) {
-			System.out.println("Inserisci:\n" + HOURLY_CLI + " per modificare la tariffa oraria \n" + MAXIMUM_CLI
-					+ " per modificare la tariffa massima \n" + MINIMUM_CLI + " per modificare la tariffa minima \n"
-					+ LIST_CLI + " per ottenere la lista delle tariffe \n" + EXIT_CLI + " per uscire");
+			System.out.println("Insert: \n" + HOURLY_CLI + ": to change the hourly price \n" + MAXIMUM_CLI
+					+ ": to change the maximum price \n" + MINIMUM_CLI + ": to change the minimum price \n" + LIST_CLI
+					+ ": to list the prices \n" + EXIT_CLI + ": to exit");
 			insertText = scanner.next();
 			if (insertText.equals(LIST_CLI)) {
 				// Se si vuole ottenere la lista delle tariffe
@@ -39,9 +39,10 @@ public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 			} else if (insertText.equals(EXIT_CLI)) {
 				// Se si vuole uscire
 				break;
-			} else if (insertText.equals(MAXIMUM_CLI)||insertText.equals(MINIMUM_CLI)||insertText.equals(HOURLY_CLI)){
+			} else if (insertText.equals(MAXIMUM_CLI) || insertText.equals(MINIMUM_CLI)
+					|| insertText.equals(HOURLY_CLI)) {
 				// Se si vuole modificare una tariffa
-				System.out.println("Digita la nuova tariffa");
+				System.out.println("Insert the new price");
 				String insertPrice = scanner.next();
 				priceInput(insertText, insertPrice);
 			}
@@ -68,9 +69,9 @@ public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 
 	public void printList() {
 		List<Price> prices = PriceAdministrator.getInstance().getPriceList();
-		System.out.println("Elenco delle tariffe:");
+		System.out.println("Price list:");
 		for (Price p : prices) {
-			System.out.println("Minuti: " + p.getMinutes() + "\t Prezzo: " + p.getPrice() + "\n");
+			System.out.println("Minutes: " + p.getMinutes() + "\t Price: " + p.getPrice() + "\n");
 		}
 	}
 }

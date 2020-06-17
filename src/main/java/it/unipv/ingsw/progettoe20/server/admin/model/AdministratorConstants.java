@@ -40,7 +40,7 @@ public class AdministratorConstants {
 	public static final String PARKINGLOTS_CLI = "lots";
 	public static final String EXIT_CLI = "exit";
 	public static final String ADD_CLI = "add";
-	public static final String REMOVE_CLI = "remove";
+	public static final String REMOVE_CLI = "rem";
 	public static final String LIST_CLI = "list";
 	public static final String HOURLY_CLI = "hourly";
 	public static final String MAXIMUM_CLI = "max";
