@@ -8,7 +8,7 @@ public class DBConstants {
 	public static final String DB_NAME = "parking";
 	public static final String DB_URL = "jdbc:mysql://pusi77.ddns.net:33077/" + DB_NAME;
 	public static final int MAX_CONNECTIONS = 32; // MariaDB max should be 150 concurrent connections
-	public static final String USER = "root";
+	public static final String USER = "esame";
 	public static String PASS;
 
 	public static final String TICKET_TABLE = "tickets";
