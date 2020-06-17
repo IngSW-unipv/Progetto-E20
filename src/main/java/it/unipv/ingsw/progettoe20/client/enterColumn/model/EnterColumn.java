@@ -52,6 +52,7 @@ public class EnterColumn extends Observable {
             isConnected = true;
             checkInputType();
         } catch (IOException i) {
+        	System.out.println("No Connection");
             isConnected = false;
         }
     }
@@ -66,6 +67,9 @@ public class EnterColumn extends Observable {
             System.out.println(ClientStrings.ERROR_SOCKET);
         } catch (NullPointerException n) {
             isConnected = false;
+            
+        	
+        	
         }
     }
 
@@ -115,6 +119,9 @@ public class EnterColumn extends Observable {
      * @throws IOException
      */
     private void cli() throws IOException {
+    	if(isConnected==false) {
+    		System.out.println("No Connection");
+    	}
         String insertText = "";
         Scanner scanner = new Scanner(System.in);
         while (true) {
