@@ -8,7 +8,7 @@ public class DBConstants {
 	public static final String USER = "root";
 	public static String PASS;
 
-	public static final String TICKET_TABLE = "parkedcars";
+	public static final String TICKET_TABLE = "tickets";
 	public static final String TICKET_FIRST_COLUMN = "ID";
 	public static final String TICKET_SECOND_COLUMN = "EntranceTime";
 	public static final String TICKET_THIRD_COLUMN = "PaymentTime";
