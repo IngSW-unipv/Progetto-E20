@@ -48,8 +48,12 @@ public class LevelAdministrator {
 	 * @param total disponibilità totale del nuovo livello
 	 */
 	public void addLevel(String name, int total) {
-		Level newLevel = new Level(name, total);
-		databaseFacade.updateLevel(newLevel);
+		if (!databaseFacade.checkLevelByName(name)) {
+			Level newLevel = new Level(name, total);
+			databaseFacade.updateLevel(newLevel);
+		} else {
+			throw new IllegalArgumentException("Il livello " + name + " è già presente");
+		}
 	}
 
 	/**
@@ -58,8 +62,12 @@ public class LevelAdministrator {
 	 * @param name nome del livello da togliere
 	 */
 	public void removeLevel(String name) {
-		Level level = databaseFacade.getLevelByName(name);
-		databaseFacade.removeLevel(level);
+		if (databaseFacade.checkLevelByName(name)) {
+			Level level = databaseFacade.getLevelByName(name);
+			databaseFacade.removeLevel(level);
+		} else {
+			throw new IllegalArgumentException("Il livello " + name + " non esiste");
+		}
 	}
 
 	/**

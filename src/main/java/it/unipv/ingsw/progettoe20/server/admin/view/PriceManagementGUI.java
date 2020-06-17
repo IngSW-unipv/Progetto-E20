@@ -13,7 +13,6 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -91,7 +90,7 @@ public class PriceManagementGUI extends AbstractGUI {
 
 		// frame settings
 		getContentPane().add(panel);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(600, 400);
 		setLocationRelativeTo(null);
 		setTitle(PRICE_MANAGEMENT);

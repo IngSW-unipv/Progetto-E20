@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -59,7 +58,7 @@ public class AdministratorGUI extends AbstractGUI {
 
 		// frame settings
 		getContentPane().add(panel);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 400));
 		setResizable(false);
 		setLocationRelativeTo(null);

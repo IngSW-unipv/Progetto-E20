@@ -1,4 +1,4 @@
-package it.unipv.ingsw.progettoe20.payement;
+package it.unipv.ingsw.progettoe20.payment;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;

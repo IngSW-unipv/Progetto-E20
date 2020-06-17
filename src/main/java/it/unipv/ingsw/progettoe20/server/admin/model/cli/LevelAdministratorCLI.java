@@ -1,7 +1,6 @@
 package it.unipv.ingsw.progettoe20.server.admin.model.cli;
 
 import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.ADD_CLI;
-import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.ERROR_CLI;
 import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.EXIT_CLI;
 import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.LIST_CLI;
 import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.REMOVE_CLI;
@@ -64,7 +63,8 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 				removeLevel(name);
 			}
 		} catch (Exception e) {
-			System.out.println(ERROR_CLI);
+			System.out.println(e.getMessage());
+
 		}
 	}
 
