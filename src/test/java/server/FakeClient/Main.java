@@ -21,7 +21,7 @@ public class Main {
 
         ServerFacade serverFacade = new ServerFacade();
         serverFacade.init();
-        //TODO database asks 2 times for password
+        //necessario doppio inserimento password
         DatabaseFacade dbFacade = new DatabaseFacade();
         new Thread(serverFacade::start).start();
 

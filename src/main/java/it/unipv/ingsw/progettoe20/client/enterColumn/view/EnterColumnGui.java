@@ -224,7 +224,7 @@ public class EnterColumnGui extends JFrame implements Observer{
 	 */
 	public void setNoAvailability() {
 		this.wIcon2.setIcon( new ImageIcon(wPic4));
-		this.ShowTicketId.setText(" Sorry, No Level Available");
+		this.ShowTicketId.setText(" Sorry, no Parking space available!");
 	}
 
 	/**

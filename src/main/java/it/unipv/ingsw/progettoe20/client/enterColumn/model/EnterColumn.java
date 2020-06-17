@@ -121,7 +121,7 @@ public class EnterColumn extends Observable {
             System.out.println("Hai scelto la modalità command line input, inserisci gen se vuoi prelevare il ticket o exit per terminare.");
             insertText = scanner.next();
             if (insertText.equals(ClientStrings.EXIT)) break;
-            if (insertText.equals("gen")) {
+            if (insertText.equals(ClientStrings.COMMAND_GEN)) {
                 this.setAvailability();
                 System.out.println("Numero posti disponibili:" + this.totalLot);
                 if (genTicket()) {
