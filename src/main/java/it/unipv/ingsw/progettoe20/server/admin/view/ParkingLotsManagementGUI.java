@@ -39,45 +39,45 @@ public class ParkingLotsManagementGUI extends AbstractGUI {
 	}
 
 	/**
-	 * Gets combo.
+	 * Restituisce la combo box
 	 *
-	 * @return the combo
+	 * @return combo box
 	 */
 	public JComboBox<String> getCombo() {
 		return combo;
 	}
 
 	/**
-	 * Gets home.
+	 * Restituisce il bottone di home.
 	 *
-	 * @return the home
+	 * @return il bottone
 	 */
 	public JButton getHome() {
 		return home;
 	}
 
 	/**
-	 * Gets field.
+	 * Restituisce il nome del livello.
 	 *
-	 * @return the field
+	 * @return nome del livello
 	 */
-	public JTextField getField() {
+	public JTextField getLevelName() {
 		return levelname;
 	}
 
 	/**
-	 * Gets field 2.
+	 * Restituisce il numero di posti auto.
 	 *
-	 * @return the field 2
+	 * @return numero di posti auto.
 	 */
-	public JTextField getField2() {
+	public JTextField getParkingLots() {
 		return parkinglots;
 	}
 
 	/**
-	 * Gets confirm.
+	 * Restituisce il bottone di conferma.
 	 *
-	 * @return the confirm
+	 * @return il bottone
 	 */
 	public JButton getConfirm() {
 		return confirm;

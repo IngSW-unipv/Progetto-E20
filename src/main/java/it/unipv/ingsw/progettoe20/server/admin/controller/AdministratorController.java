@@ -12,7 +12,7 @@ public class AdministratorController {
 	/**
 	 * Crea una istanza di AdministratorController.
 	 *
-	 * @param gui the gui
+	 * @param gui istanza di AdministratorGUI
 	 */
 	public AdministratorController(AdministratorGUI gui) {
 		this.gui = gui;
