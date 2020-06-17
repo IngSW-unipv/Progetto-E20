@@ -40,36 +40,36 @@ public class PriceManagementGUI extends AbstractGUI {
 	}
 
 	/**
-	 * Gets combo.
+	 * Restituisce la combo box
 	 *
-	 * @return the combo
+	 * @return combo box
 	 */
 	public JComboBox<String> getCombo() {
 		return combo;
 	}
 
 	/**
-	 * Gets field.
+	 * Restituisce il prezzo.
 	 *
-	 * @return the field
+	 * @return il prezzo
 	 */
-	public JTextField getField() {
+	public JTextField getPrice() {
 		return price;
 	}
 
 	/**
-	 * Gets confirm.
+	 * Restituisce il bottone di conferma.
 	 *
-	 * @return the confirm
+	 * @return il bottone
 	 */
 	public JButton getConfirm() {
 		return confirm;
 	}
 
 	/**
-	 * Gets home.
+	 * Restituisce il bottone di home.
 	 *
-	 * @return the home
+	 * @return il bottone
 	 */
 	public JButton getHome() {
 		return home;

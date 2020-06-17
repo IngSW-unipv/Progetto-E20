@@ -40,45 +40,45 @@ public class LevelManagementGUI extends AbstractGUI {
 	}
 
 	/**
-	 * Gets levelname.
+	 * Restituisce il nome del livello.
 	 *
-	 * @return the levelname
+	 * @return nome del livello
 	 */
 	public JTextField getLevelname() {
 		return levelname;
 	}
 
 	/**
-	 * Gets combo.
+	 * Restituisce la combo box.
 	 *
-	 * @return the combo
+	 * @return combo bos
 	 */
 	public JComboBox<String> getCombo() {
 		return combo;
 	}
 
 	/**
-	 * Gets confirm.
+	 * Restituisce il bottone di conferma.
 	 *
-	 * @return the confirm
+	 * @return bottone
 	 */
 	public JButton getConfirm() {
 		return confirm;
 	}
 
 	/**
-	 * Gets home.
+	 * Restituisce il bottone di home.
 	 *
-	 * @return the home
+	 * @return bottone
 	 */
 	public JButton getHome() {
 		return home;
 	}
 
 	/**
-	 * Gets parking lots.
+	 * Restituisce il numero di posti auto.
 	 *
-	 * @return the parking lots
+	 * @return numero di posti auto
 	 */
 	public JTextField getParkingLots() {
 		return parkinglots;

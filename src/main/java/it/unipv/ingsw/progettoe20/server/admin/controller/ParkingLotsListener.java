@@ -20,7 +20,7 @@ public class ParkingLotsListener extends AbstractListener {
 	/**
 	 * Crea una istanza di ParkingListener.
 	 *
-	 * @param gui the gui
+	 * @param gui istanza di ParkingLotsManagementGUI
 	 */
 	public ParkingLotsListener(ParkingLotsManagementGUI gui) {
 		this.gui = gui;
@@ -40,7 +40,7 @@ public class ParkingLotsListener extends AbstractListener {
 	 */
 
 	public String enteredLevel() {
-		String name = gui.getField().getText();
+		String name = gui.getLevelName().getText();
 
 		if (name != null) {
 			try {
@@ -58,7 +58,7 @@ public class ParkingLotsListener extends AbstractListener {
 	 * @return number numero di parcheggi inseriti
 	 */
 	public int enteredParkingLots() {
-		String parkingLots = gui.getField2().getText();
+		String parkingLots = gui.getParkingLots().getText();
 		if (parkingLots != null) {
 			try {
 				return Integer.parseInt(parkingLots);
