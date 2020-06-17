@@ -8,7 +8,10 @@ import it.unipv.ingsw.progettoe20.server.model.Level;
 
 import java.io.PrintWriter;
 import java.util.List;
-//TODO JAVADOC
+
+/**
+ * comando che gestisce le richieste di cancellazione dei ticket
+ */
 public class CommandDel extends Command {
 
     private TicketIdGenerator generator;
@@ -18,6 +21,7 @@ public class CommandDel extends Command {
         super(dbFacade, out);
         this.generator = new TicketIdGenerator(dbFacade);
     }
+
 
     @Override
     public boolean handleRequest(String s) {

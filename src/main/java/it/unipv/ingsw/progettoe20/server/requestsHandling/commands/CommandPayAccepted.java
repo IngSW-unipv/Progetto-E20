@@ -7,7 +7,10 @@ import it.unipv.ingsw.progettoe20.server.model.Ticket;
 
 import java.io.PrintWriter;
 import java.sql.Timestamp;
-//TODO JAVADOC
+
+/**
+ * comando che gestisce le richieste di accettazione di un pagamento
+ */
 public class CommandPayAccepted extends Command {
     public CommandPayAccepted(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);

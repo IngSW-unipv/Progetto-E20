@@ -10,7 +10,10 @@ import it.unipv.ingsw.progettoe20.server.model.Ticket;
 
 import java.io.PrintWriter;
 import java.util.List;
-//TODO JAVADOC
+
+/**
+ * comando che gestisce le richieste di generazione dei ticket
+ */
 public class CommandGen extends Command {
     private TicketIdGenerator generator;
     private List<Level> levelList;

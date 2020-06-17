@@ -3,7 +3,11 @@ package it.unipv.ingsw.progettoe20.server.requestsHandling.commands;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
-//TODO JAVADOC
+
+/**
+ * Classe astratta che rappresenta la struttura base di tutti i comandi di gestione delle richieste
+ */
+
 public abstract class Command {
     DatabaseFacade dbFacade;
     PrintWriter out;
@@ -14,6 +18,11 @@ public abstract class Command {
         this.out = out;
     }
 
+    /**
+     * metodo che gestisce la richiesta
+     * @param s
+     * @return false
+     */
     public boolean handleRequest(String s) {
         return false;
     }
