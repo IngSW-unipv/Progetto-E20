@@ -13,7 +13,9 @@ import java.util.Scanner;
 import it.unipv.ingsw.progettoe20.server.admin.model.PriceAdministrator;
 import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 import it.unipv.ingsw.progettoe20.server.model.Price;
-
+/**
+ * Classe per la gestione dei prezzi nella CLI dell'amministratore
+ */
 public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 
 	/**

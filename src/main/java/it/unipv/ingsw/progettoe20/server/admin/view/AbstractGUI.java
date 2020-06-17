@@ -12,7 +12,7 @@ import it.unipv.ingsw.progettoe20.server.admin.controller.AbstractListener;
 public abstract class AbstractGUI extends JFrame {
 
 	/**
-	 * The Listener.
+	 *  Listener.
 	 */
 	protected AbstractListener listener;
 

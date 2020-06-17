@@ -8,7 +8,9 @@ import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstan
 import java.util.Scanner;
 
 import it.unipv.ingsw.progettoe20.server.admin.model.ParkingLotsAdministrator;
-
+/**
+ * Classe per la gestione dei posti nella CLI dell'amministratore
+ */
 public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 
 	/**
