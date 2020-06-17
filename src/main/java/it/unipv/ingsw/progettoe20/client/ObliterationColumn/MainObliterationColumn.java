@@ -9,10 +9,10 @@ import it.unipv.ingsw.progettoe20.client.ObliterationColumn.oblView.OblGui;
 /**
  * tester per obliterazione
  */
-public class Tester {
+public class MainObliterationColumn {
     public static void main(String[] args) {
-        //args = new String[1];
-        //args[0] = "cli"; //per testare velocemente l'interfaccia testuale
+
+        //controllo se viene avviato con parameteo cli come input type
 
         if (args.length != 0 && args[0].equals(ClientStrings.COMMAND_CLI)) {
 
