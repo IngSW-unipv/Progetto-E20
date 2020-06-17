@@ -15,7 +15,6 @@ public class Protocol {
     public static final String REQUEST_CHECK_ID = "id"; //restituisce id:found , id:not found
     public static final String REQUEST_PAYMENT_CHECK = "paid"; //restituisce paid:true , paid:false , paid:expired
     public static final String REQUEST_PAYMENT_ACCEPTED = "acceptpay";
-    public static final String REQUEST_NEWLEVEL = "newlevel"; //Todo la usiamo??
     public static final String REQUEST_TOTAL_AVAILABILITY = "totava";
     // Responses
     public static final String RESPONSE_OK = "done";
