@@ -8,7 +8,7 @@ import it.unipv.ingsw.progettoe20.server.model.Level;
 
 import java.io.PrintWriter;
 import java.util.List;
-
+//TODO JAVADOC
 public class CommandDel extends Command {
 
     private TicketIdGenerator generator;

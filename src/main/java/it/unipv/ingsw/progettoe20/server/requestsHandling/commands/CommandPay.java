@@ -6,7 +6,7 @@ import it.unipv.ingsw.progettoe20.server.PaymentCalculator;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
-
+//TODO JAVADOC
 public class CommandPay extends Command {
     public CommandPay(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);

@@ -1,4 +1,4 @@
-package it.unipv.ingsw.progettoe20.payement;
+package it.unipv.ingsw.progettoe20.payment;
 
 public class Main {
 

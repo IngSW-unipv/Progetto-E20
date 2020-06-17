@@ -1,7 +1,6 @@
 package it.unipv.ingsw.progettoe20.server.admin.model.cli;
 
 import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.ADD_CLI;
-import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.ERROR_CLI;
 import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.EXIT_CLI;
 import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.LIST_CLI;
 import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.REMOVE_CLI;
@@ -30,9 +29,8 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 	@Override
 	public void handlerAdministratorCLI() {
 		while (true) {
-			System.out.println("Inserisci:\n" + ADD_CLI + " per aggiungere un livello \n" + REMOVE_CLI
-					+ " per rimuovere un livello \n" + LIST_CLI + " per ottenere la lista dei livelli \n" + EXIT_CLI
-					+ " per uscire");
+			System.out.println("Insert: \n" + ADD_CLI + ": to add a level \n" + REMOVE_CLI + ": to remove a level \n"
+					+ LIST_CLI + ": to list the levels \n" + EXIT_CLI + ": to exit");
 			insertText = scanner.next();
 			if (insertText.equals(LIST_CLI)) {
 				// Se si vuole ottenere la lista dei livelli
@@ -40,7 +38,7 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 			} else if (insertText.equals(EXIT_CLI)) {
 				// Se si vuole uscire
 				break;
-			} else if (insertText.equals(ADD_CLI)||insertText.equals(REMOVE_CLI)){
+			} else if (insertText.equals(ADD_CLI) || insertText.equals(REMOVE_CLI)) {
 				// Se si vuole aggiungere o togliere un livello
 
 				levelInput(insertText);
@@ -50,12 +48,12 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 
 	private void levelInput(String insertText) {
 		try {
-			System.out.println("Inserisci nome livello");
+			System.out.println("Insert the level name");
 			scanner = new Scanner(System.in);
 			String name = scanner.next();
 			if (ADD_CLI.equals(insertText)) {
 				// Se si vuole aggiungere livello
-				System.out.println("Inserisci posti livello");
+				System.out.println("Inserte the parking lots");
 				String lot = scanner.next();
 				int total = Integer.parseInt(lot);
 				addLevel(name, total);
@@ -64,28 +62,29 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 				removeLevel(name);
 			}
 		} catch (Exception e) {
-			System.out.println(ERROR_CLI);
+			System.out.println(e.getMessage());
+
 		}
 	}
 
 	private void printList() {
 		List<Level> levels = LevelAdministrator.getInstance().getLevelList();
-		System.out.println("Elenco dei livelli:");
+		System.out.println("Level list");
 		for (Level l : levels) {
-			System.out.println(l.getName() + "\t posti totali: " + l.getTotal() + "\t posti disponibili: "
-					+ l.getAvailable() + "\n");
+			System.out.println(
+					l.getName() + "\t total lots: " + l.getTotal() + "\t available lots: " + l.getAvailable() + "\n");
 		}
 	}
 
 	public void addLevel(String name, int total) {
 		LevelAdministrator.getInstance().addLevel(name, total);
-		System.out.println("Livello " + name + " aggiunto.");
+		System.out.println("Level " + name + " added");
 	}
 
 	public void removeLevel(String name) {
 
 		LevelAdministrator.getInstance().removeLevel(name);
-		System.out.println("Livello " + name + " rimosso.");
+		System.out.println("Level " + name + " removed");
 
 	}
 }
