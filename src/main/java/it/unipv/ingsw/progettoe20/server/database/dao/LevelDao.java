@@ -23,7 +23,6 @@ public class LevelDao implements Dao<Level> {
     public Level get(String name) {
         Level level;
         try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();
              PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);) {
 
             if (!checkLevelByName(name)) {
@@ -51,7 +50,6 @@ public class LevelDao implements Dao<Level> {
         List<Level> levelList = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();
              PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET_LIST);) {
 
             ResultSet result = pstmt.executeQuery();
@@ -74,8 +72,7 @@ public class LevelDao implements Dao<Level> {
     public void update(Level level) {
 
 
-        try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();) {
+        try (Connection connection = connectionPool.getConnection()) {
 
             if (checkLevelByName(level.getName())) {
                 try (PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_UPDATE);) {
@@ -104,7 +101,6 @@ public class LevelDao implements Dao<Level> {
     @Override
     public void delete(Level level) {
         try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();
              PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_REMOVE);) {
 
             if (!checkLevelByName(level.getName())) {
@@ -130,7 +126,6 @@ public class LevelDao implements Dao<Level> {
     public boolean checkLevelByName(String name) throws IllegalArgumentException {
 
         try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();
              PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);) {
 
             pstmt.setString(1, name.toUpperCase());
@@ -138,8 +133,6 @@ public class LevelDao implements Dao<Level> {
             if (!result.next()) {
                 return false;
             }
-            //TODO STAMPA LE CONNESSIONE ATTIVE DA TOGLIERE (TEST USE )
-            System.out.println("active---" + connectionPool.getPoolState().getActiveConnectionCount());
 
         } catch (SQLException e) {
             e.printStackTrace();
