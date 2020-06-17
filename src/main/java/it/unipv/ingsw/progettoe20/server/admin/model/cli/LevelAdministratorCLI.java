@@ -46,6 +46,11 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 		}
 	}
 
+	/**
+	 * Gestisce l'aggiunta o la rimozione dei livelli
+	 *
+	 * @param insertText operazione inserita come stringa dall'utente
+	 */
 	private void levelInput(String insertText) {
 		try {
 			System.out.println("Insert the level name");
@@ -67,6 +72,9 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 		}
 	}
 
+	/**
+	 * Stampa la lista di livelli presenti sul database
+	 */
 	private void printList() {
 		List<Level> levels = LevelAdministrator.getInstance().getLevelList();
 		System.out.println("Level list");
@@ -76,11 +84,22 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 		}
 	}
 
+	/**
+	 * Chiama il metodo del LevelAdministrator per l'aggiunta di un livello
+	 *
+	 * @param name  nome del nuovo livello
+	 * @param total capacità totale del livello
+	 */
 	public void addLevel(String name, int total) {
 		LevelAdministrator.getInstance().addLevel(name, total);
 		System.out.println("Level " + name + " added");
 	}
 
+	/**
+	 * Chiama il metodo del LevelAdministrator per la rimozione di un livello
+	 *
+	 * @param name nome del livello da eliminare
+	 */
 	public void removeLevel(String name) {
 
 		LevelAdministrator.getInstance().removeLevel(name);

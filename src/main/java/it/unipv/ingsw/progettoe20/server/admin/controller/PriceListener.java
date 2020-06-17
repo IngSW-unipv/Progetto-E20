@@ -43,7 +43,7 @@ public class PriceListener extends AbstractListener {
 	 * @return price nuova tariffa inserita
 	 */
 	public double enteredNumber() {
-		String price = gui.getField().getText();
+		String price = gui.getPrice().getText();
 		if (price != null) {
 			try {
 				return Double.parseDouble(price);
@@ -75,7 +75,7 @@ public class PriceListener extends AbstractListener {
 		}
 		// Modifica della tariffa
 		admin.changePrice(newprice, minutes);
-		gui.getField().setText("");
+		gui.getPrice().setText("");
 		showInfo("Price: " + newprice + " euro");
 	}
 

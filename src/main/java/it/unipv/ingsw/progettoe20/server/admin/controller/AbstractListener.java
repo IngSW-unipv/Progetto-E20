@@ -1,5 +1,7 @@
 package it.unipv.ingsw.progettoe20.server.admin.controller;
 
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.HOME_BUTTON;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,7 +14,7 @@ public abstract class AbstractListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		if (event.getActionCommand().equals("Home")) {
+		if (event.getActionCommand().equals(HOME_BUTTON)) {
 			// Se preme il bottone di home
 			changeGUI();
 		} else {

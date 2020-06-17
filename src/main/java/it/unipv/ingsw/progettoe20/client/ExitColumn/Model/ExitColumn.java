@@ -55,10 +55,11 @@ public class ExitColumn {
 
                 System.out.println("You chose command line input mode, insert TicketID or exit to terminate process.");
                 insertText = scanner.next();
-                if (insertText.equals(ClientStrings.EXIT)) break; //Viene chiamata l'uscita
+                if (insertText.equals(ClientStrings.EXIT)) break; //Viene  chiamata l'uscita
                 checkObliteration(insertText);
             }
             System.out.println("Process terminated");
+            this.closeSocket();
             System.exit(0);
 
         } else System.out.println(ClientStrings.GUI_STARTED);
