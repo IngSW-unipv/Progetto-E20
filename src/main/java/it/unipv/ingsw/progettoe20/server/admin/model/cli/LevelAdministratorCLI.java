@@ -45,11 +45,12 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 	private void levelInput(String insertText) {
 		try {
 			System.out.println("Inserisci nome livello");
+			scanner = new Scanner(System.in);
 			String name = scanner.next();
 			if (ADD_CLI.equals(insertText)) {
 				// Se si vuole aggiungere livello
-				String lot = scanner.next();
 				System.out.println("Inserisci posti livello");
+				String lot = scanner.next();
 				int total = Integer.parseInt(lot);
 				addLevel(name, total);
 			} else if (REMOVE_CLI.equals(insertText)) {

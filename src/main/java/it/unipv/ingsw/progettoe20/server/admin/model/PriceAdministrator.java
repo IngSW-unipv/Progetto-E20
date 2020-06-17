@@ -1,5 +1,7 @@
 package it.unipv.ingsw.progettoe20.server.admin.model;
 
+import java.util.List;
+
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Price;
 
@@ -51,8 +53,10 @@ public class PriceAdministrator {
 
 	/**
 	 * Mostra la lista delle tariffe
+	 * 
+	 * @return
 	 */
-	public void getPriceList() {
-		databaseFacade.getPriceList();
+	public List<Price> getPriceList() {
+		return databaseFacade.getPriceList();
 	}
 }
