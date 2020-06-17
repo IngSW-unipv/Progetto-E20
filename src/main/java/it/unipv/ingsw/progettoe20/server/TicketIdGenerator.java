@@ -8,7 +8,9 @@ import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 
-//TODO JAVADOC
+/**
+ * Classe che genera i ticket
+ */
 
 public class TicketIdGenerator {
     private DatabaseFacade dbFacade;

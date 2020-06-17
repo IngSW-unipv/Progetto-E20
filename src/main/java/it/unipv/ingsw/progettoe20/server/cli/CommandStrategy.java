@@ -5,7 +5,10 @@ import it.unipv.ingsw.progettoe20.server.admin.model.AdministratorFactory;
 import it.unipv.ingsw.progettoe20.server.admin.model.cli.AdministratorCLI;
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
-//TODO JAVADOC
+
+/**
+ * classe che contiene tutti i possibili comandi della cli
+ */
 public enum CommandStrategy {
     PING {
         @Override

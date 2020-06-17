@@ -1,7 +1,10 @@
 package it.unipv.ingsw.progettoe20.server.cli;
 
 import java.util.Scanner;
-//TODO JAVADOC
+
+/**
+ * Command line interface del server
+ */
 public class CommandLineInterface extends Thread {
 
     public void run() {

@@ -8,7 +8,7 @@ import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 /**
  * The type Command handler.
  */
-//TODO JAVADOC (in italiano)
+
 class CommandHandler {
 	/**
 	 * Handle.
