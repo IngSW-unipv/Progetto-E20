@@ -1,5 +1,12 @@
 package it.unipv.ingsw.progettoe20.server.admin.view;
 
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.CONFIRM_BUTTON;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.HOME_BUTTON;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PRICE_HOURLY;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PRICE_MANAGEMENT;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PRICE_MAXIMUM;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PRICE_MINIMUM;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -73,13 +80,13 @@ public class PriceManagementGUI extends AbstractGUI {
 	public void initComponents() {
 		panel = new JPanel();
 		panel2 = new JPanel();
-		title = new JLabel("PRICE MANAGEMENT");
+		title = new JLabel(PRICE_MANAGEMENT);
 		insertherePrice = new JLabel("Price:  ");
 		price = new JTextField(10);
-		confirm = new JButton("Change");
-		home = new JButton("Home");
+		confirm = new JButton(CONFIRM_BUTTON);
+		home = new JButton(HOME_BUTTON);
 
-		String[] items = { "Hourly price", "Maximum price", "Minimum price" };
+		String[] items = { PRICE_HOURLY, PRICE_MAXIMUM, PRICE_MINIMUM };
 		combo = new JComboBox<>(items);
 
 		// frame settings
@@ -87,7 +94,7 @@ public class PriceManagementGUI extends AbstractGUI {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(600, 400);
 		setLocationRelativeTo(null);
-		setTitle("PRICE MANAGEMENT GUI");
+		setTitle(PRICE_MANAGEMENT);
 
 		// panel settings
 		panel.setBackground(new Color(30, 30, 30));

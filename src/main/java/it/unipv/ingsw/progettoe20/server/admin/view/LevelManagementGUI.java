@@ -1,5 +1,11 @@
 package it.unipv.ingsw.progettoe20.server.admin.view;
 
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.CONFIRM_BUTTON;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.HOME_BUTTON;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.LEVEL_ADD;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.LEVEL_MANAGEMENT;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.LEVEL_REMOVE;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -84,15 +90,15 @@ public class LevelManagementGUI extends AbstractGUI {
 		panel = new JPanel();
 		panel1 = new JPanel();
 		panel2 = new JPanel();
-		title = new JLabel("LEVEL MANAGEMENT");
+		title = new JLabel(LEVEL_MANAGEMENT);
 		inserthereLevel = new JLabel("Level name:  ");
 		insertherePLots = new JLabel("Parking lots:");
 		levelname = new JTextField(10);
 		parkinglots = new JTextField(10);
-		confirm = new JButton("Confirm");
-		home = new JButton("Home");
+		confirm = new JButton(CONFIRM_BUTTON);
+		home = new JButton(HOME_BUTTON);
 
-		String[] items = { "Add level", "Remove level" };
+		String[] items = { LEVEL_ADD, LEVEL_REMOVE };
 		combo = new JComboBox<>(items);
 
 		// frame settings
@@ -100,7 +106,7 @@ public class LevelManagementGUI extends AbstractGUI {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(600, 400);
 		setLocationRelativeTo(null);
-		setTitle("LEVEL MANAGEMENT GUI");
+		setTitle(LEVEL_MANAGEMENT);
 
 		// panel settings
 		panel.setBackground(new Color(30, 30, 30));

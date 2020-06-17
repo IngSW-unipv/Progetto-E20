@@ -1,10 +1,15 @@
 package it.unipv.ingsw.progettoe20.server.admin.controller;
 
-import javax.swing.JOptionPane;
+import static it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorMessage.showError;
+import static it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorMessage.showInfo;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PRICE_HOURLY;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PRICE_MAXIMUM;
+import static it.unipv.ingsw.progettoe20.server.database.DBConstants.MINUTES_HOURLY;
+import static it.unipv.ingsw.progettoe20.server.database.DBConstants.MINUTES_MAXIMUM;
+import static it.unipv.ingsw.progettoe20.server.database.DBConstants.MINUTES_MINIMUM;
 
 import it.unipv.ingsw.progettoe20.server.admin.model.PriceAdministrator;
 import it.unipv.ingsw.progettoe20.server.admin.view.PriceManagementGUI;
-import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 
 /**
  * Listener che che controlla le operazioni effettuate nella schermata del
@@ -58,22 +63,20 @@ public class PriceListener extends AbstractListener {
 	public void updatePrices(String action, double newprice) {
 		int minutes;
 
-		if (action.equals("Hourly price")) {
+		if (PRICE_HOURLY.equals(action)) {
 			// Se si vuole modificare la tariffa oraria
-			minutes = DBConstants.MINUTES_HOURLY;
-
-		} else if (action.equals("Maximum price")) {
+			minutes = MINUTES_HOURLY;
+		} else if (PRICE_MAXIMUM.equals(action)) {
 			// Se si vuole modificare la tariffa massima
-			minutes = DBConstants.MINUTES_MAXIMUM;
-
+			minutes = MINUTES_MAXIMUM;
 		} else {
 			// Se si vuole modificare la tariffa minima
-			minutes = DBConstants.MINUTES_MINIMUM;
+			minutes = MINUTES_MINIMUM;
 		}
 		// Modifica della tariffa
 		admin.changePrice(newprice, minutes);
 		gui.getField().setText("");
-		JOptionPane.showMessageDialog(null, "Price: " + newprice + " euro", "Info", 1, null);
+		showInfo("Price: " + newprice + " euro");
 	}
 
 	@Override
@@ -84,13 +87,13 @@ public class PriceListener extends AbstractListener {
 
 			if (newprice < 0) {
 				// Se la tariffa inserita non è valida
-				JOptionPane.showMessageDialog(null, "the parking lot's number is not valid", "Error", 1, null);
+				showError("The parking lot's number is not valid");
 			} else {
 				// Se è valida
 				updatePrices(action, newprice);
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 1, null);
+			showError("Error");
 		}
 	}
 }

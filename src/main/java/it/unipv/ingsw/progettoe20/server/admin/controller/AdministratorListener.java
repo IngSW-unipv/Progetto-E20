@@ -1,11 +1,15 @@
 package it.unipv.ingsw.progettoe20.server.admin.controller;
 
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.LEVEL_MANAGEMENT;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PARKINGLOTS_MANAGEMENT;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PRICE_MANAGEMENT;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.LevelManagementGUI;
-import it.unipv.ingsw.progettoe20.server.admin.view.ParkingManagementGUI;
+import it.unipv.ingsw.progettoe20.server.admin.view.ParkingLotsManagementGUI;
 import it.unipv.ingsw.progettoe20.server.admin.view.PriceManagementGUI;
 
 /**
@@ -28,22 +32,21 @@ public class AdministratorListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		if (event.getActionCommand().equals("Parking Management")) {
+		if (PARKINGLOTS_MANAGEMENT.equals(event.getActionCommand())) {
 			// Se si vuole accedere alla gestione dei posti auto
-			ParkingManagementGUI parkingGUI = new ParkingManagementGUI();
+			ParkingLotsManagementGUI parkingGUI = new ParkingLotsManagementGUI();
 			parkingGUI.setVisible(true);
 			adminGUI.setVisible(false);
-		} else if (event.getActionCommand().equals("Price Management")) {
+		} else if (PRICE_MANAGEMENT.equals(event.getActionCommand())) {
 			// Se si vuole accedere alla gestione delle tariffe
 			PriceManagementGUI priceGUI = new PriceManagementGUI();
 			priceGUI.setVisible(true);
 			adminGUI.setVisible(false);
-		} else if (event.getActionCommand().equals("Level Management")) {
+		} else if (LEVEL_MANAGEMENT.equals(event.getActionCommand())) {
 			// Se si vuole accedere alla gestione dei livelli
 			LevelManagementGUI levelGUI = new LevelManagementGUI();
 			levelGUI.setVisible(true);
 			adminGUI.setVisible(false);
 		}
-
 	}
 }

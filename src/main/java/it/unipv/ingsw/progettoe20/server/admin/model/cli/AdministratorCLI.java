@@ -39,7 +39,7 @@ public class AdministratorCLI {
 				PriceAdministratorCLI priceCLI = new PriceAdministratorCLI(scanner, insertText);
 			} else if (insertText.equals("lot")) {
 				// Se si vogliono modificare i posti auto
-				ParkingAdministratorCLI parkingCLI = new ParkingAdministratorCLI(scanner, insertText);
+				ParkingLotsAdministratorCLI parkingCLI = new ParkingLotsAdministratorCLI(scanner, insertText);
 			} else if (insertText.equals(ClientStrings.EXIT)) {
 				break;
 			}

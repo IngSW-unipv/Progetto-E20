@@ -1,5 +1,11 @@
 package it.unipv.ingsw.progettoe20.server.admin.view;
 
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.CONFIRM_BUTTON;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.HOME_BUTTON;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PARKINGLOTS_ADD;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PARKINGLOTS_MANAGEMENT;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PARKINGLOTS_REMOVE;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -11,14 +17,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import it.unipv.ingsw.progettoe20.server.admin.controller.ParkingListener;
+import it.unipv.ingsw.progettoe20.server.admin.controller.ParkingLotsListener;
 
 /**
  * Classe per la gestione del parcheggi. Si può modificare il numero di
  * parcheggi disponibili nella struttura.
  */
 
-public class ParkingManagementGUI extends AbstractGUI {
+public class ParkingLotsManagementGUI extends AbstractGUI {
 
 	private JComboBox<String> combo;
 	private JTextField levelname, parkinglots;
@@ -29,7 +35,7 @@ public class ParkingManagementGUI extends AbstractGUI {
 	/**
 	 * Inizializza una nuova istanza di ParkingManagementGUI.
 	 */
-	public ParkingManagementGUI() {
+	public ParkingLotsManagementGUI() {
 		super();
 	}
 
@@ -83,15 +89,15 @@ public class ParkingManagementGUI extends AbstractGUI {
 		panel = new JPanel();
 		panel2 = new JPanel();
 		panel3 = new JPanel();
-		title = new JLabel("PARKING MANAGEMENT");
+		title = new JLabel(PARKINGLOTS_MANAGEMENT);
 		inserthereLevel = new JLabel("Level name:  ");
 		insertherePLots = new JLabel("Parking lots:");
 		levelname = new JTextField(10);
 		parkinglots = new JTextField(10);
-		confirm = new JButton("Confirm");
-		home = new JButton("Home");
+		confirm = new JButton(CONFIRM_BUTTON);
+		home = new JButton(HOME_BUTTON);
 
-		String[] items = { "Add parkings", "Remove parkings" };
+		String[] items = { PARKINGLOTS_ADD, PARKINGLOTS_REMOVE };
 		combo = new JComboBox<>(items);
 
 		// frame settings
@@ -99,7 +105,7 @@ public class ParkingManagementGUI extends AbstractGUI {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(600, 400);
 		setLocationRelativeTo(null);
-		setTitle("PARKING MANAGEMENT GUI");
+		setTitle(PARKINGLOTS_MANAGEMENT);
 
 		// panel settings
 		panel.setBackground(new Color(30, 30, 30));
@@ -149,7 +155,7 @@ public class ParkingManagementGUI extends AbstractGUI {
 		combo.setFont(new Font(Font.MONOSPACED, 0, 16));
 
 		// locations settings
-		title.setBounds(250, 10, 500, 40);
+		title.setBounds(180, 10, 500, 40);
 		confirm.setBounds(190, 250, 200, 40);
 		panel2.setBounds(140, 150, 300, 30);
 		panel3.setBounds(140, 200, 300, 30);
@@ -173,7 +179,7 @@ public class ParkingManagementGUI extends AbstractGUI {
 
 	@Override
 	public void initListener() {
-		listener = new ParkingListener(this);
+		listener = new ParkingLotsListener(this);
 		confirm.addActionListener(listener);
 		home.addActionListener(listener);
 

@@ -2,12 +2,12 @@ package it.unipv.ingsw.progettoe20.server.admin.model.cli;
 
 import java.util.Scanner;
 
-public class ParkingAdministratorCLI extends AbstractAdministratorCLI {
+public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 
 	private String insertText;
 	private Scanner scanner;
 
-	public ParkingAdministratorCLI(Scanner scanner, String insertText) {
+	public ParkingLotsAdministratorCLI(Scanner scanner, String insertText) {
 		super(scanner, insertText);
 	}
 

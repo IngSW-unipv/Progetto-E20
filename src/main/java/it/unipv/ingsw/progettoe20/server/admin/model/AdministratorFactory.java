@@ -17,7 +17,7 @@ public class AdministratorFactory {
 	 */
 	private AdministratorFactory(final DatabaseFacade dbFacade) {
 		databaseFacade = dbFacade;
-		ParkingAdministrator.create(databaseFacade);
+		ParkingLotsAdministrator.create(databaseFacade);
 		LevelAdministrator.create(databaseFacade);
 		PriceAdministrator.create(databaseFacade);
 

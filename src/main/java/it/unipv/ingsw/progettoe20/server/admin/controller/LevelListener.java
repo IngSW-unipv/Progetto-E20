@@ -1,6 +1,8 @@
 package it.unipv.ingsw.progettoe20.server.admin.controller;
 
-import javax.swing.JOptionPane;
+import static it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorMessage.showError;
+import static it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorMessage.showInfo;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.LEVEL_ADD;
 
 import it.unipv.ingsw.progettoe20.server.admin.model.LevelAdministrator;
 import it.unipv.ingsw.progettoe20.server.admin.view.LevelManagementGUI;
@@ -69,34 +71,19 @@ public class LevelListener extends AbstractListener {
 	}
 
 	/**
-	 * Fa la chiamata al metodo dell'amministratore per aggiungere un livelo
+	 * Fa la chiamata al metodo dell'amministratore per aggiungere un livello
 	 *
-	 * @param name     nome del livello inserito
-	 * @param capacity disponibilità totale del nuovo livello
+	 * @param name           nome del livello inserito
+	 * @param newParkingLots disponibilità totale del nuovo livello
 	 */
-	private void addLvel(String name, int capacity) {
-		if (validationforAddLevel(name, capacity)) {
-			admin.addLevel(name, capacity);
-			JOptionPane.showMessageDialog(null, "Level " + name + " added", "Info", 1, null);
-		}
-	}
-
-	/**
-	 * Valida i dati inseriti nella GUI per compiere l'aggiunta di un livello
-	 *
-	 * @param name   nome del livello inserito
-	 * @param number disponibilità totale del nuovo livello
-	 * @return true se i dati sono validi
-	 */
-	private boolean validationforAddLevel(String name, int number) {
-		if (number < 0) {
-			JOptionPane.showMessageDialog(null, "the parking lot's number is not valid", "Error", 1, null);
-			return false;
-		} else if (name.isBlank()) {
-			JOptionPane.showMessageDialog(null, "the level name is not valid", "Error", 1, null);
-			return false;
+	private void addLevel(String name, int newParkingLots) {
+		if (newParkingLots < 0) {
+			showError("The parking lot's number is not valid");
+		} else if (name == null || name.isEmpty()) {
+			showError("The level name is not valid");
 		} else {
-			return true;
+			admin.addLevel(name, newParkingLots);
+			showInfo("Level " + name + " added");
 		}
 	}
 
@@ -106,26 +93,13 @@ public class LevelListener extends AbstractListener {
 	 * @param name nome del livello inserito
 	 */
 	private void removeLevel(String name) {
-		if (validationforRemoveLevel(name)) {
-			admin.removeLevel(name);
-			JOptionPane.showMessageDialog(null, "Level " + name + " removed", "Info", 1, null);
-		}
-
-	}
-
-	/**
-	 * Valida i dati inseriti nella GUI per compiere la rimozione di un livello
-	 *
-	 * @param name nome del livello inserito
-	 * @return true se i dati sono validi
-	 */
-	private boolean validationforRemoveLevel(String name) {
-		if (name.isBlank()) {
-			JOptionPane.showMessageDialog(null, "the parking lot's number is not valid", "Error", 1, null);
-			return false;
+		if (name.isEmpty()) {
+			showError("The parking lot's number is not valid");
 		} else {
-			return true;
+			admin.removeLevel(name);
+			showInfo("Level " + name + " removed");
 		}
+
 	}
 
 	@Override
@@ -135,15 +109,15 @@ public class LevelListener extends AbstractListener {
 			String name = enteredLevel();
 			int number = enteredParkingLots();
 
-			if (action.equals("Add Level")) {
+			if (LEVEL_ADD.equals(action)) {
 				// Aggiungi un livello
-				addLvel(name, number);
+				addLevel(name, number);
 			} else {
 				// Rimuovi un livello
 				removeLevel(name);
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 1, null);
+			showError("Error");
 		}
 	}
 

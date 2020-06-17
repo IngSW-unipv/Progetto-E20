@@ -1,28 +1,30 @@
 package it.unipv.ingsw.progettoe20.server.admin.controller;
 
-import javax.swing.JOptionPane;
+import static it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorMessage.showError;
+import static it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorMessage.showInfo;
+import static it.unipv.ingsw.progettoe20.server.admin.model.AdministratorConstants.PARKINGLOTS_ADD;
 
-import it.unipv.ingsw.progettoe20.server.admin.model.ParkingAdministrator;
-import it.unipv.ingsw.progettoe20.server.admin.view.ParkingManagementGUI;
+import it.unipv.ingsw.progettoe20.server.admin.model.ParkingLotsAdministrator;
+import it.unipv.ingsw.progettoe20.server.admin.view.ParkingLotsManagementGUI;
 
 /**
  * Listener che controlla le operazioni effettuate nella schermata del
  * ParkingManagementGUI Aggiunge o rimuove dei parcheggi.
  */
 
-public class ParkingListener extends AbstractListener {
+public class ParkingLotsListener extends AbstractListener {
 
-	private ParkingManagementGUI gui;
-	private ParkingAdministrator admin;
+	private ParkingLotsManagementGUI gui;
+	private ParkingLotsAdministrator admin;
 
 	/**
 	 * Crea una istanza di ParkingListener.
 	 *
 	 * @param gui the gui
 	 */
-	public ParkingListener(ParkingManagementGUI gui) {
+	public ParkingLotsListener(ParkingLotsManagementGUI gui) {
 		this.gui = gui;
-		admin = ParkingAdministrator.getInstance();
+		admin = ParkingLotsAdministrator.getInstance();
 	}
 
 	@Override
@@ -75,14 +77,14 @@ public class ParkingListener extends AbstractListener {
 	 * @param number numbero di posti auto da aggiungere/togliere
 	 */
 	public void updateParkingLots(String action, String name, int number) {
-		if (action.equals("Add parkings")) {
+		if (PARKINGLOTS_ADD.equals(action)) {
 			// Aggiunge parcheggi
 			int capacity = admin.addParkings(name, number);
-			JOptionPane.showMessageDialog(null, "available parkings: " + capacity, "Info", 1, null);
+			showInfo("Available parking lots: " + capacity);
 		} else {
 			// Rimuove dei parcheggi
 			int capacity = admin.removeParkings(name, number);
-			JOptionPane.showMessageDialog(null, "available parkings: " + capacity, "Info", 1, null);
+			showInfo("Available parking lots: " + capacity);
 		}
 	}
 
@@ -95,16 +97,16 @@ public class ParkingListener extends AbstractListener {
 
 			if (number < 0) {
 				// Se il numero di parcheggi inserito non è valido
-				JOptionPane.showMessageDialog(null, "the parking lot's number is not valid", "Error", 1, null);
-			} else if (name.isBlank()) {
+				showInfo("The parking lot's number is not valid");
+			} else if (name.isEmpty()) {
 				// Se il nome del livello non è valido
-				JOptionPane.showMessageDialog(null, "the level name is not valid", "Error", 1, null);
+				showInfo("The level name is not valid");
 			} else {
 				// Se tutte le informazioni sono valide
 				updateParkingLots(action, name, number);
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 1, null);
+			showError("Error");
 		}
 	}
 }

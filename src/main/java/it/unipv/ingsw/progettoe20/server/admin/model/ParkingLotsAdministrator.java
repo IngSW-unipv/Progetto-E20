@@ -7,15 +7,15 @@ import it.unipv.ingsw.progettoe20.server.model.Level;
  * Classe per la gestione dei parcheggi
  */
 
-public class ParkingAdministrator {
+public class ParkingLotsAdministrator {
 
-	private static ParkingAdministrator instance;
+	private static ParkingLotsAdministrator instance;
 	private DatabaseFacade databaseFacade;
 
 	/**
 	 * Costruttore privato --> Singleton
 	 */
-	private ParkingAdministrator(final DatabaseFacade dbFacade) {
+	private ParkingLotsAdministrator(final DatabaseFacade dbFacade) {
 		databaseFacade = dbFacade;
 
 	}
@@ -25,7 +25,7 @@ public class ParkingAdministrator {
 	 *
 	 * @return the instance
 	 */
-	public static ParkingAdministrator getInstance() {
+	public static ParkingLotsAdministrator getInstance() {
 		return instance;
 	}
 
@@ -35,7 +35,7 @@ public class ParkingAdministrator {
 	 * @param dbFacade the p database manager
 	 */
 	public static void create(final DatabaseFacade dbFacade) {
-		instance = new ParkingAdministrator(dbFacade);
+		instance = new ParkingLotsAdministrator(dbFacade);
 	}
 
 	/**
