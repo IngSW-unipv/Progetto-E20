@@ -2,7 +2,7 @@ package it.unipv.ingsw.progettoe20.server.cli;
 
 import it.unipv.ingsw.progettoe20.server.Logger;
 import it.unipv.ingsw.progettoe20.server.admin.model.AdministratorFactory;
-import it.unipv.ingsw.progettoe20.server.admin.model.cliAdministrator;
+import it.unipv.ingsw.progettoe20.server.admin.model.cli.AdministratorCLI;
 import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
@@ -25,7 +25,7 @@ public enum CommandStrategy {
     	@Override
     	public void command() {
             AdministratorFactory.create(DatabaseFacade.getInstance());
-            cliAdministrator cli= new cliAdministrator();
+            AdministratorCLI cli= new AdministratorCLI();
     	}
     },
 
