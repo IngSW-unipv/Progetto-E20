@@ -50,6 +50,10 @@ public class Main {
             DeleteTest deleteTest = new DeleteTest(in, out, dbFacade);
             deleteTest.test(generatedTicket);
 
+            // Testing database filling
+//            FillingTest fillingTest = new FillingTest(in, out, dbFacade);
+//            fillingTest.test();
+
             // End
             Logger.close();
             System.exit(0);
