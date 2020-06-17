@@ -138,7 +138,7 @@ public class LevelDao implements Dao<Level> {
             if (!result.next()) {
                 return false;
             }
-            //TODO STAMPA LE CONNESSIONE ATTIVE DA TOGLIERE (TEST USE)
+            //TODO STAMPA LE CONNESSIONE ATTIVE DA TOGLIERE (TEST USE )
             System.out.println("active---" + connectionPool.getPoolState().getActiveConnectionCount());
 
         } catch (SQLException e) {
