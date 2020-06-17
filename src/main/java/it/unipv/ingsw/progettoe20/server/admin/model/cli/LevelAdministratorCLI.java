@@ -34,7 +34,7 @@ public class LevelAdministratorCLI extends AbstractAdministratorCLI {
 			} else if (insertText.equals(EXIT_CLI)) {
 				// Se si vuole uscire
 				break;
-			} else {
+			} else if (insertText.equals(ADD_CLI)||insertText.equals(REMOVE_CLI)){
 				// Se si vuole aggiungere o togliere un livello
 
 				levelInput(insertText);

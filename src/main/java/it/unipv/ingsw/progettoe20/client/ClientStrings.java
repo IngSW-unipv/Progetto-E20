@@ -2,7 +2,7 @@ package it.unipv.ingsw.progettoe20.client;
 
 public class ClientStrings {
     public static final String COMMAND_CLI = "cli";
-
+    public static final String COMMAND_GEN = "gen";
     public static final String GUI_STARTED = "GUI Started";
     public static final String EXIT = "exit";
 

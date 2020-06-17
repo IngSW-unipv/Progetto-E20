@@ -36,7 +36,7 @@ public class PriceAdministratorCLI extends AbstractAdministratorCLI {
 			} else if (insertText.equals(EXIT_CLI)) {
 				// Se si vuole uscire
 				break;
-			} else {
+			} else if (insertText.equals(MAXIMUM_CLI)||insertText.equals(MINIMUM_CLI)||insertText.equals(HOURLY_CLI)){
 				// Se si vuole modificare una tariffa
 				System.out.println("Digita la nuova tariffa");
 				String insertPrice = scanner.next();
