@@ -8,7 +8,11 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-//TODO JAVADOC
+
+/**
+ *  Classe che viene usata nel pattern command per collegare i vari comandi di gestione delle richieste
+ *  a stringhe predefinite all'interno di una hash map.
+ */
 
 public class RequestMap {
     private final Map<String, Command> REQUESTS;

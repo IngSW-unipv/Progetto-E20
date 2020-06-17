@@ -4,12 +4,16 @@ import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
-//TODO JAVADOC
+
+/**
+ * comando che gestisce le richieste di controllo dell'id
+ */
 public class CommandCheck extends Command {
 
     public CommandCheck(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);
     }
+
 
     @Override
     public boolean handleRequest(String s) {

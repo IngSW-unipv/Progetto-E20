@@ -19,7 +19,7 @@ public class LevelListener extends AbstractListener {
 	/**
 	 * Crea una istanza di LevelListener.
 	 *
-	 * @param gui the gui
+	 * @param gui istanza di LevelManagementGUI
 	 */
 	public LevelListener(LevelManagementGUI gui) {
 		this.gui = gui;
