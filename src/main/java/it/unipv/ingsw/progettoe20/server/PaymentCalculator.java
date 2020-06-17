@@ -6,6 +6,10 @@ import it.unipv.ingsw.progettoe20.server.model.Ticket;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Contiene il metodo per calcolare il pagamento
+ */
+
 public class PaymentCalculator {
 
     /**

@@ -1,5 +1,8 @@
 package it.unipv.ingsw.progettoe20.server.cli;
 
+/**
+ * Stringhe per linea di comando admin
+ */
 public class CommandStrings {
 	// Commands
 	public static final String EXIT = "exit";

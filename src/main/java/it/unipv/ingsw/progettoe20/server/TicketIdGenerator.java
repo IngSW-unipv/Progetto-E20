@@ -8,6 +8,8 @@ import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import it.unipv.ingsw.progettoe20.server.model.Level;
 
+//TODO JAVADOC
+
 public class TicketIdGenerator {
     private DatabaseFacade dbFacade;
     private final int lungId = 8;

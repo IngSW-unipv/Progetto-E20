@@ -2,6 +2,9 @@ package it.unipv.ingsw.progettoe20;
 
 import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 
+/**
+ * Definizione delle stringhe di errore.
+ */
 public class ErrorStrings {
     public static final String SERVER_START_FAIL = "Can't start server!";
 
