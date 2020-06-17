@@ -10,9 +10,9 @@ import javax.swing.*;
 
 
 /**
- * Tester per il client ExitColumn.
+ * MainExitColumn per il client ExitColumn.
  */
-public class Tester {
+public class MainExitColumn {
 
     /**
      * Main del tester.
