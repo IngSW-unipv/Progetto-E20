@@ -7,7 +7,7 @@ import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import java.io.PrintWriter;
 
 /**
- * comando che gestisce le richieste di controllo dell'accettazione del pagamento collegato a un ticket.
+ * Comando che gestisce le richieste di controllo dell'accettazione del pagamento collegato a un ticket.
  */
 public class CommandPayCheck extends Command {
     public CommandPayCheck(DatabaseFacade dbFacade, PrintWriter out) {
@@ -15,11 +15,11 @@ public class CommandPayCheck extends Command {
     }
 
     @Override
-    public boolean handleRequest(String s) {
+    public boolean handleRequest(String request) {
         try {
-            if (!dbFacade.getTicketById(s).isPaid()) {
+            if (!dbFacade.getTicketById(request).isPaid()) {
                 out.println(Protocol.RESPONSE_PAID_FALSE);
-            } else if (!dbFacade.getTicketById(s).obliterationCheck()) {
+            } else if (!dbFacade.getTicketById(request).obliterationCheck()) {
                 out.println(Protocol.RESPONSE_PAID_TIME_EXPIRED);
             } else {
                 out.println(Protocol.RESPONSE_PAID_TRUE);

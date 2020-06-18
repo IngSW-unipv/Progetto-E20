@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 
 /**
- * comando che gestisce le richieste di accettazione di un pagamento
+ * Comando che gestisce le richieste di accettazione di un pagamento
  */
 public class CommandPayAccepted extends Command {
     public CommandPayAccepted(DatabaseFacade dbFacade, PrintWriter out) {
@@ -17,9 +17,9 @@ public class CommandPayAccepted extends Command {
     }
 
     @Override
-    public boolean handleRequest(String s) {
+    public boolean handleRequest(String request) {
         try {
-            Ticket ticket = dbFacade.getTicketById(s);
+            Ticket ticket = dbFacade.getTicketById(request);
             ticket.setEntranceTime(new Timestamp(System.currentTimeMillis()));
             ticket.setPaymentTime(new Timestamp(System.currentTimeMillis()));
             ticket.setPaid(true);

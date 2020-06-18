@@ -14,14 +14,13 @@ import it.unipv.ingsw.progettoe20.server.requestsHandling.RequestHandler;
  * Interfaccia di accesso al server. Si occupa di ricevere le richieste dei client.
  */
 public class ServerFacade {
-    private DatabaseFacade dbManager;
     private CommandLineInterface cli;
 
     /**
      * Inizializza il server.
      */
     public void init() {
-        dbManager = DatabaseFacade.getInstance();
+        DatabaseFacade dbManager = DatabaseFacade.getInstance();
         cli = new CommandLineInterface();
 
         dbManager.initDatabase();
@@ -38,7 +37,7 @@ public class ServerFacade {
             while (true) {
                 Socket socket = server.accept();
                 PrintWriter socketWriter = new PrintWriter(socket.getOutputStream(), true);
-                RequestHandler requestHandler = new RequestHandler(dbManager, socketWriter);
+                RequestHandler requestHandler = new RequestHandler(socketWriter);
                 ClientHandler clientHandler = new ClientHandler(socket, requestHandler,
                         ServerConstants.HANDLER_THREAD_NAME);
                 clientHandler.start();

@@ -5,7 +5,7 @@ import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import java.io.PrintWriter;
 
 /**
- * comando che gestisce le richieste di chiusura
+ * Comando che gestisce le richieste di chiusura
  */
 public class CommandEnd extends Command {
     public CommandEnd(DatabaseFacade dbFacade, PrintWriter out) {
@@ -13,7 +13,7 @@ public class CommandEnd extends Command {
     }
 
     @Override
-    public boolean handleRequest(String s) {
+    public boolean handleRequest(String request) {
         return true;
     }
 }

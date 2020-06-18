@@ -19,11 +19,12 @@ public abstract class Command {
     }
 
     /**
-     * metodo che gestisce la richiesta
-     * @param s
+     * Metodo che gestisce la richiesta
+     *
+     * @param request richiesta
      * @return false
      */
-    public boolean handleRequest(String s) {
+    public boolean handleRequest(String request) {
         return false;
     }
 }

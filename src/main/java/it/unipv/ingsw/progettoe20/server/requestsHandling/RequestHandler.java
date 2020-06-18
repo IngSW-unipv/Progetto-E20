@@ -13,22 +13,15 @@ import java.io.PrintWriter;
  * Verifica la presenza di comandi validi nella richiesta ed esegue l'azione corrispondente.
  */
 public class RequestHandler {
-    private DatabaseFacade dbFacade;
-    private PrintWriter out;
-    private TicketIdGenerator generator;
     private RequestMap requestMap;
 
     /**
      * Costruisce un RequestHandler.
      *
-     * @param dbFacade reference al DatabaseManager.
      * @param out      reference PrintWriter sulla socket associata.
      */
-    public RequestHandler(DatabaseFacade dbFacade, PrintWriter out) {
-        this.dbFacade = dbFacade;
-        this.out = out;
-        this.generator = new TicketIdGenerator(dbFacade);
-        requestMap = new RequestMap(dbFacade, out);
+    public RequestHandler(PrintWriter out) {
+        requestMap = new RequestMap(out);
     }
 
     /**
@@ -39,11 +32,11 @@ public class RequestHandler {
      * @throws IllegalArgumentException se la richiesta non è valida.
      */
     public boolean handle(String request) throws IllegalArgumentException {
-        try{
-        String[] parts = splitRequest(request);
-        Command command = requestMap.getREQUESTS().get(parts[0]);
-        return command.handleRequest(parts[1]);}
-        catch (NullPointerException n){
+        try {
+            String[] parts = splitRequest(request);
+            Command command = requestMap.getREQUESTS().get(parts[0]);
+            return command.handleRequest(parts[1]);
+        } catch (NullPointerException n) {
             return false;
         }
     }
