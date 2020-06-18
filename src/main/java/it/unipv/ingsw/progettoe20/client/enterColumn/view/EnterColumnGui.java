@@ -72,6 +72,7 @@ public class EnterColumnGui extends JFrame implements Observer{
 	public void initComponets() {
 		 //setTitleGui
 		  setTitle("Enter Column Gui");
+		  this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/ParkingPic.png")));
 		  //components declaration
 		  levelLabel=new JLabel();
 	      LotAvailability = new JLabel();
@@ -114,6 +115,7 @@ public class EnterColumnGui extends JFrame implements Observer{
 	      wIcon1.setHorizontalAlignment(SwingConstants.CENTER);
 	      wIcon2.setHorizontalAlignment(SwingConstants.RIGHT);
 	      wIcon1.setIcon(new ImageIcon(wPic1));    
+	      
 		
 	}
 

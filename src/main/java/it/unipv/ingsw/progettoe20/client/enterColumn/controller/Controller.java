@@ -90,6 +90,7 @@ public class Controller {
                 model.setAvailability();
                 g.setEmptyLevLabel();
                 model.setAvailability(model.getAvailability());
+                model.closeSocket();
             }
         }, 10000);
     }
