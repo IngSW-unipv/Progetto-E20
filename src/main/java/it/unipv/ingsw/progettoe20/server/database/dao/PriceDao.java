@@ -5,7 +5,6 @@ import it.unipv.ingsw.progettoe20.server.Logger;
 import it.unipv.ingsw.progettoe20.server.database.DBConstants;
 import it.unipv.ingsw.progettoe20.server.database.Queries;
 import it.unipv.ingsw.progettoe20.server.model.Price;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 
 import java.sql.*;
@@ -25,7 +24,7 @@ public class PriceDao implements Dao<Price> {
         Price price;
         try (Connection connection = connectionPool.getConnection();
              Statement stmt = connection.createStatement();
-             PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET);) {
+             PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET)) {
 
             if (!checkPriceByMinutes(minutes)) {
                 throw new IllegalArgumentException(ErrorStrings.PRICE_NOT_FOUND);
@@ -51,7 +50,7 @@ public class PriceDao implements Dao<Price> {
         List<Price> priceList = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              Statement stmt = connection.createStatement();
-             PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_GET_LIST);) {
+             PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_GET_LIST)) {
 
             ResultSet result = pstmt.executeQuery();
             while (result.next()) {
@@ -71,10 +70,10 @@ public class PriceDao implements Dao<Price> {
     @Override
     public void update(Price price) {
         try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();) {
+             Statement stmt = connection.createStatement()) {
 
             if (checkPriceByMinutes(price.getMinutes())) {
-                try (PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_UPDATE);) {
+                try (PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_UPDATE)) {
                     pstmt.setDouble(1, price.getPrice());
                     pstmt.setInt(2, price.getMinutes());
                     pstmt.executeUpdate();
@@ -82,7 +81,7 @@ public class PriceDao implements Dao<Price> {
                 }
 
             } else {
-                try (PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_NEW);) {
+                try (PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_NEW)) {
                     pstmt.setInt(1, price.getMinutes());
                     pstmt.setDouble(2, price.getPrice());
                     pstmt.executeUpdate();
@@ -101,7 +100,7 @@ public class PriceDao implements Dao<Price> {
     public void delete(Price price) {
         try (Connection connection = connectionPool.getConnection();
              Statement stmt = connection.createStatement();
-             PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_REMOVE);) {
+             PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_REMOVE)) {
             if (!checkPriceByMinutes(price.getMinutes())) {
                 throw new IllegalArgumentException(ErrorStrings.PRICE_NOT_FOUND);
             }
@@ -125,7 +124,7 @@ public class PriceDao implements Dao<Price> {
     public boolean checkPriceByMinutes(int minutes) throws IllegalArgumentException {
 
         try(Connection connection = connectionPool.getConnection();
-            Statement stmt = connection.createStatement();) {
+            Statement stmt = connection.createStatement()) {
 
             ResultSet result = stmt.executeQuery(Queries.PRICES_GET_LIST);
             while (result.next()) {
