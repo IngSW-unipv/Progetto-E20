@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import it.unipv.ingsw.progettoe20.server.Logger;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 
 import it.unipv.ingsw.progettoe20.server.database.dao.LevelDao;
@@ -132,17 +133,19 @@ public class DatabaseFacade {
      * Restituisce un ArrayList di stringhe con i nomi delle table presenti.
      *
      * @return un ArrayList di stringhe con i nomi delle table presenti.
-     * @throws SQLException se ci sono problemi nell'accesso al database.
      */
-    private ArrayList<String> getTablesList() throws SQLException {
+    private ArrayList<String> getTablesList() {
         ArrayList<String> response = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection(); Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(Queries.LIST_DB_TABLES);
             while (rs.next()) {
                 response.add(rs.getString(1)); // 1 = first column
             }
-            return response;
+        } catch (SQLException sqle) {
+            Logger.log(sqle.getMessage());
         }
+        return response;
+
     }
 
     /**
