@@ -7,7 +7,7 @@ import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 /**
- * classe che contiene tutti i possibili comandi della cli
+ * Classe che contiene tutti i possibili comandi della cli
  */
 public enum CommandStrategy {
     PING {
@@ -24,12 +24,12 @@ public enum CommandStrategy {
             AdministratorGUI adminGui = new AdministratorGUI();
         }
     },
-    CLI{
-    	@Override
-    	public void command() {
+    CLI {
+        @Override
+        public void command() {
             AdministratorFactory.create(DatabaseFacade.getInstance());
-            AdministratorCLI cli= new AdministratorCLI();
-    	}
+            AdministratorCLI cli = new AdministratorCLI();
+        }
     },
 
     EXIT {
