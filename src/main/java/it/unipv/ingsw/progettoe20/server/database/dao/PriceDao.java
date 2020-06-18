@@ -23,7 +23,6 @@ public class PriceDao implements Dao<Price> {
         int minutes = Integer.parseInt(minutesText);
         Price price;
         try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();
              PreparedStatement pstmt = connection.prepareStatement(Queries.LEVEL_GET)) {
 
             if (!checkPriceByMinutes(minutes)) {
@@ -49,7 +48,6 @@ public class PriceDao implements Dao<Price> {
         Price price;
         List<Price> priceList = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();
              PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_GET_LIST)) {
 
             ResultSet result = pstmt.executeQuery();
@@ -69,8 +67,7 @@ public class PriceDao implements Dao<Price> {
 
     @Override
     public void update(Price price) {
-        try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement()) {
+        try (Connection connection = connectionPool.getConnection()) {
 
             if (checkPriceByMinutes(price.getMinutes())) {
                 try (PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_UPDATE)) {
@@ -99,7 +96,6 @@ public class PriceDao implements Dao<Price> {
     @Override
     public void delete(Price price) {
         try (Connection connection = connectionPool.getConnection();
-             Statement stmt = connection.createStatement();
              PreparedStatement pstmt = connection.prepareStatement(Queries.PRICES_REMOVE)) {
             if (!checkPriceByMinutes(price.getMinutes())) {
                 throw new IllegalArgumentException(ErrorStrings.PRICE_NOT_FOUND);
@@ -123,8 +119,8 @@ public class PriceDao implements Dao<Price> {
      */
     public boolean checkPriceByMinutes(int minutes) throws IllegalArgumentException {
 
-        try(Connection connection = connectionPool.getConnection();
-            Statement stmt = connection.createStatement()) {
+        try (Connection connection = connectionPool.getConnection();
+             Statement stmt = connection.createStatement()) {
 
             ResultSet result = stmt.executeQuery(Queries.PRICES_GET_LIST);
             while (result.next()) {

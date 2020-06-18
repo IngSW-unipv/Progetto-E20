@@ -9,12 +9,6 @@ public class Queries {
     public static final String LIST_DB_TABLES = "SHOW TABLES;";
 
     /**
-     * Crea un database. Necessita di una stringa consecutiva che specifichi il nome
-     * del database.
-     */
-    public static final String CREATE_DB = "CREATE DATABASE "; // with PreparedStatement don't work because of ''
-
-    /**
      * Crea la tabella dei ticket.
      */
     public static final String CREATE_TABLE_TICKETS = "CREATE TABLE " + DBConstants.TICKET_TABLE + " ("
