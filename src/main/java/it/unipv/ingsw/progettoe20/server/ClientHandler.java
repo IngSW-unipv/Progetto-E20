@@ -40,16 +40,14 @@ public class ClientHandler extends Thread {
 				String request = listenSocket(socket.getInputStream());
 				end = requestHandler.handle(request);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException ie) {
-			Logger.log(ie.getMessage());
+		} catch (IOException | IllegalArgumentException e) {
+			Logger.log(e.getMessage());
 		}
 
 		try {
 			socket.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.log(e.getMessage());
 		}
 	}
 
