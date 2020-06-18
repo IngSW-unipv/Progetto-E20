@@ -12,4 +12,7 @@ public class ClientStrings {
     public static final String ERROR_GENERIC = "Error!";
     public static final String ERROR_SOCKET = "Socket Error";
     public static final String PERFORM_REQUEST = "perform request...";
+    public static final String NO_CONNECTION = "No Connection!";
+    public static final String THANKS = "Thank you and goodbye!";
+
 }

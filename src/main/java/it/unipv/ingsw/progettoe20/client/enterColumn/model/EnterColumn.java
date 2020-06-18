@@ -52,7 +52,7 @@ public class EnterColumn extends Observable {
             isConnected = true;
             checkInputType();
         } catch (IOException i) {
-        	System.out.println("No Connection!");
+        	System.out.println(ClientStrings.NO_CONNECTION);
             isConnected = false;
         }
     }

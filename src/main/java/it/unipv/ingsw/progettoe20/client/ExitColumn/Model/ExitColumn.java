@@ -40,6 +40,7 @@ public class ExitColumn {
             isConnected = true;
             checkInputType(); //verifica se viene utilizzata GUI o cli
         } catch (IOException i) {
+            System.out.println(ClientStrings.NO_CONNECTION);
             isConnected = false;
         }
     }
@@ -83,6 +84,7 @@ public class ExitColumn {
                 System.out.println(answer);
                 if (answer.equals(Protocol.RESPONSE_PAID_TRUE)) {
                     deleteTicket(id);       //commentarlo in caso di test per prevenire cancellazione record
+                    System.out.println(ClientStrings.THANKS);
                     return ResponseEnum.CONFIRMED_EXIT;
                 } else return ResponseEnum.NO_PAID;
             } catch (IOException i) {
