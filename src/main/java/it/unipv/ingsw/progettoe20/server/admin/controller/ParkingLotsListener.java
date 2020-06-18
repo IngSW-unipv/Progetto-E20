@@ -79,11 +79,11 @@ public class ParkingLotsListener extends AbstractListener {
 	public void updateParkingLots(String action, String name, int number) {
 		if (PARKINGLOTS_ADD.equals(action)) {
 			// Aggiunge parcheggi
-			int capacity = admin.addParkings(name, number);
+			int capacity = admin.addParkingsLots(name, number);
 			showInfo("Available parking lots: " + capacity);
 		} else {
 			// Rimuove dei parcheggi
-			int capacity = admin.removeParkings(name, number);
+			int capacity = admin.removeParkingsLots(name, number);
 			showInfo("Available parking lots: " + capacity);
 		}
 	}

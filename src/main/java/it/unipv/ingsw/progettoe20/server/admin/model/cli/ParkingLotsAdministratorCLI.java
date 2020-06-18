@@ -75,7 +75,7 @@ public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 	 */
 	public void addLot(String name, int total) {
 
-		ParkingLotsAdministrator.getInstance().addParkings(name, total);
+		ParkingLotsAdministrator.getInstance().addParkingsLots(name, total);
 		System.out.println("New " + total + " parking lots added to level " + name);
 
 	}
@@ -88,7 +88,7 @@ public class ParkingLotsAdministratorCLI extends AbstractAdministratorCLI {
 	 */
 	public void removeLot(String name, int total) {
 
-		ParkingLotsAdministrator.getInstance().removeParkings(name, total);
+		ParkingLotsAdministrator.getInstance().removeParkingsLots(name, total);
 		System.out.println(total + " parking lots removed from level " + name);
 
 	}

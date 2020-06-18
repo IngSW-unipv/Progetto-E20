@@ -45,7 +45,7 @@ public class ParkingLotsAdministrator {
 	 * @param n    numero di parcheggi da aggiungere
 	 * @return newTotal nuova disponibilità totale
 	 */
-	public int addParkings(String name, int n) {
+	public int addParkingsLots(String name, int n) {
 		Level level = databaseFacade.getLevelByName(name);
 		int newTotal = level.getTotal() + n;
 		int newAvailable = level.getAvailable() + n;
@@ -63,7 +63,7 @@ public class ParkingLotsAdministrator {
 	 * @param n    numero di posti da togliere
 	 * @return newTotal nuova disponibilità totale
 	 */
-	public int removeParkings(String name, int n) {
+	public int removeParkingsLots(String name, int n) {
 		Level level = databaseFacade.getLevelByName(name);
 		int newTotal = level.getTotal() - n;
 		int newAvailable = level.getAvailable() - n;
