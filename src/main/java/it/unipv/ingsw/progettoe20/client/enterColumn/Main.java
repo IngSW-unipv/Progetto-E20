@@ -23,8 +23,8 @@ import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
 		 * @throws IOException the io exception
 		 */
 		public static void main(String[] args) throws IOException {
-				 args = new String[1];
-		         args[0] = "cli"; //per testare velocemente l'interfaccia testuale
+				 //args = new String[1];
+		         //args[0] = "cli"; //per testare velocemente l'interfaccia testuale
 				 if (args.length != 0 && args[0].equals("cli")) {
 					 EnterColumn A1= new EnterColumn(args[0]);
 					 
