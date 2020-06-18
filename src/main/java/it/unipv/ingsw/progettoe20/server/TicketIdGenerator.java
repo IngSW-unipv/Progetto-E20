@@ -1,6 +1,5 @@
 package it.unipv.ingsw.progettoe20.server;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -17,14 +16,14 @@ public class TicketIdGenerator {
     private final int lungId = 8;
     private List<Level> levelList;
     private int contLevel;
-    private Boolean check;
+    private boolean check;
     private String levelName;
-    private String[] alfaCharacters = {"a", "b", "c", "d", "e", "f", "g", "h", "i",
+    private final String[] alfaCharacters = {"a", "b", "c", "d", "e", "f", "g", "h", "i",
             "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "z", "y",
             "j", "k", "x", "w", "A", "B", "C", "D", "E", "F", "G", "H", "I",
             "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "Z", "Y",
             "J", "K", "X", "W"};
-    private String[] numCharacters = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+    private final String[] numCharacters = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 
     private Random rand = new Random();
 
@@ -33,21 +32,13 @@ public class TicketIdGenerator {
     }
 
     public String getAvailableLevel() {
-        levelList = new ArrayList<>();
+        levelName = "";
         levelList = dbFacade.getLevelList();
         contLevel = levelList.size();
         check = false;
-        boolean checkLevelsAbsence;
+
         if (contLevel != 0) {
-            checkLevelsAbsence = true;
-        } else {
-            checkLevelsAbsence = false;
-        }
-        int i = 0;
-        levelName = "";
-        if (!checkLevelsAbsence) {
-            levelName = Protocol.RESPONSE_NO_LEVEL;
-        } else {
+            int i = 0;
             do {
                 if (!check) {
                     if (levelList.get(i).getAvailable() != 0) {
@@ -60,12 +51,13 @@ public class TicketIdGenerator {
             if (!check) {
                 levelName = Protocol.RESPONSE_NO_LEVEL;
             }
+        } else {
+            levelName = Protocol.RESPONSE_NO_LEVEL;
         }
         return levelName;
     }
 
     public String generateId() {
-
         // ottengo la lunghezza di ogni array
         int lungCaratteri = alfaCharacters.length;
         int lungNumeri = numCharacters.length;
@@ -89,11 +81,9 @@ public class TicketIdGenerator {
                     randomString.append(numCharacters[n]);
                 }
 
-
             }
             // se la stringa generata dovesse superare il numero di caratteri
             // richiesto, la taglio.
-
             if (randomString.length() > lungId) {
                 randomString = new StringBuilder(randomString.substring(0, lungId));
             }
