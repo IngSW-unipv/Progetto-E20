@@ -21,8 +21,7 @@ public class Main {
 
         ServerFacade serverFacade = new ServerFacade();
         serverFacade.init();
-        //necessario doppio inserimento password
-        DatabaseFacade dbFacade = new DatabaseFacade();
+        DatabaseFacade dbFacade = DatabaseFacade.getInstance();
         new Thread(serverFacade::start).start();
 
         String generatedTicket;

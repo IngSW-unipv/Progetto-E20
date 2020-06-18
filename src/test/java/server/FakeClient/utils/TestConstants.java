@@ -13,7 +13,7 @@ public class TestConstants {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     // Strings for tests
-    public static final String TEST_WELCOME = (ANSI_BLUE + "The password will be asked a first time to start the server, then a second time to open another connection to the database.\nThis is a minor inconvenience for testing but helps in keeping the code clean." + ANSI_RESET);
+    public static final String TEST_WELCOME = (ANSI_BLUE + "Test starting" + ANSI_RESET);
     public static final String TEST_TITLE = (ANSI_BLUE + "####### TESTING %s #######" + ANSI_RESET);
     public static final String TEST_SUCCESS = (ANSI_GREEN + "[OK] Test passed" + ANSI_RESET);
     public static final String TEST_FAIL = (ANSI_RED + "[FAIL] Test failed: %s" + ANSI_RESET);
