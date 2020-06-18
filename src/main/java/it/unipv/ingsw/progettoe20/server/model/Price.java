@@ -22,7 +22,7 @@ public class Price implements Comparable<Price> {
     /**
      * getter minuti.
      *
-     * @return  minuti
+     * @return minuti
      */
     public int getMinutes() {
         return minutes;
@@ -40,7 +40,7 @@ public class Price implements Comparable<Price> {
     /**
      * setter minuti.
      *
-     * @param minutes  minuti
+     * @param minutes minuti
      */
     public void setMinutes(int minutes) {
         this.minutes = minutes;
@@ -49,7 +49,7 @@ public class Price implements Comparable<Price> {
     /**
      * setter prezzo.
      *
-     * @param price  prezzo
+     * @param price prezzo
      */
     public void setPrice(double price) {
         this.price = price;
@@ -57,10 +57,6 @@ public class Price implements Comparable<Price> {
 
     @Override
     public int compareTo(Price p) {
-        if (minutes == p.minutes) {
-            return 0;
-        } else if (minutes > p.minutes) {
-            return 1;
-        } else return -1;
+        return Integer.compare(minutes, p.minutes);
     }
 }

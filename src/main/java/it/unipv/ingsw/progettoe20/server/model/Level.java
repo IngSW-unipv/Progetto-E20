@@ -46,7 +46,7 @@ public class Level {
     /**
      * getter nome.
      *
-     * @return  nome
+     * @return nome
      */
     public String getName() {
         return name;
@@ -55,7 +55,7 @@ public class Level {
     /**
      * getter posti disponibili.
      *
-     * @return  posti disponibili
+     * @return posti disponibili
      */
     public int getAvailable() {
         return available;
