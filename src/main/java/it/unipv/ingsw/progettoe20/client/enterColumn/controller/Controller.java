@@ -21,7 +21,7 @@ import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
 public class Controller {
     private EnterColumnGui g;
     private EnterColumn model;
-
+    private Timer timer;
     /**
      * Instantiates a new Controller.
      *
@@ -34,6 +34,14 @@ public class Controller {
         this.model = model;
         checkConn();
         initListener();
+        timer=new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+        	  @Override
+        	  public void run() {
+        	    model.setAvailability();
+        	    model.setAvailability(model.getAvailability());;
+        	  }
+        	}, 10*1000, 10*1000);
     }
 
     /**

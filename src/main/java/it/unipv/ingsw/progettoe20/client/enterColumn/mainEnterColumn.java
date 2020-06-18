@@ -14,7 +14,7 @@ import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
 	/**
 	 * The type Test.
 	 */
-	public class Main {
+	public class mainEnterColumn {
 
 		/**
 		 * The entry point of application.
