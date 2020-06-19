@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class CommandLineInterface extends Thread {
 
     public void run() {
-        String command = null;
+        String command;
         Scanner in = new Scanner(System.in);
-        while (true){
+        while (true) {
             command = in.nextLine();
             CommandHandler.handle(command);
         }

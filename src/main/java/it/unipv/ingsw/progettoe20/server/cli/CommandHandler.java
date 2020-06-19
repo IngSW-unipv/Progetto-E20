@@ -1,25 +1,20 @@
 package it.unipv.ingsw.progettoe20.server.cli;
 
-import it.unipv.ingsw.progettoe20.server.Logger;
-import it.unipv.ingsw.progettoe20.server.admin.model.AdministratorFactory;
-import it.unipv.ingsw.progettoe20.server.admin.view.AdministratorGUI;
-import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 /**
- * The type Command handler.
+ * Interpreta e risponde al comando.
  */
-
 class CommandHandler {
-	/**
-	 * Handle.
-	 *
-	 * @param command the command
-	 */
-	static void handle(String command) {
-		try {
-			CommandStrategy.valueOf(command.toUpperCase()).command();
-		} catch (IllegalArgumentException i){
-			System.out.println("Invalid Statement");
-		}
-	}
+    /**
+     * Interpreta e risponde al comando.
+     *
+     * @param command il comando
+     */
+    static void handle(String command) {
+        try {
+            CommandStrategy.valueOf(command.toUpperCase()).command();
+        } catch (IllegalArgumentException i) {
+            System.out.println(CommandStrings.ERROR_INVALID_STATEMENT);
+        }
+    }
 }

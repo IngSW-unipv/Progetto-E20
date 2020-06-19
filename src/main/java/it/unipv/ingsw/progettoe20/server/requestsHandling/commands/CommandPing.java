@@ -1,11 +1,12 @@
 package it.unipv.ingsw.progettoe20.server.requestsHandling.commands;
 
+import it.unipv.ingsw.progettoe20.Protocol;
 import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 
 import java.io.PrintWriter;
 
 /**
- * comando che gestisce le richieste di ping del server
+ * Comando che gestisce le richieste di ping del server
  */
 public class CommandPing extends Command {
 
@@ -14,8 +15,8 @@ public class CommandPing extends Command {
     }
 
     @Override
-    public boolean handleRequest(String s) {
-        out.println("pong");
+    public boolean handleRequest(String request) {
+        out.println(Protocol.PONG);
         return false;
     }
 }

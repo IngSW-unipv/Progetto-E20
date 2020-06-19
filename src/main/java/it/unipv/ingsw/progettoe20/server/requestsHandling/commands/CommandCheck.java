@@ -6,7 +6,7 @@ import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import java.io.PrintWriter;
 
 /**
- * comando che gestisce le richieste di controllo dell'id
+ * Comando che gestisce le richieste di controllo dell'id
  */
 public class CommandCheck extends Command {
 
@@ -16,8 +16,8 @@ public class CommandCheck extends Command {
 
 
     @Override
-    public boolean handleRequest(String s) {
-        if (dbFacade.checkTicketById(s)) {
+    public boolean handleRequest(String request) {
+        if (dbFacade.checkTicketById(request)) {
             out.println(Protocol.RESPONSE_ID_FOUND);
         } else out.println(Protocol.RESPONSE_ID_NOT_FOUND);
         return false;

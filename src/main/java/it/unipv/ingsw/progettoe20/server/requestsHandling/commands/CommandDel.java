@@ -10,24 +10,21 @@ import java.io.PrintWriter;
 import java.util.List;
 
 /**
- * comando che gestisce le richieste di cancellazione dei ticket
+ * Comando che gestisce le richieste di cancellazione dei ticket
  */
 public class CommandDel extends Command {
 
-    private TicketIdGenerator generator;
-    private List<Level> levelList;
 
     public CommandDel(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);
-        this.generator = new TicketIdGenerator(dbFacade);
     }
 
 
     @Override
-    public boolean handleRequest(String s) {
+    public boolean handleRequest(String request) {
         try {
-            Level livello = dbFacade.getLevelByName(dbFacade.getTicketById((s)).getLevelName());
-            dbFacade.removeTicket(dbFacade.getTicketById(s));
+            Level livello = dbFacade.getLevelByName(dbFacade.getTicketById((request)).getLevelName());
+            dbFacade.removeTicket(dbFacade.getTicketById(request));
             livello.increaseAvailable();
             dbFacade.updateLevel(livello);
             out.println(Protocol.RESPONSE_OK);

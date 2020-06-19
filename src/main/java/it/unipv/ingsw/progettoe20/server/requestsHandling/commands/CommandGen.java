@@ -9,21 +9,19 @@ import it.unipv.ingsw.progettoe20.server.model.Level;
 import it.unipv.ingsw.progettoe20.server.model.Ticket;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 /**
- * comando che gestisce le richieste di generazione dei ticket
+ * Comando che gestisce le richieste di generazione dei ticket
  */
 public class CommandGen extends Command {
     private TicketIdGenerator generator;
-    private List<Level> levelList;
     public CommandGen(DatabaseFacade dbFacade, PrintWriter out) {
         super(dbFacade, out);
         this.generator = new TicketIdGenerator(dbFacade);
     }
 
     @Override
-    public boolean handleRequest(String s)  {
+    public boolean handleRequest(String request)  {
         String id;
         do {
             id = generator.generateId();

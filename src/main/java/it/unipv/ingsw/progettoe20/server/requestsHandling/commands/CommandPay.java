@@ -8,7 +8,7 @@ import it.unipv.ingsw.progettoe20.server.database.DatabaseFacade;
 import java.io.PrintWriter;
 
 /**
- * comando che gestisce le richieste di calcolo del pagamento
+ * Comando che gestisce le richieste di calcolo del pagamento
  */
 public class CommandPay extends Command {
     public CommandPay(DatabaseFacade dbFacade, PrintWriter out) {
@@ -16,10 +16,10 @@ public class CommandPay extends Command {
     }
 
     @Override
-    public boolean handleRequest(String s) {
+    public boolean handleRequest(String request) {
         try {
-            if (dbFacade.checkTicketById(s)) {
-                double amount = PaymentCalculator.getPaymentAmount(dbFacade.getTicketById(s), dbFacade.getPriceList());
+            if (dbFacade.checkTicketById(request)) {
+                double amount = PaymentCalculator.getPaymentAmount(dbFacade.getTicketById(request), dbFacade.getPriceList());
                 out.println(amount);
             } else out.println(Protocol.RESPONSE_ERROR);
 

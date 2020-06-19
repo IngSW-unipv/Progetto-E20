@@ -19,28 +19,28 @@ public class CommandTotAva extends Command {
     }
 
     @Override
-    public boolean handleRequest(String s)  {
+    public boolean handleRequest(String request) {
         try {
             List<Level> levelList;
-            
+
             levelList = dbFacade.getLevelList();
             int contLevel = levelList.size();
-            
+
             int i = 0, totalLot = 0;
-            if (contLevel!=0) {
-            do {
-                totalLot += levelList.get(i).getAvailable();
-                i++;
-            } while (i < contLevel);
-            out.println(Protocol.RESPONSE_OK + Protocol.SEPARATOR + totalLot);}
-            else {
-            	out.println(Protocol.RESPONSE_OK + Protocol.SEPARATOR + "0");
+            if (contLevel != 0) {
+                do {
+                    totalLot += levelList.get(i).getAvailable();
+                    i++;
+                } while (i < contLevel);
+                out.println(Protocol.RESPONSE_OK + Protocol.SEPARATOR + totalLot);
+            } else {
+                out.println(Protocol.RESPONSE_OK + Protocol.SEPARATOR + "0");
             }
         } catch (IllegalArgumentException i) {
             Logger.log(i.getMessage());
             out.println(Protocol.RESPONSE_ERROR + Protocol.SEPARATOR + i.getMessage());
         }
-        
+
         return false;
     }
 }

@@ -17,8 +17,8 @@ public class Ticket {
     /**
      * Costruttore Ticket tramite id.
      *
-     * @param id  id
-     * @throws IllegalArgumentException  illegal argument exception
+     * @param id id
+     * @throws IllegalArgumentException illegal argument exception
      */
     public Ticket(String id) throws IllegalArgumentException {
         checkIdLength(id);
@@ -31,11 +31,11 @@ public class Ticket {
     /**
      * Costruttore Ticket tramite tutte le sue variabili.
      *
-     * @param id            id
-     * @param entranceTime  tempo di entrata
-     * @param paymentTime   tempo di pagamento
-     * @param paid          booleano stato pagamento
-     * @throws IllegalArgumentException  illegal argument exception
+     * @param id           id
+     * @param entranceTime tempo di entrata
+     * @param paymentTime  tempo di pagamento
+     * @param paid         booleano stato pagamento
+     * @throws IllegalArgumentException illegal argument exception
      */
     public Ticket(String id, Timestamp entranceTime, Timestamp paymentTime, boolean paid) throws IllegalArgumentException {
         checkIdLength(id);
@@ -54,7 +54,7 @@ public class Ticket {
     /**
      * Getter id.
      *
-     * @return  id
+     * @return id
      */
     public String getId() {
         return id;
@@ -63,7 +63,7 @@ public class Ticket {
     /**
      * Getter tempo di entrata.
      *
-     * @return  tempo di entrata
+     * @return tempo di entrata
      */
     public Timestamp getEntranceTime() {
         return entranceTime;
@@ -85,7 +85,7 @@ public class Ticket {
      * @return un booleano di verifica.
      */
     public boolean obliterationCheck() {
-        if (paymentTime==null) return false;
+        if (paymentTime == null) return false;
 
         Timestamp callTime = new Timestamp(System.currentTimeMillis());
         long diff = callTime.getTime() - paymentTime.getTime();
@@ -124,7 +124,7 @@ public class Ticket {
     /**
      * check booleano pagamento.
      *
-     * @return  booleano
+     * @return booleano
      */
     public boolean isPaid() {
         return paid;

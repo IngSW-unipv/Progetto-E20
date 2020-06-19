@@ -10,24 +10,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *  Classe che viene usata nel pattern command per collegare i vari comandi di gestione delle richieste
- *  a stringhe predefinite all'interno di una hash map.
+ * Classe che viene usata nel pattern command per collegare i vari comandi di gestione delle richieste
+ * a stringhe predefinite all'interno di una hash map.
  */
 
 public class RequestMap {
     private final Map<String, Command> REQUESTS;
 
-    public RequestMap(DatabaseFacade db, PrintWriter out) {
+    public RequestMap(PrintWriter out) {
+        DatabaseFacade dbFacade = DatabaseFacade.getInstance();
         final Map<String, Command> requests = new HashMap<>();
-        requests.put(Protocol.PING, new CommandPing(db, out));
-        requests.put(Protocol.REQUEST_GENERATE_ID, new CommandGen(db, out));
-        requests.put(Protocol.REQUEST_CHECK_ID, new CommandCheck(db, out));
-        requests.put(Protocol.REQUEST_PAY_AMOUNT, new CommandPay(db, out));
-        requests.put(Protocol.REQUEST_DELETE_ID, new CommandDel(db, out));
-        requests.put(Protocol.REQUEST_PAYMENT_CHECK, new CommandPayCheck(db, out));
-        requests.put(Protocol.REQUEST_TOTAL_AVAILABILITY, new CommandTotAva(db, out));
-        requests.put(Protocol.REQUEST_PAYMENT_ACCEPTED, new CommandPayAccepted(db, out));
-        requests.put(Protocol.REQUEST_END, new CommandEnd(db, out));
+        requests.put(Protocol.PING, new CommandPing(dbFacade, out));
+        requests.put(Protocol.REQUEST_GENERATE_ID, new CommandGen(dbFacade, out));
+        requests.put(Protocol.REQUEST_CHECK_ID, new CommandCheck(dbFacade, out));
+        requests.put(Protocol.REQUEST_PAY_AMOUNT, new CommandPay(dbFacade, out));
+        requests.put(Protocol.REQUEST_DELETE_ID, new CommandDel(dbFacade, out));
+        requests.put(Protocol.REQUEST_PAYMENT_CHECK, new CommandPayCheck(dbFacade, out));
+        requests.put(Protocol.REQUEST_TOTAL_AVAILABILITY, new CommandTotAva(dbFacade, out));
+        requests.put(Protocol.REQUEST_PAYMENT_ACCEPTED, new CommandPayAccepted(dbFacade, out));
+        requests.put(Protocol.REQUEST_END, new CommandEnd(dbFacade, out));
 
         REQUESTS = Collections.unmodifiableMap(requests);
     }
