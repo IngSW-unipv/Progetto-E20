@@ -5,7 +5,8 @@ package it.unipv.ingsw.progettoe20.client.enterColumn;
 
 	import javax.swing.JFrame;
 
-	import it.unipv.ingsw.progettoe20.client.ObliterationColumn.oblModel.ObliterationColumn;
+import it.unipv.ingsw.progettoe20.client.ClientStrings;
+import it.unipv.ingsw.progettoe20.client.ObliterationColumn.oblModel.ObliterationColumn;
 	import it.unipv.ingsw.progettoe20.client.enterColumn.controller.Controller;
 import it.unipv.ingsw.progettoe20.client.enterColumn.model.EnterColumn;
 import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
@@ -23,9 +24,9 @@ import it.unipv.ingsw.progettoe20.client.enterColumn.view.EnterColumnGui;
 		 * @throws IOException the io exception
 		 */
 		public static void main(String[] args) throws IOException {
-				 //args = new String[1];
-		         //args[0] = "cli"; //per testare velocemente l'interfaccia testuale
-				 if (args.length != 0 && args[0].equals("cli")) {
+				 args = new String[1];
+		         args[0] = "cli"; //per testare velocemente l'interfaccia testuale
+				 if (args.length != 0 && args[0].equals(ClientStrings.COMMAND_CLI)) {
 					 EnterColumn A1= new EnterColumn(args[0]);
 					 
 			        } else {

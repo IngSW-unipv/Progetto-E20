@@ -124,10 +124,10 @@ public class EnterColumn extends Observable {
         String insertText = "";
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("You've chosen the command line input mode,you have to enter 'cli' if you want to get your ID ticket or 'exit' to quit.");
+            System.out.println("You've chosen the command line input mode,you have to enter 'gen' if you want to get your ID ticket or 'exit' to quit.");
             insertText = scanner.next();
             if (insertText.equals(ClientStrings.EXIT)) break;
-            if (insertText.equals(ClientStrings.COMMAND_CLI)) {
+            if (insertText.equals(ClientStrings.COMMAND_GEN)) {
                 this.setAvailability();
                 System.out.println("Lots Available:" + this.totalLot);
                 if (genTicket()) {
