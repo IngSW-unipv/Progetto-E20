@@ -61,7 +61,7 @@ public class Controller {
                         if (checkIdGeneration) {
                             setTransitionElements();
                         } else {
-                            g.setIdTicket("pippo");
+                            g.setIdTicket(ClientStrings.ERROR_GENERIC);
                         }
                     } else {
                         g.setNoAvailability();//i livelli non hanno disponibilit�
