@@ -34,20 +34,22 @@ public class Controller {
         this.model = model;
         checkConn();
         initListener();
-        timer=new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-        	  @Override
-        	  public void run() {
-        	    model.setAvailability();
-        	    model.setAvailability(model.getAvailability());;
-        	  }
-        	}, 10*1000, 10*1000);
+        
     }
 
     /**
      * Inizializza il listener.
      */
     public void initListener() {
+    	timer=new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+        	  @Override
+        	  public void run() {
+        	    model.setAvailability();
+        	    model.setAvailability(model.getAvailability());;
+        	    
+        	  }
+        	}, 10*1000, 10*1000);
         g.getButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -59,7 +61,7 @@ public class Controller {
                         if (checkIdGeneration) {
                             setTransitionElements();
                         } else {
-                            g.setIdTicket(ClientStrings.ERROR_GENERIC);
+                            g.setIdTicket("pippo");
                         }
                     } else {
                         g.setNoAvailability();//i livelli non hanno disponibilit�
@@ -90,7 +92,7 @@ public class Controller {
                 model.setAvailability();
                 g.setEmptyLevLabel();
                 model.setAvailability(model.getAvailability());
-                model.closeSocket();
+               
             }
         }, 10000);
     }
