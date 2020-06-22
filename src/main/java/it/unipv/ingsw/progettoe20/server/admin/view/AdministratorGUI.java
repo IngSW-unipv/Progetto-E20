@@ -11,20 +11,22 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import it.unipv.ingsw.progettoe20.server.admin.controller.AdministratorController;
 
 /**
  * Prima schermata di interfaccia dell'amministratore. Offre la scelta tra
  * gestione delle tariffe e gestione dei parcheggi
  */
 
-public class AdministratorGUI extends JFrame {
+public class AdministratorGUI extends AbstractGUI {
 
 	private JLabel title;
 	private JPanel panel;
 	private JButton btnParkings, btnPrices, btnLevels;
+	private AdministratorController controller;
 
 	/**
 	 * Inizializza una nuova istanza di AdministratorGUI.
@@ -60,6 +62,7 @@ public class AdministratorGUI extends JFrame {
 		return btnLevels;
 	}
 
+	@Override
 	public void initComponents() {
 
 		panel = new JPanel();
@@ -108,6 +111,11 @@ public class AdministratorGUI extends JFrame {
 		panel.add(btnLevels);
 		panel.add(btnPrices);
 
+	}
+
+	@Override
+	public void initListener() {
+		controller = new AdministratorController(this);
 	}
 
 }
